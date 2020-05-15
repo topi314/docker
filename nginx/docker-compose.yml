@@ -9,11 +9,13 @@ services:
             - /var/www/html/:/usr/share/nginx/html/:ro
             - /etc/letsencrypt/:/etc/letsencrypt/:ro
         networks:
-            - teamcity_default
+            - nginx
+            - teamcity
         ports:
             - 80:80
             - 443:443
 
 networks:
-    teamcity_default:
+    nginx:
+    teamcity:
         external: true

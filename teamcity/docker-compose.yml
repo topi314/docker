@@ -10,7 +10,8 @@ services:
         ports:
             - 8111:8111
         networks:
-            - database_default
+            - teamcity
+            - database
     agent:
         image: jetbrains/teamcity-agent
         restart: always
@@ -24,9 +25,12 @@ services:
             - ./.teamcity/agent_1/tools/:/opt/buildagent/tools/
             - ./.teamcity/agent_1/plugins/:/opt/buildagent/plugins/
             - ./.teamcity/agent_1/system/:/opt/buildagent/system/
+        networks:
+            - teamcity
         depends_on:
             - server
 
 networks:
-    database_default:
+    teamcity:
+    database:
         external: true

@@ -8,3 +8,8 @@ services:
             - config.env
         volumes:
             - ./.postgres/:/var/lib/postgresql/data/
+        networks:
+            - database
+
+networks:
+    database:

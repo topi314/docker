@@ -9,7 +9,8 @@ services:
         env_file:
             - config.yml
         networks:
-            - database_default
+            - kittybot
+            - database
         depends_on:
             - lavalink
     lavalink:
@@ -17,7 +18,10 @@ services:
         restart: always
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
+        networks:
+            - kittybot
 
 networks:
-    database_default:
+    kittybot:
+    database:
         external: true

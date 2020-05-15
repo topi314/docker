@@ -5,5 +5,10 @@ services:
         image: containrrr/watchtower:latest
         restart: always
         volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - watchtower
         command: --interval 30
+
+networks:
+    watchtower:
