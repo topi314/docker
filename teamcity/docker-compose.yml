@@ -3,6 +3,7 @@ version: "3.7"
 services:
     server:
         image: jetbrains/teamcity-server
+        container_name: teamcity_server
         restart: always
         volumes:
             - ./.teamcity/server/data/:/data/teamcity_server/datadir/
@@ -14,6 +15,7 @@ services:
             - database
     agent:
         image: jetbrains/teamcity-agent
+        container_name:  teamcity_agent
         restart: always
         environment:
             - SERVER_URL=server:8111
@@ -32,5 +34,6 @@ services:
 
 networks:
     teamcity:
+        name: teamcity
     database:
         external: true
