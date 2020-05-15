@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    :
+    nginx:
         image: nginx:stable-alpine
         container_name: nginx_1
         restart: always
