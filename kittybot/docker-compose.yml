@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+    bot:
+        image: topisenpai/kittybot:latest
+        restart: always
+        volumes:
+            - ./config.yml:/home/KittyBot/config.yml
+        env_file:
+            - config.yml
+        networks:
+            - database_default
+        depends_on:
+            - lavalink
+    lavalink:
+        image: fredboat/lavalink:master-
+        restart: always
+        volumes:
+            - ./application.yml:/opt/Lavalink/application.yml
+
+networks:
+    database_default:
+        external: true
