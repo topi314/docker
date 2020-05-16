@@ -1,14 +1,22 @@
-DISCORD_BOT_TOKEN=
-DISCORD_BOT_ID=
-DISCORD_BOT_SECRET=
-ADMIN_DISCORD_ID=
+discord:
+    bot_token:
+    bot_id:
+    bot_secret:
+    admin_id:
 
-POSTGRES_HOST=
-POSTGRES_PORT=
-POSTGRES_DB=
-POSTGRES_USER=
-POSTGRES_PASSWORD=
+postgres:
+    host:
+    port:
+    database:
+    user:
+    password:
 
-LAVALINK_HOST=
-LAVALINK_PORT=
-LAVALINK_PASSWORD=
+lavalink_nodes:
+    lavalink_1:
+        host:
+        port:
+        password:
+    lavalink_2:
+        host:
+        port:
+        password:
