@@ -2,12 +2,14 @@ version: '3.7'
 
 services:
     terraria:
-        image: topisenpai/terraia:latest
+        image: topisenpai/terraria:latest
         container_name: terraria
         restart: always
         volumes:
             - ./config.cfg:/home/terraria/config.cfg:ro
             - ./worlds/:/home/terraria/worlds/
+        networks:
+            - terraria
         ports:
             - 7777:7777
 
