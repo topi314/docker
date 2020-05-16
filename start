@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker-compose up -f database/docker-compose.yml -d
 
 docker-compose up -f teamcity/docker-compose.yml -d
