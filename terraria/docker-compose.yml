@@ -7,7 +7,7 @@ services:
         restart: always
         volumes:
             - ./config.cfg:/home/terraria/config.cfg:ro
-            - ./worlds/:/home/terraria/worlds/
+            - ./.worlds/:/home/terraria/worlds/
         networks:
             - terraria
         ports:
