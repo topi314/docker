@@ -1,11 +1,11 @@
 #!/bin/bash
 
-docker-compose up -f database/docker-compose.yml -d
+docker-compose -f database/docker-compose.yml up -d
 
-docker-compose up -f teamcity/docker-compose.yml -d
+docker-compose -f teamcity/docker-compose.yml up -d
 
-docker-compose up -f kittybot/docker-compose.yml -d
+docker-compose -f kittybot/docker-compose.yml up -d
 
-docker-compose up -f nginx/docker-compose.yml -d
+docker-compose -f nginx/docker-compose.yml up -d
 
-docker-compose up -f watchtower/docker-compose.yml -d
+docker-compose -f watchtower/docker-compose.yml up -d
