@@ -7,8 +7,6 @@ services:
         restart: always
         volumes:
             - ./config.yml:/home/KittyBot/config.yml
-        env_file:
-            - config.yml
         networks:
             - kittybot
             - database
