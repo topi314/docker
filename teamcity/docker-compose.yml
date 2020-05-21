@@ -13,9 +13,9 @@ services:
         networks:
             - teamcity
             - database
-    agent:
+    agent_1:
         image: jetbrains/teamcity-agent:latest
-        container_name:  teamcity_agent
+        container_name:  teamcity_agent_1
         restart: always
         environment:
             - SERVER_URL=server:8111
