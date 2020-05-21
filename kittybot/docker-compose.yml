@@ -13,7 +13,7 @@ services:
         depends_on:
             - lavalink
     lavalink:
-        image: fredboat/lavalink:master-
+        image: fredboat/lavalink:dev-
         container_name: kittybot_lavalink_1
         restart: always
         volumes:
