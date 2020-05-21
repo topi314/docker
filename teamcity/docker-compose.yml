@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
     server:
-        image: jetbrains/teamcity-server
+        image: jetbrains/teamcity-server:latest
         container_name: teamcity_server
         restart: always
         volumes:
@@ -14,7 +14,7 @@ services:
             - teamcity
             - database
     agent:
-        image: jetbrains/teamcity-agent
+        image: jetbrains/teamcity-agent:latest
         container_name:  teamcity_agent
         restart: always
         environment:
