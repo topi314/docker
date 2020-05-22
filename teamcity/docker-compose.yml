@@ -17,6 +17,7 @@ services:
         image: jetbrains/teamcity-agent:latest
         container_name: teamcity_agent_1
         restart: always
+        user: root
         environment:
             - SERVER_URL=server:8111
         volumes:
