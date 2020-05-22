@@ -8,7 +8,6 @@ services:
         volumes:
             - ./.teamcity/server/data/:/data/teamcity_server/datadir/
             - ./.teamcity/server/logs/:/opt/teamcity/logs/
-            - ./id_rsa.pub:/opt/teamcity/id_rsa.pub
         ports:
             - 8111:8111
         networks:
@@ -23,6 +22,7 @@ services:
             - SERVER_URL=server:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - ./id_rsa.pub:/data/teamcity_agent/id_rsa.pub
             - ./.teamcity/agent_1/conf/:/data/teamcity_agent/conf/
             - ./.teamcity/agent_1/work/:/opt/buildagent/work/
             - ./.teamcity/agent_1/temp/:/opt/buildagent/temp/
