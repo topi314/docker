@@ -6,8 +6,8 @@ services:
         container_name: teamcity_server
         restart: always
         volumes:
-            - ./.teamcity/server/data/:/data/teamcity_server/datadir/:rw
-            - ./.teamcity/server/logs/:/opt/teamcity/logs/:rw
+            - ./.teamcity/server/data/:/data/teamcity_server/datadir/
+            - ./.teamcity/server/logs/:/opt/teamcity/logs/
         ports:
             - 8111:8111
         networks:
@@ -15,18 +15,18 @@ services:
             - database
     agent_1:
         image: jetbrains/teamcity-agent:latest
-        container_name:  teamcity_agent_1
+        container_name: teamcity_agent_1
         restart: always
         environment:
             - SERVER_URL=server:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./.teamcity/agent_1/conf/:/data/teamcity_agent/conf/:rw
-            - ./.teamcity/agent_1/work/:/opt/buildagent/work/:rw
-            - ./.teamcity/agent_1/temp/:/opt/buildagent/temp/:rw
-            - ./.teamcity/agent_1/tools/:/opt/buildagent/tools/:rw
-            - ./.teamcity/agent_1/plugins/:/opt/buildagent/plugins/:rw
-            - ./.teamcity/agent_1/system/:/opt/buildagent/system/:rw
+            - ./.teamcity/agent_1/conf/:/data/teamcity_agent/conf/
+            - ./.teamcity/agent_1/work/:/opt/buildagent/work/
+            - ./.teamcity/agent_1/temp/:/opt/buildagent/temp/
+            - ./.teamcity/agent_1/tools/:/opt/buildagent/tools/
+            - ./.teamcity/agent_1/plugins/:/opt/buildagent/plugins/
+            - ./.teamcity/agent_1/system/:/opt/buildagent/system/
         networks:
             - teamcity
         depends_on:
