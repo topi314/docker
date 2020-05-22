@@ -8,6 +8,7 @@ services:
         volumes:
             - ./.teamcity/server/data/:/data/teamcity_server/datadir/
             - ./.teamcity/server/logs/:/opt/teamcity/logs/
+            - ./id_rsa.pub:/opt/teamcity/id_rsa.pub
         ports:
             - 8111:8111
         networks:
