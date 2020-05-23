@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+    website:
+        image: topisenpai/kittybot-website:latest
+        container_name: kittybot_website
+        restart: always
+        networks:
