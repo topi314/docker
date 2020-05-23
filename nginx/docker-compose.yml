@@ -12,6 +12,7 @@ services:
         networks:
             - nginx
             - teamcity
+            - kittybot-website
         ports:
             - 80:80
             - 443:443
@@ -20,4 +21,6 @@ networks:
     nginx:
         name: nginx
     teamcity:
+        external: true
+    kittybot-website:
         external: true

@@ -6,4 +6,6 @@ docker-compose -f teamcity/docker-compose.yml up -d
 
 docker-compose -f kittybot/docker-compose.yml up -d
 
+docker-compose -f kittybot-website/docker-compose.yml up -d
+
 docker-compose -f nginx/docker-compose.yml up -d

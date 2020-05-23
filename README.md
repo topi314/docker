@@ -9,9 +9,14 @@ contains my docker-compose configuration for my VServer :)
     
     3. kittybot
     
-    4. nginx
+    4. kittybot-website
+    
+    5. nginx
 
 or run the start script
 
-## Updating KittyBoz
+## Updating KittyBot
 run ```./update``` in kittybot
+
+## Updating KittyBot-Website
+run ```./update``` in kittybot-website
