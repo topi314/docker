@@ -22,7 +22,6 @@ services:
             - SERVER_URL=server:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./key.priv:/data/teamcity_agent/key.priv
             - ./.teamcity/agent_1/conf/:/data/teamcity_agent/conf/
             - ./.teamcity/agent_1/work/:/opt/buildagent/work/
             - ./.teamcity/agent_1/temp/:/opt/buildagent/temp/
