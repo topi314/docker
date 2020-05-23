@@ -10,6 +10,8 @@ contains my docker-compose configuration for my VServer :)
     3. kittybot
     
     4. nginx
-    
-    5. watchtower
-    
+
+or run the start script
+
+## Updating KittyBoz
+run ```./update``` in kittybot
