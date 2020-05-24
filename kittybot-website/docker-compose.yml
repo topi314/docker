@@ -5,8 +5,8 @@ services:
         image: topisenpai/kittybot-website:latest
         container_name: kittybot_website
         restart: always
-        ports:
-            - 8080:80
+        expose:
+            - 80
         networks:
             - kittybot-website
 

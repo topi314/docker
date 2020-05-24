@@ -9,6 +9,8 @@ services:
             - config.env
         volumes:
             - ./.postgres/:/var/lib/postgresql/data/
+        expose:
+            - 5432
         networks:
             - database
 

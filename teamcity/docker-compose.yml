@@ -8,8 +8,8 @@ services:
         volumes:
             - ./.teamcity/server/data/:/data/teamcity_server/datadir/
             - ./.teamcity/server/logs/:/opt/teamcity/logs/
-        ports:
-            - 8111:8111
+        expose:
+            - 8111
         networks:
             - teamcity
             - database
