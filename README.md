@@ -20,3 +20,7 @@ run ```./update``` in kittybot
 
 ## Updating KittyBot-Website
 run ```./update``` in kittybot-website
+
+## LetsEncrypt Cert Bot
+run ```certbot certonly --standalone -d anteiku.de -d www.anteiku.de -d kittybot.anteiku.de -d api.anteiku.de -d ci.anteiku.de```
+(nothing should run on port 80)
