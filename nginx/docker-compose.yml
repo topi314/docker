@@ -13,6 +13,7 @@ services:
             - nginx
             - teamcity
             - kittybot-website
+            - kittybot
         ports:
             - 80:80
             - 443:443
