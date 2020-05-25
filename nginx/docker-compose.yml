@@ -24,3 +24,5 @@ networks:
         external: true
     kittybot-website:
         external: true
+    kittybot:
+        external: true

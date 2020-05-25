@@ -5,6 +5,8 @@ services:
         image: topisenpai/kittybot:latest
         container_name: kittybot_bot
         restart: always
+        expose:
+            - 6969
         volumes:
             - ./config.yml:/home/kittybot/config.yml
         networks:
