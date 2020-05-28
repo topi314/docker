@@ -3,6 +3,7 @@ version: '3.7'
 services:
     database:
         image: postgres:9.6.17-alpine
+        command: postgres -c shared_buffers=512MB c- max_wal_size = 1500MB
         container_name: database
         restart: always
         env_file:
