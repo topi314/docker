@@ -9,8 +9,8 @@ services:
             - 6969
         volumes:
             - ./config.yml:/home/kittybot/config.yml
-        environment: 
-            - SENTRY_DSN=https://d1cc5a7e9d3542d983397e7ba37e5687@o408367.ingest.sentry.io/5279069 java -jar app.jar
+        env_file: 
+            - conf.env
         networks:
             - kittybot
             - database
