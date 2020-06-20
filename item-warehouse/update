@@ -1,0 +1,1 @@
+docker-compose -f docker/item-warehouse/docker-compose.yml up -d

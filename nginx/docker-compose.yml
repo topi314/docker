@@ -14,6 +14,7 @@ services:
             - teamcity
             - kittybot-website
             - kittybot
+            - itemwarehouse
         ports:
             - 80:80
             - 443:443
@@ -26,4 +27,6 @@ networks:
     kittybot-website:
         external: true
     kittybot:
+        external: true
+    itemwarehouse:
         external: true

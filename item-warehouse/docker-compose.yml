@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+    backend:
+        image: topisenpai/item-warehouse-backend:latest
+        container_name: item_warehouse_backend
+        restart: always
+        ports:
+            - 9696:6969
+        volumes:
+            - ./config.yml:/home/itemwarehouse/config.yml
+        env_file: 
+            - conf.env
+        networks:
+            - itemwarehouse
+            - database
+    frontend:
+        image: topisenpai/item-warehouse-frontend:latest
+        container_name: item_warehouse_frontend
+        restart: always
+        networks:
+            - itemwarehouse
+        depends_on:
+            - backend
+
+networks:
+    itemwarehouse:
+        name: itemwarehouse
+    database:
+        external: true
