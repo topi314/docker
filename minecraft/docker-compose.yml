@@ -12,5 +12,5 @@ services:
             - EULA=TRUE
             - VERSION=LATEST
             - MEMORY=2G
-        expose:
-            - 25565
+        ports:
+            - 25565:25565
