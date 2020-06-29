@@ -10,7 +10,9 @@ services:
             - ./.data:/data
         environment:
             - EULA=TRUE
-            - VERSION=LATEST
-            - MEMORY=2G
+            - TYPE=PAPER
+            - MEMORY=3G
         ports:
             - 25565:25565
+            - 25575:25575
+            - 8123:8123
