@@ -12,6 +12,7 @@ services:
         networks:
             - nginx
             - teamcity
+            - minecraft
             - kittybot-website
             - kittybot
             - itemwarehouse
@@ -23,6 +24,8 @@ networks:
     nginx:
         name: nginx
     teamcity:
+        external: true
+    minecraft:
         external: true
     kittybot-website:
         external: true

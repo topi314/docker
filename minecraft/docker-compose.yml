@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-    server:
+    minecraft:
         image: itzg/minecraft-server
         container_name: minecraft_server
         restart: always
@@ -12,7 +12,12 @@ services:
             - EULA=TRUE
             - TYPE=PAPER
             - MEMORY=3G
+        netwokrs:
+            - minecraft
         ports:
             - 25565:25565
             - 25575:25575
-            - 8123:8123
+
+networks:
+    minecraft:
+        name: minecraft
