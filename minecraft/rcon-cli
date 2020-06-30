@@ -1,1 +1,0 @@
-docker exec -it minecraft_server rcon-cli --password=7z567bn6957n6nv5nb7
