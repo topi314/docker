@@ -16,6 +16,7 @@ services:
             - kittybot-website
             - kittybot
             - itemwarehouse
+            - portainer
         ports:
             - 80:80
             - 443:443
@@ -32,4 +33,6 @@ networks:
     kittybot:
         external: true
     itemwarehouse:
+        external: true
+    portainer:
         external: true
