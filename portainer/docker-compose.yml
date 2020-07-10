@@ -11,7 +11,7 @@ services:
         networks:
             - portainer
         ports:
-            - 9000:9000
+            - 127.0.01:9000:9000
 #            - 8000:8000 I do not need edge agent
 
 networks:
