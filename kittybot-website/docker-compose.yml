@@ -5,10 +5,10 @@ services:
         image: topisenpai/kittybot-website:latest
         container_name: kittybot_website
         restart: always
-        expose:
-            - 80
         networks:
             - kittybot-website
+        expose:
+            - 80
 
 networks:
     kittybot-website:
