@@ -1,12 +1,10 @@
-version: '3.7'
+version: '3.8'
 
 services:
     backend:
         image: topisenpai/item-warehouse-backend:latest
         container_name: item_warehouse_backend
         restart: always
-        ports:
-            - 9696:6969
         volumes:
             - ./config.yml:/home/itemwarehouse/config.yml
         env_file: 
@@ -14,12 +12,17 @@ services:
         networks:
             - itemwarehouse
             - database
+        expose:
+            - 9696:6969
+
     frontend:
         image: topisenpai/item-warehouse-frontend:latest
         container_name: item_warehouse_frontend
         restart: always
         networks:
             - itemwarehouse
+        expose:
+            - 80
         depends_on:
             - backend
 
