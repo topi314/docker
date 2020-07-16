@@ -13,7 +13,7 @@ services:
             - itemwarehouse
             - database
         expose:
-            - 9696:6969
+            - 9696
 
     frontend:
         image: topisenpai/item-warehouse-frontend:latest
