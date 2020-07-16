@@ -5,10 +5,10 @@ services:
         image: topisenpai/item-warehouse-backend:latest
         container_name: item_warehouse_backend
         restart: always
-        volumes:
-            - ./config.yml:/home/itemwarehouse/config.yml
         env_file: 
             - conf.env
+        volumes:
+            - ./config.yml:/home/itemwarehouse/config.yml
         networks:
             - itemwarehouse
             - database
