@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker-compose -f portainer/docker-compose.yml up -d
+
 docker-compose -f database/docker-compose.yml up -d
 
 docker-compose -f teamcity/docker-compose.yml up -d
@@ -7,5 +9,9 @@ docker-compose -f teamcity/docker-compose.yml up -d
 docker-compose -f kittybot/docker-compose.yml up -d
 
 docker-compose -f kittybot-website/docker-compose.yml up -d
+
+docker-compose -f item-warehouse/docker-compose.yml up -d
+
+docker-compose -f minecraft/docker-compose.yml up -d
 
 docker-compose -f nginx/docker-compose.yml up -d
