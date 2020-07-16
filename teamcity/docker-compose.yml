@@ -8,11 +8,12 @@ services:
         volumes:
             - ./.teamcity/server/data/:/data/teamcity_server/datadir/
             - ./.teamcity/server/logs/:/opt/teamcity/logs/
-        expose:
-            - 8111
         networks:
             - teamcity
             - database
+        expose:
+            - 8111
+
     agent_1:
         image: jetbrains/teamcity-agent:latest
         container_name: teamcity_agent_1
