@@ -13,6 +13,7 @@ services:
             - ./.data/certbot/www:/var/www/certbot
         networks:
             - nginx
+            - certbot
             - teamcity
             - minecraft
             - kittybot-website
@@ -23,15 +24,21 @@ services:
             - 80:80
             - 443:443
     certbot:
-        image: certbot/certbot
+        image: certbot/certbot:latest
+        container_name: certbot
+        restart: always
         volumes:
             - ./.data/certbot/conf:/etc/letsencrypt
             - ./.data/certbot/www:/var/www/certbot
+        networks:
+            - certbot
         entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
     nginx:
         name: nginx
+    certbot:
+        name: certbot
     teamcity:
         external: true
     minecraft:
