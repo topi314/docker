@@ -5,13 +5,13 @@ services:
         image: itzg/minecraft-server:latest
         container_name: minecraft_server
         restart: always
-        volumes:
-            - /etc/timezone:/etc/timezone:ro
-            - ./.data:/data
         environment:
             - EULA=TRUE
             - TYPE=PAPER
             - MEMORY=3G
+        volumes:
+            - /etc/timezone:/etc/timezone:ro
+            - ./.data:/data
         networks:
             - minecraft
         expose:
