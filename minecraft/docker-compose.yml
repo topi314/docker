@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     minecraft:
-        image: itzg/minecraft-server
+        image: itzg/minecraft-server:latest
         container_name: minecraft_server
         restart: always
         volumes:
@@ -12,11 +12,12 @@ services:
             - EULA=TRUE
             - TYPE=PAPER
             - MEMORY=3G
-        netwokrs:
+        networks:
             - minecraft
+        expose:
+            - 25575
         ports:
             - 25565:25565
-            - 25575:25575
 
 networks:
     minecraft:
