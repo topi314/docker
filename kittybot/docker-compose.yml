@@ -16,6 +16,12 @@ services:
             - 6969
         depends_on:
             - lavalink
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:6969/health_check"]
+            interval: 1m00s
+            timeout: 5s
+            retries: 3
+            start_period: 1m00s
     lavalink:
         image: fredboat/lavalink:dev
         container_name: kittybot_lavalink_1
