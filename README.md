@@ -1,26 +1,31 @@
 # docker
-contains my docker-compose configuration for my VServer :)
+this is my docker-compose configuration for my Virtual Private Server :)
 
 ## Container Starting Order:
 
     1. database
     
-    2. teamcity
+    2. portainer
     
-    3. kittybot
+    3. teamcity
     
-    4. kittybot-website
+    4. kittybot
     
-    5. nginx
+    5. kittybot-website
+    
+    6. item-warehouse
+    
+    7. minecraft
+    
+    8. nginx
 
 or run the start script
 
 ## Updating KittyBot
-run ```./update``` in kittybot
+run ```$ ./docker/kittybot/update``` in kittybot
 
 ## Updating KittyBot-Website
-run ```./update``` in kittybot-website
+run ```$ ./docker/kittybot-website/update``` in kittybot-website
 
-## LetsEncrypt Cert Bot
-run ```certbot certonly --standalone -d anteiku.de -d www.anteiku.de -d kittybot.anteiku.de -d api.anteiku.de -d ci.anteiku.de```
-(nothing should run on port 80)
+## Updating Item-Warehouse
+run ```$ ./docker/item-warehouse/update```
