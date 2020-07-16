@@ -5,25 +5,27 @@ services:
         image: topisenpai/kittybot:latest
         container_name: kittybot_bot
         restart: always
-        expose:
-            - 6969
-        volumes:
-            - ./config.yml:/home/kittybot/config.yml
         env_file: 
             - conf.env
+        volumes:
+            - ./config.yml:/home/kittybot/config.yml
         networks:
             - kittybot
             - database
+        expose:
+            - 6969
         depends_on:
             - lavalink
     lavalink:
-        image: fredboat/lavalink:dev-
+        image: fredboat/lavalink:dev
         container_name: kittybot_lavalink_1
         restart: always
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
             - kittybot
+        expose:
+            - 2333
 
 networks:
     kittybot:
