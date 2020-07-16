@@ -10,7 +10,7 @@ services:
         volumes:
             - ./config.yml:/home/itemwarehouse/config.yml
         networks:
-            - itemwarehouse
+            - item-warehouse
             - database
         expose:
             - 9696
@@ -19,14 +19,14 @@ services:
         container_name: item_warehouse_frontend
         restart: always
         networks:
-            - itemwarehouse
+            - item-warehouse
         expose:
             - 80
         depends_on:
             - backend
 
 networks:
-    itemwarehouse:
-        name: itemwarehouse
+    item-warehouse:
+        name: item-warehouse
     database:
         external: true
