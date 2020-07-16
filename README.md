@@ -1,7 +1,7 @@
 # docker
 this is my docker-compose configuration for my Virtual Private Server :)
 
-## Container Starting Order:
+### Container Starting Order:
 
     1. database
     
@@ -21,11 +21,11 @@ this is my docker-compose configuration for my Virtual Private Server :)
 
 or run the start script
 
-## Updating KittyBot
-run ```$ ./docker/kittybot/update``` in kittybot
+### Updating KittyBot
+run `$ ./docker/kittybot/update`
 
-## Updating KittyBot-Website
-run ```$ ./docker/kittybot-website/update``` in kittybot-website
+### Updating KittyBot-Website
+run `$ ./docker/kittybot-website/update`
 
-## Updating Item-Warehouse
-run ```$ ./docker/item-warehouse/update```
+### Updating Item-Warehouse
+run `$ ./docker/item-warehouse/update`
