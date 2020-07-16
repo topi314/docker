@@ -10,8 +10,9 @@ services:
             - ./.data:/data
         networks:
             - portainer
-        ports:
-            - 127.0.01:9000:9000
+        expose:
+            - 9000
+#        ports:
 #            - 8000:8000 I do not need edge agent
 
 networks:
