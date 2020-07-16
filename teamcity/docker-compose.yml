@@ -13,7 +13,6 @@ services:
             - database
         expose:
             - 8111
-
     agent_1:
         image: jetbrains/teamcity-agent:latest
         container_name: teamcity_agent_1
