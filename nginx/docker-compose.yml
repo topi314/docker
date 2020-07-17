@@ -16,7 +16,6 @@ services:
             - certbot
             - teamcity
             - minecraft
-            - kittybot-website
             - kittybot
             - item-warehouse
             - portainer
@@ -42,8 +41,6 @@ networks:
     teamcity:
         external: true
     minecraft:
-        external: true
-    kittybot-website:
         external: true
     kittybot:
         external: true
