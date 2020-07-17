@@ -22,6 +22,22 @@ services:
             timeout: 5s
             retries: 3
             start_period: 1m00s
+    website:
+        image: topisenpai/kittybot-website:latest
+        container_name: kittybot_website
+        restart: always
+        networks:
+            - kittybot
+        expose:
+            - 80
+        depends_on:
+            - kittybot
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:80"]
+            interval: 1m00s
+            timeout: 5s
+            retries: 3
+            start_period: 1m00s
     lavalink:
         image: fredboat/lavalink:dev
         container_name: kittybot_lavalink_1
