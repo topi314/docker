@@ -19,7 +19,6 @@ services:
             - kittybot
             - item-warehouse
             - portainer
-            - host
         ports:
             - 80:80
             - 443:443
