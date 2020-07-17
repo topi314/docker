@@ -19,8 +19,9 @@ services:
           - --probe.docker=true
       networks:
           - weavescope
-      
-      
+      expose:
+          - 4040
+       
 networks:
     weavescope:
         name: weavescope
