@@ -27,11 +27,11 @@ services:
         container_name: kittybot_website
         restart: always
         networks:
-            - bot
+            - kittybot
         expose:
             - 80
         depends_on:
-            - kittybot
+            - bot
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:80"]
             interval: 1m00s
