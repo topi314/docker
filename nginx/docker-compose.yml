@@ -20,7 +20,6 @@ services:
             - kittybot
             - item-warehouse
             - portainer
-            - weavescope
         ports:
             - 80:80
             - 443:443
@@ -51,6 +50,4 @@ networks:
     item-warehouse:
         external: true
     portainer:
-        external: true
-    weavescope:
         external: true
