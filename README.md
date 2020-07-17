@@ -10,22 +10,17 @@ this is my docker-compose configuration for my Virtual Private Server :)
     3. teamcity
     
     4. kittybot
+        
+    5. item-warehouse
     
-    5. kittybot-website
+    6. minecraft
     
-    6. item-warehouse
-    
-    7. minecraft
-    
-    8. nginx
+    7. nginx
 
 or run the start script
 
 ### Updating KittyBot
 run `$ ./docker/kittybot/update`
-
-### Updating KittyBot-Website
-run `$ ./docker/kittybot-website/update`
 
 ### Updating Item-Warehouse
 run `$ ./docker/item-warehouse/update`
