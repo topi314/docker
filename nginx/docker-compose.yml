@@ -49,5 +49,3 @@ networks:
         external: true
     portainer:
         external: true
-    host:
-        external: true
