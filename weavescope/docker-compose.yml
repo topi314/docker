@@ -3,7 +3,7 @@ version: '3.7'
 services:
     scope:
       image: weaveworks/scope:latest
-      container_name: scope
+      container_name: weavescope
       network_mode: host
       pid: "host"
       privileged: true
@@ -17,3 +17,10 @@ services:
           - /var/run/docker.sock:/var/run/docker.sock:rw
       command:
           - --probe.docker=true
+      networks:
+          - weavescope
+      
+      
+networks:
+    weavescope:
+        name: weavescope
