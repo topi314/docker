@@ -2,19 +2,19 @@ version: '3.7'
 
 services:
     server:
-        image: jetbrains/teamcity-server:latest
+        image: jetbrains/teamcity-server:2020.1.2
         container_name: teamcity_server
         restart: always
         volumes:
-            - ./.teamcity/server/data/:/data/teamcity_server/datadir/
-            - ./.teamcity/server/logs/:/opt/teamcity/logs/
+            - ./.data/server/data/:/data/teamcity_server/datadir/
+            - ./.data/server/logs/:/opt/teamcity/logs/
         networks:
             - teamcity
             - database
         expose:
             - 8111
     agent_1:
-        image: jetbrains/teamcity-agent:latest
+        image: jetbrains/teamcity-agent:2020.1.2
         container_name: teamcity_agent_1
         restart: always
         user: root
@@ -22,12 +22,12 @@ services:
             - SERVER_URL=server:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./.teamcity/agent_1/conf/:/data/teamcity_agent/conf/
-            - ./.teamcity/agent_1/work/:/opt/buildagent/work/
-            - ./.teamcity/agent_1/temp/:/opt/buildagent/temp/
-            - ./.teamcity/agent_1/tools/:/opt/buildagent/tools/
-            - ./.teamcity/agent_1/plugins/:/opt/buildagent/plugins/
-            - ./.teamcity/agent_1/system/:/opt/buildagent/system/
+            - ./.data/agent_1/conf/:/data/teamcity_agent/conf/
+            - ./.data/agent_1/work/:/opt/buildagent/work/
+            - ./.data/agent_1/temp/:/opt/buildagent/temp/
+            - ./.data/agent_1/tools/:/opt/buildagent/tools/
+            - ./.data/agent_1/plugins/:/opt/buildagent/plugins/
+            - ./.data/agent_1/system/:/opt/buildagent/system/
         networks:
             - teamcity
         depends_on:
