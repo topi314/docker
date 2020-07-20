@@ -14,12 +14,14 @@ services:
         expose:
             - 8111
     agent_1:
-        image: jetbrains/teamcity-agent:2020.1.2
+        image: teamcity-agent:jdk-11
         container_name: teamcity_agent_1
         restart: always
         user: root
         environment:
             - SERVER_URL=server:8111
+            - DOCKER_IN_DOCKER=true
+            - AGENT_NAME=agent_1
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./.data/agent_1/conf/:/data/teamcity_agent/conf/
