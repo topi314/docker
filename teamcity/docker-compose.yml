@@ -22,6 +22,7 @@ services:
             - SERVER_URL=server:8111
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - /usr/lib/jvm/java-11-openjdk-amd64/opt/java/open-jdk-11/
             - ./.data/agent_1/conf/:/data/teamcity_agent/conf/
             - ./.data/agent_1/work/:/opt/buildagent/work/
             - ./.data/agent_1/temp/:/opt/buildagent/temp/
