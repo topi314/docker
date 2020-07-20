@@ -14,7 +14,7 @@ services:
         expose:
             - 8111
     agent_1:
-        image: teamcity-agent:jdk-11
+        image: topisenpai/teamcity-agent:latest
         container_name: teamcity_agent_1
         restart: always
         user: root
