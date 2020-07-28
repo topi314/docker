@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(anteiku.de www.anteiku.de kittybot.anteiku.de ci.anteiku.de api.anteiku.de dynmap.anteiku.de portainer.anteiku.de warehouse.anteiku.de teilelager.anteiku.de)
+domains=(anteiku.de *.anteiku.de)
 rsa_key_size=4096
 data_path="./.data/certbot"
 email="" # Adding a valid address is strongly recommended
