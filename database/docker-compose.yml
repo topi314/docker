@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     database:
-        image: postgres:9.6.18-alpine
+        image: postgres:13
         container_name: database
         restart: always
         env_file:
