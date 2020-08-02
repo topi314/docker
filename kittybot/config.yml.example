@@ -1,15 +1,18 @@
-discord:
-    bot_token:
-    bot_id:
-    bot_secret:
-    admin_id:
+bot_token:
+bot_id:
+bot_secret:
+admin_id:
+support_guild:
+log_channel:
+invite_url:
+redirect_url:
+origin_url:
 
-postgres:
-    host:
-    port:
-    database:
-    user:
-    password:
+db_host:
+db_port:
+db_db:
+db_user:
+db_password:
 
 lavalink_nodes:
     lavalink_1:
