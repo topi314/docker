@@ -8,6 +8,8 @@ services:
         environment:
             - STORAGE_TYPE=redis
             - STORAGE_HOST=hastebinredis
+        depends_on:
+            - redis
         networks:
             - hastebin
             - redis
