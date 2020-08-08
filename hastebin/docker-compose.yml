@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+    hastebin:
+        image: rlister/hastebin
+        container_name: hastebin
+        restart: always
+        environment:
+            - STORAGE_TYPE=redis
+            - STORAGE_HOST=hastebinredis
+        networks:
+            - hastebin
+            - redis
+        expose:
+            - 7777
+    redis:
+        image: redis
+        container_name: redis
+        restart: always
+        volumes:
+            - ./.data:/data
+        networks:
+            - redis
+            - hastebin
+        entrypoint: redis-server --appendonly yes
+
+networks:
+    redis:
+        name: redis
+    hastebin:
+        name: hastebin

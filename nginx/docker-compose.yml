@@ -20,6 +20,7 @@ services:
             - item-warehouse
             - portainer
             - pgadmin
+            - hastebin
         ports:
             - 80:80
             - 443:443
@@ -50,4 +51,6 @@ networks:
     portainer:
         external: true
     pgadmin:
+        external: true
+    hastebin:
         external: true
