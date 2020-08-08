@@ -7,7 +7,7 @@ services:
         restart: always
         environment:
             - STORAGE_TYPE=redis
-            - STORAGE_HOST=hastebinredis
+            - STORAGE_HOST=redis
         depends_on:
             - redis
         networks:
@@ -16,7 +16,7 @@ services:
         expose:
             - 7777
     redis:
-        image: redis
+        image: redis:buster
         container_name: redis
         restart: always
         volumes:
