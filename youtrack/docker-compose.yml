@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     server:
-        image: jetbrains/youtrack:2020.3
+        image: jetbrains/youtrack:2020.3.3613
         container_name: youtrack
         restart: unless-stopped
         volumes:
