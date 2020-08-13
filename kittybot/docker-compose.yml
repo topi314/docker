@@ -4,7 +4,7 @@ services:
     bot:
         image: topisenpai/kittybot:latest
         container_name: kittybot_bot
-        restart: always
+        restart: unless-stopped
         env_file: 
             - conf.env
         volumes:
@@ -25,7 +25,7 @@ services:
     website:
         image: topisenpai/kittybot-website:latest
         container_name: kittybot_website
-        restart: always
+        restart: unless-stopped
         networks:
             - kittybot
         expose:
@@ -41,7 +41,7 @@ services:
     lavalink:
         image: fredboat/lavalink:dev
         container_name: kittybot_lavalink_1
-        restart: always
+        restart: unless-stopped
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:

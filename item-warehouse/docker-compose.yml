@@ -4,7 +4,7 @@ services:
     backend:
         image: topisenpai/item-warehouse-backend:latest
         container_name: item_warehouse_backend
-        restart: always
+        restart: unless-stopped
         env_file: 
             - conf.env
         volumes:
@@ -17,7 +17,7 @@ services:
     frontend:
         image: topisenpai/item-warehouse-frontend:latest
         container_name: item_warehouse_frontend
-        restart: always
+        restart: unless-stopped
         networks:
             - item-warehouse
         expose:

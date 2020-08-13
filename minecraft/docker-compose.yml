@@ -4,7 +4,7 @@ services:
     minecraft:
         image: itzg/minecraft-server:latest
         container_name: minecraft_server
-        restart: always
+        restart: unless-stopped
         environment:
             - EULA=TRUE
             - TYPE=PAPER
