@@ -6,10 +6,10 @@ services:
         container_name: youtrack
         restart: unless-stopped
         volumes:
-            - ./.data/data:/opt/youtrack/data \
-            - ./.data/conf:/opt/youtrack/conf  \
-            - ./.data/logs:/opt/youtrack/logs  \
-            - ./.data/backups:/opt/youtrack/backups  \
+            - ./.data/data:/opt/youtrack/data
+            - ./.data/conf:/opt/youtrack/conf
+            - ./.data/logs:/opt/youtrack/logs
+            - ./.data/backups:/opt/youtrack/backups
         networks:
             - youtrack
         expose:
