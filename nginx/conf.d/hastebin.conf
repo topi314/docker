@@ -1,3 +1,8 @@
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' '';
+}
+
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
