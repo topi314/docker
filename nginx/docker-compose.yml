@@ -5,7 +5,7 @@ services:
         image: staticfloat/nginx-certbot
         container_name: nginx
         restart: unless-stopped
-        nv_file:
+        env_file:
             - conf.env
         volumes:
             - ./conf.d:/etc/nginx/user.conf.d:ro
