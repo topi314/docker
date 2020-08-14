@@ -9,8 +9,8 @@ server {
     server_name warehouse.anteiku.de itemwarehouse.anteiku.de teilelager.anteiku.de;
     keepalive_timeout 70;
 
-    ssl_certificate /etc/letsencrypt/live/anteiku.de/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/anteiku.de/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/warehouse.anteiku.de/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/warehouse.anteiku.de/privkey.pem;
 
     location / {
         proxy_pass http://frontend:80;

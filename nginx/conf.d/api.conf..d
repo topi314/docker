@@ -9,8 +9,8 @@ server {
     server_name api.anteiku.de;
     keepalive_timeout 70;
 
-    ssl_certificate /etc/letsencrypt/live/anteiku.de/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/anteiku.de/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/api.anteiku.de/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.anteiku.de/privkey.pem;
 
     location / {
         proxy_pass http://backend:9696/;
