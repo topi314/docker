@@ -2,15 +2,14 @@ version: '3.7'
 
 services:
     nginx:
-        image: nginx:stable-alpine
+        image: staticfloat/nginx-certbot
         container_name: nginx
         restart: unless-stopped
-        command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+        environment:
+            CERTBOT_EMAIL=tobi@strasserhof.comm
         volumes:
-            - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - /var/www/html/:/usr/share/nginx/html/:ro
-            - ./.data/certbot/conf:/etc/letsencrypt:ro
-            - ./.data/certbot/www:/var/www/certbot
+            - ./conf.d:/etc/nginx/user.conf.d:ro
+            - ./.data/:/etc/letsencrypt/
         networks:
             - nginx
             - certbot
@@ -25,22 +24,10 @@ services:
         ports:
             - 80:80
             - 443:443
-    certbot:
-        image: certbot/certbot:latest
-        container_name: certbot
-        restart: unless-stopped
-        volumes:
-            - ./.data/certbot/conf:/etc/letsencrypt
-            - ./.data/certbot/www:/var/www/certbot
-        networks:
-            - certbot
-        entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
     nginx:
         name: nginx
-    certbot:
-        name: certbot
     teamcity:
         external: true
     youtrack:
