@@ -12,7 +12,6 @@ services:
             - ./.data/:/etc/letsencrypt/
         networks:
             - nginx
-            - certbot
             - teamcity
             - youtrack
             - minecraft
