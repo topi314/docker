@@ -5,8 +5,8 @@ services:
         image: staticfloat/nginx-certbot
         container_name: nginx
         restart: unless-stopped
-        environment:
-            CERTBOT_EMAIL=tobi@strasserhof.comm
+        nv_file:
+            - conf.env
         volumes:
             - ./conf.d:/etc/nginx/user.conf.d:ro
             - ./.data/:/etc/letsencrypt/
