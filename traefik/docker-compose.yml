@@ -11,6 +11,14 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
             - traefik
+            - teamcity
+            - youtrack
+            - minecraft
+            - kittybot
+            - item-warehouse
+            - portainer
+            - pgadmin
+            - hastebin
         ports:
             - 8080:8080
             - 81:80
@@ -19,3 +27,19 @@ services:
 networks:
     traefik:
         name: traefik
+    teamcity:
+        external: true
+    youtrack:
+        external: true
+    minecraft:
+        external: true
+    kittybot:
+        external: true
+    item-warehouse:
+        external: true
+    portainer:
+        external: true
+    pgadmin:
+        external: true
+    hastebin:
+        external: true
