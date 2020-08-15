@@ -5,8 +5,9 @@ services:
         image: traefik:v2.3
         container_name: traefik
         restart: unless-stopped
+        command: --api
         volumes:
-#            - ./traefik.yml:/etc/traefik/traefik.yml
+            - ./traefik.yml:/traefik.yml
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
             - traefik
