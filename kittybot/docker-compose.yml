@@ -31,7 +31,7 @@ services:
         expose:
             - 80
         depends_on:
-            - bot
+            - kittybot
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:80"]
             interval: 1m00s

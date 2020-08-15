@@ -3,7 +3,7 @@
 # Docker configuration backend
 providers:
   docker:
-    defaultRule: "Host(`{{ trimPrefix `/` .Name }}.anteiku.de`)"
+    defaultRule: "Host(`{{ trimPrefix `/` .Name }}.your.domain)"
 
 # API and dashboard configuration
 api:
