@@ -12,7 +12,8 @@ services:
             - traefik
         ports:
             - 8080:8080
-            - 8070:80
+            - 81:80
+            - 444:443
 
 networks:
     traefik:
