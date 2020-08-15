@@ -6,7 +6,7 @@ services:
         container_name: traefik
         restart: unless-stopped
         volumes:
-            - ./traefik.yml:/etc/traefik/traefik.yml
+#            - ./traefik.yml:/etc/traefik/traefik.yml
             - /var/run/docker.sock:/var/run/docker.sock
         networks:
             - traefik
