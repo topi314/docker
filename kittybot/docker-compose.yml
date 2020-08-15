@@ -1,9 +1,9 @@
 version: '3.7'
 
 services:
-    bot:
+    kittybot:
         image: topisenpai/kittybot:latest
-        container_name: kittybot_bot
+        container_name: kittybot
         restart: unless-stopped
         env_file: 
             - conf.env
