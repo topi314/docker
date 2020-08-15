@@ -8,3 +8,7 @@ providers:
 # API and dashboard configuration
 api:
   insecure: true
+
+experimental:
+  pilot:
+    token:
