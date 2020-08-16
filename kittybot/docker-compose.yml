@@ -5,6 +5,8 @@ services:
         image: topisenpai/kittybot:latest
         container_name: kittybot
         restart: unless-stopped
+        labels:
+            - owner=kittybot
         env_file: 
             - conf.env
         volumes:
@@ -26,6 +28,8 @@ services:
         image: topisenpai/kittybot-website:latest
         container_name: kittybot_website
         restart: unless-stopped
+        labels:
+            - owner=kittybot
         networks:
             - kittybot
         expose:
@@ -42,6 +46,8 @@ services:
         image: fredboat/lavalink:dev
         container_name: kittybot_lavalink_1
         restart: unless-stopped
+        labels:
+            - owner=kittybot
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
