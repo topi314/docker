@@ -44,7 +44,7 @@ services:
             start_period: 1m00s
     lavalink:
         image: fredboat/lavalink:dev
-        container_name: kittybot_lavalink_1
+        container_name: lavalink_1
         restart: unless-stopped
         labels:
             - owner=kittybot
