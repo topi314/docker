@@ -3,7 +3,7 @@ version: '3.7'
 services:
     dev-database:
         image: postgres:13
-        container_name: database
+        container_name: dev_database
         restart: unless-stopped
         env_file:
             - conf.env
@@ -16,7 +16,7 @@ services:
             - 5432
     dev-pgadmin:
         image: dpage/pgadmin4:4
-        container_name: pgadmin
+        container_name: dev_pgadmin
         restart: unless-stopped
         env_file:
             - conf.env
@@ -28,7 +28,7 @@ services:
             - 80
     dev-lavalink:
         image: fredboat/lavalink:dev
-        container_name: kittybot_lavalink_1
+        container_name: dev_lavalink_1
         restart: unless-stopped
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
