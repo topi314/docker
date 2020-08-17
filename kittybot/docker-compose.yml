@@ -6,7 +6,7 @@ services:
         container_name: kittybot
         restart: unless-stopped
         labels:
-            - owner=kittybot
+            - io.portainer.accesscontrol.teams=kittybot
         env_file: 
             - conf.env
         volumes:
@@ -29,7 +29,7 @@ services:
         container_name: kittybot_website
         restart: unless-stopped
         labels:
-            - owner=kittybot
+            - io.portainer.accesscontrol.teams=kittybot
         networks:
             - kittybot
         expose:
@@ -47,7 +47,7 @@ services:
         container_name: lavalink_1
         restart: unless-stopped
         labels:
-            - owner=kittybot
+            - io.portainer.accesscontrol.teams=kittybot
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
