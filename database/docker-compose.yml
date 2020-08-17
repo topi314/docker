@@ -6,7 +6,7 @@ services:
         container_name: database
         restart: unless-stopped
         labels:
-            - owner=kittybot
+            - io.portainer.accesscontrol.teams=kittybot
         env_file:
             - conf.env
         volumes:
@@ -19,8 +19,6 @@ services:
         image: dpage/pgadmin4:4
         container_name: pgadmin
         restart: unless-stopped
-        labels:
-            - owner=kittybot
         env_file:
             - conf.env
         volumes:

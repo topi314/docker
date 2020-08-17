@@ -5,6 +5,8 @@ services:
         image: postgres:13
         container_name: dev_database
         restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
         env_file:
             - conf.env
         volumes:
@@ -17,6 +19,8 @@ services:
         image: dpage/pgadmin4:4
         container_name: dev_pgadmin
         restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
         env_file:
             - conf.env
         volumes:
@@ -30,6 +34,8 @@ services:
         image: fredboat/lavalink:dev
         container_name: dev_lavalink_1
         restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
