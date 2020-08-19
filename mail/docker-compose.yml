@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+    mail:
+        image: tvial/docker-mailserver:latest
+        container_name: mail
+        hostname: mail
+        domainname: kittybot.de
+        restart: unless-stopped
+        environment:
+            - ENABLE_SPAMASSASSIN=1
+            - SPAMASSASSIN_SPAM_TO_INBOX=1
+            - ENABLE_CLAMAV=1
+            - ENABLE_FAIL2BAN=1
+            - ENABLE_POSTGREY=1
+            - ONE_DIR=1
+            - DMS_DEBUG=0
+        volumes:
+            - ./.data/data/:/var/mail/
+            - ./.data/state/:/var/mail-state/
+            - ./.data/logs/:/var/log/mail/
+            - ./config/:/tmp/docker-mailserver/
+        networks:
+            - mail
+        ports:
+            - 25:25
+            - 143:143
+            - 587:587
+            - 993:993
+        cap_add:
+            - NET_ADMIN
+            - SYS_PTRACE
+            
+networks:
+    mail:
+        name: mail
