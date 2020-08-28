@@ -4,7 +4,7 @@ global:
   sendAnonymousUsage: true
 
 log:
-  level: DEBUG
+  level: INFO
 
 entryPoints:
   http:
@@ -35,7 +35,7 @@ certificatesResolvers:
   default:
     acme:
       # testing server
-      caserver: https://acme-staging-v02.api.letsencrypt.org/directory
+      # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
       email: {{EMAIL}}
       storage: /letsencrypt/acme.json
       dnsChallenge:

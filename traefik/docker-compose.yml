@@ -10,8 +10,6 @@ services:
             - traefik.http.routers.dashboard.rule=Host(`traefik.kittybot.de`)
             - traefik.http.routers.dashboard.entrypoints=https
             - traefik.http.routers.dashboard.service=api@internal
-            - traefik.http.routers.dashboard.middlewares=dashboard-auth
-            - traefik.http.middlewares.dashboard-auth.basicauth.users=topi:{{HTPASSWD}}
         env_file:
             - conf.env
         volumes:
