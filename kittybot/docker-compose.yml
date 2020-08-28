@@ -7,6 +7,9 @@ services:
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
+            - traefik.enable=true
+            - traefik.http.routers.plex.rule=Host(`api.$PRIMARY_DOMAIN`)
+            - traefik.http.routers.plex.entrypoints=https
         env_file: 
             - conf.env
         volumes:
@@ -30,6 +33,9 @@ services:
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
+            - traefik.enable=true
+            - traefik.http.routers.plex.rule=Host(`$PRIMARY_DOMAIN`)
+            - traefik.http.routers.plex.entrypoints=https
         networks:
             - kittybot
         expose:
