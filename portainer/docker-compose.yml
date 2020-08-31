@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     portainer:
-        image: portainer/portainer:alpine
+        image: portainer/portainer-ce:alpine
         container_name: portainer
         restart: unless-stopped
         volumes:
@@ -12,8 +12,6 @@ services:
             - portainer
         expose:
             - 9000
-#        ports:
-#            - 8000:8000 I do not need edge agent
 
 networks:
     portainer:
