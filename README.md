@@ -10,14 +10,12 @@ this is my docker-compose configuration for my Virtual Private Server :)
     3. portainer
     
     4. teamcity
+       
+    5. kittybot-dev
     
-    5. youtrack
-   
-    6. kittybot-dev
-    
-    7. kittybot
+    6. kittybot
                     
-    8. nginx
+    7. nginx
 
 or run the start script
 
