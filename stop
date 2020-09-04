@@ -4,9 +4,9 @@ docker-compose -f nginx/docker-compose.yml down
 
 docker-compose -f teamcity/docker-compose.yml down
 
-docker-compose -f kittybot-website/docker-compose.yml down
-
 docker-compose -f kittybot/docker-compose.yml down
+
+docker-compose -f kittybot-dev/docker-compose.yml down
 
 docker-compose -f item-warehouse/docker-compose.yml down
 
