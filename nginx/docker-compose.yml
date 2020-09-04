@@ -13,7 +13,6 @@ services:
         networks:
             - nginx
             - teamcity
-            - youtrack
             - minecraft
             - kittybot
             - item-warehouse
@@ -28,8 +27,6 @@ networks:
     nginx:
         name: nginx
     teamcity:
-        external: true
-    youtrack:
         external: true
     minecraft:
         external: true
