@@ -24,7 +24,6 @@ services:
             - 51820:51820/udp # vpn
             - 80:80
             - 443:500
-            - 42000-42999:42000-42999
 
     wireguard:
         image: linuxserver/wireguard
