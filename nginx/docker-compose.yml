@@ -9,6 +9,7 @@ services:
             - conf.env
         volumes:
             - ./conf.d:/etc/nginx/user.conf.d:ro
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
             - ./.data/:/etc/letsencrypt/
         networks:
             - nginx
@@ -20,8 +21,31 @@ services:
             - pgadmin
             - hastebin
         ports:
+            - 51820:51820/udp # vpn
             - 80:80
-            - 443:443
+            - 443:500
+            - 42000-42999:42000-42999
+
+    wireguard:
+        image: linuxserver/wireguard
+        container_name: wireguard
+        restart: unless-stopped
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Berlin
+            - SERVERPORT=51820
+            - PEERS=1
+            - INTERNAL_SUBNET=10.13.13.0
+        cap_add:
+            - NET_ADMIN
+            - SYS_MODULE
+        sysctls:
+            - net.ipv4.conf.all.src_valid_mark=1
+        network_mode: service:nginx
+        volumes:
+            - ./wireguard.conf:/config/wg0.conf
+            - /lib/modules:/lib/modules
 
 networks:
     nginx:
