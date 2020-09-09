@@ -43,7 +43,7 @@ services:
             - net.ipv4.conf.all.src_valid_mark=1
         network_mode: service:nginx
         volumes:
-            - ./wireguard.conf:/config/wg0.conf
+            - ./wireguard:/config/
             - /lib/modules:/lib/modules
 
 networks:
