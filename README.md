@@ -1,5 +1,5 @@
 # docker
-this is my docker-compose configuration for my Virtual Private Server :)
+docker-compose configuration for my vps :)
 
 ### Container Starting Order:
 
@@ -16,6 +16,8 @@ this is my docker-compose configuration for my Virtual Private Server :)
     6. kittybot
                     
     7. nginx
+    
+    
 
 or run the start script
 
