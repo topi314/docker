@@ -15,21 +15,6 @@ services:
             - kittybot-dev
         ports:
             - 5432:5432
-    dev-pgadmin:
-        image: dpage/pgadmin4:4
-        container_name: dev_pgadmin
-        restart: unless-stopped
-        labels:
-            - io.portainer.accesscontrol.teams=kittybot
-        env_file:
-            - conf.env
-        volumes:
-            - ./.data/pgadmin/:/var/lib/pgadmin/
-        networks:
-            - kittybot-dev
-        ports:
-            - 90:80
-            - 99:443
     dev-lavalink:
         image: fredboat/lavalink:dev
         container_name: dev_lavalink_1
