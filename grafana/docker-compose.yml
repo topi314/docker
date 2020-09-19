@@ -1,0 +1,59 @@
+version: '3.7'
+
+docker run -d \
+--net="host" \
+--pid="host" \
+-v "/:/host:ro,rslave" \
+prometheus/node-exporter \
+--path.rootfs=/host
+
+services:
+    grafana:
+        image: grafana/grafana
+        container_name: grafana
+        restart: unless-stopped
+        networks:
+            - grafana
+        ports:
+            - 3000:3000
+    prometheus:
+        image: prom/prometheus
+        container_name: prometheus
+        restart: unless-stopped
+        networks:
+            - prometheus
+        expose:
+            - 3000
+    node-exporter:
+        image: prom/node-exporter
+        container_name: node-exporter
+        restart: unless-stopped
+        pid: host
+        net: host
+        expose:
+            - 3000
+    cadvisor:
+        image: google/cadvisor
+        container_name: cadvisor
+        restart: unless-stopped
+        privileged: true
+        devices:
+            - /dev/kmsg
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:ro
+            - /sys:/sys:ro
+            - /var/lib/docker/:/var/lib/docker:ro
+            - /dev/disk/:/dev/disk:ro
+        networks:
+            - cadvisor
+        expose:
+            - 8080        
+
+networks:
+    grafana:
+        name: grafana
+    prometheus:
+        name: prometheus
+    cadvisor:
+        name: cadvisor
