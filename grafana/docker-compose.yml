@@ -22,7 +22,7 @@ services:
         container_name: node-exporter
         restart: unless-stopped
         pid: host
-        net: host
+        network_mode: host
         expose:
             - 3000
     cadvisor:
