@@ -1,12 +1,5 @@
 version: '3.7'
 
-docker run -d \
---net="host" \
---pid="host" \
--v "/:/host:ro,rslave" \
-prometheus/node-exporter \
---path.rootfs=/host
-
 services:
     grafana:
         image: grafana/grafana
