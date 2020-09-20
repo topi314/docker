@@ -6,7 +6,7 @@ services:
         container_name: grafana
         restart: unless-stopped
         volumes:
-            - ./.data/grafana/:/var/lib/grafana/
+            - ./.data/grafana/:/var/lib/grafana/:rw
         networks:
             - grafana
             - prometheus
