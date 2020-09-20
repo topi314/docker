@@ -77,8 +77,14 @@ services:
 
 networks:
     grafana:
+        name: grafana
     prometheus:
+        name: prometheus
     node-exporter:
+        name: node-exporter
     cadvisor:
+        name: cadvisor
     loki:
+        name: loki
     promtail:
+        name: promtail
