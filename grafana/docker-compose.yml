@@ -10,6 +10,7 @@ services:
         networks:
             - grafana
             - prometheus
+            - loki
         expose:
             - 3000
     prometheus:
@@ -51,14 +52,33 @@ services:
         networks:
             - cadvisor
         expose:
-            - 8080        
+            - 8080
+    loki:
+        image: grafana/loki:latest
+        container_name: loki
+        restart: unless-stopped
+        command: -config.file=/etc/loki/local-config.yaml
+        volumes:
+            - ./local-config.yml:/etc/loki/local-config.yaml
+        networks:
+            - loki
+            - promtail
+        expose:
+            - 3100
+    promtail:
+        image: grafana/promtail:latest
+        container_name: promtail
+        restart: unless-stopped
+        command: -config.file=/etc/promtail/docker-config.yaml
+        volumes:
+            - ./docker-config.yml:/etc/promtail/docker-config.yaml
+        networks:
+            - promtail
 
 networks:
     grafana:
-        name: grafana
     prometheus:
-        name: prometheus
     node-exporter:
-        name: node-exporter
     cadvisor:
-        name: cadvisor
+    loki:
+    promtail:
