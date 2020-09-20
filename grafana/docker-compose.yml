@@ -11,37 +11,43 @@ services:
             - grafana
             - prometheus
             - cadvisor
+            - node-exporter
         ports:
             - 3000:3000
     prometheus:
         image: prom/prometheus
         container_name: prometheus
         restart: unless-stopped
+        volumes:
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
         networks:
             - prometheus
         expose:
-            - 3000
+            - 9090
     node-exporter:
         image: prom/node-exporter
         container_name: node-exporter
         restart: unless-stopped
+        command: --path.rootfs=/host
         pid: host
-        network_mode: host
-        expose:
-            - 3000
+        volumes:
+            - /:/host:ro,rslave
+        networks: 
+            - node-exporter
+        expose: 
+            - 9100
     cadvisor:
         image: google/cadvisor
         container_name: cadvisor
         restart: unless-stopped
-        privileged: true
-        devices:
-            - /dev/kmsg
+        command:
+            - --docker_only=true
+            - --disable_metrics=disk,network,tcp,udp,percpu,sched,process
         volumes:
             - /:/rootfs:ro
             - /var/run:/var/run:ro
             - /sys:/sys:ro
             - /var/lib/docker/:/var/lib/docker:ro
-            - /dev/disk/:/dev/disk:ro
         networks:
             - cadvisor
         expose:
@@ -52,5 +58,7 @@ networks:
         name: grafana
     prometheus:
         name: prometheus
+    node-exporter:
+        name: node-exporter
     cadvisor:
         name: cadvisor
