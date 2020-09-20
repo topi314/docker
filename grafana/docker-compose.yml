@@ -42,7 +42,7 @@ services:
         restart: unless-stopped
         command:
             - --docker_only=true
-            - --disable_metrics=disk,network,tcp,udp,percpu,sched,process
+            - --disable_metrics=disk,percpu,sched,process
         volumes:
             - /:/rootfs:ro
             - /var/run:/var/run:ro
