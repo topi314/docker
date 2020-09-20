@@ -17,7 +17,7 @@ services:
             - 5432:5432
     dev-lavalink:
         image: fredboat/lavalink:dev
-        container_name: dev_lavalink_1
+        container_name: dev_lavalink
         restart: unless-stopped
         command: -Xmx64m 
         labels:

@@ -25,6 +25,7 @@ services:
             - prometheus
             - cadvisor
             - node-exporter
+            - kittybot-dev
         expose:
             - 9090
     node-exporter:
@@ -84,6 +85,8 @@ networks:
         name: prometheus
     node-exporter:
         name: node-exporter
+    kittybot-dev:
+        name: kittybot-dev
     cadvisor:
         name: cadvisor
     loki:

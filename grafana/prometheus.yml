@@ -9,6 +9,12 @@ scrape_configs:
                 labels:
                     machine: kittybot
 
+    -   job_name: kittybot/dev-lavalink
+        static_configs:
+            -   targets: ['dev_lavalink:2333']
+                labels:
+                    machine: kittybot
+
     -   job_name: kittybot/node-exporter
         scrape_interval: 5s
         static_configs:
