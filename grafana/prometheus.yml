@@ -5,10 +5,10 @@ global:
 
 
 scrape_configs:
-    job_name: prometheus
+    -   job_name: prometheus
         static_configs:
             - targets: ['127.0.0.1:9090']
 
-    job_name: kittybot
+    -   job_name: kittybot
         static_configs:
             - targets: ['node-exporter:9100', 'cadvisor:8080']
