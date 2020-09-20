@@ -10,8 +10,6 @@ services:
         networks:
             - grafana
             - prometheus
-            - cadvisor
-            - node-exporter
         ports:
             - 3000:3000
     prometheus:
@@ -22,6 +20,8 @@ services:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
         networks:
             - prometheus
+            - cadvisor
+            - node-exporter
         expose:
             - 9090
     node-exporter:

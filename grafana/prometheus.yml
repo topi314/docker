@@ -1,15 +1,17 @@
-# my global config
 global:
     scrape_interval: 15s 
     evaluation_interval: 15s
 
-
 scrape_configs:
-    -   job_name: prometheus
+    -   job_name: kittybot/prometheus
         static_configs:
-            - targets: ['127.0.0.1:9090']
+            -   targets: ['127.0.0.1:9090']
+                labels:
+                    - machine: kittybot
 
-    -   job_name: kittybot
+    -   job_name: kittybot/node-exporter
         scrape_interval: 5s
         static_configs:
-            - targets: ['node-exporter:9100', 'cadvisor:8080']
+            -   targets: ['node-exporter:9100', 'cadvisor:8080']
+                labels:
+                    - machine: kittybot
