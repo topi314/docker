@@ -90,3 +90,7 @@ networks:
         name: loki
     promtail:
         name: promtail
+    database:
+        external: true
+    kittybot-dev:
+        external: true
