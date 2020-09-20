@@ -11,6 +11,8 @@ services:
             - grafana
             - prometheus
             - loki
+            - database
+            - kittybot-dev
         expose:
             - 3000
     prometheus:
