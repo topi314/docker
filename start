@@ -1,5 +1,5 @@
 #!/bin/bash
 
 for d in */; do
-    echo "$(docker-compose -f $d/docker-compose.yml) up -d"
+    $(docker-compose -f $d/docker-compose.yml up -d)
 done
