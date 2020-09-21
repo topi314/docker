@@ -1,15 +1,5 @@
 #!/bin/bash
 
-docker-compose -f database/docker-compose.yml down
-
-docker-compose -f hastebin/docker-compose.yml down
-
-docker-compose -f portainer/docker-compose.yml down
-
-docker-compose -f teamcity/docker-compose.yml down
-
-docker-compose -f kittybot-dev/docker-compose.yml down
-
-docker-compose -f kittybot/docker-compose.yml down
-
-docker-compose -f nginx/docker-compose.yml down
+for d in */; do
+    echo "$(docker-compose -f $d/docker-compose.yml) down"
+done

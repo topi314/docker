@@ -1,19 +1,5 @@
 #!/bin/bash
 
-docker-compose -f database/docker-compose.yml up -d
-
-docker-compose -f hastebin/docker-compose.yml up -d
-
-docker-compose -f portainer/docker-compose.yml up -d
-
-docker-compose -f teamcity/docker-compose.yml up -d
-
-docker-compose -f kittybot-dev/docker-compose.yml up -d
-
-docker-compose -f kittybot/docker-compose.yml up -d
-
-docker-compose -f pubgm/docker-compose.yml up -d
-
-docker-compose -f grafana/docker-compose.yml up -d
-
-docker-compose -f nginx/docker-compose.yml up -d
+for d in */; do
+    echo "$(docker-compose -f $d/docker-compose.yml) up -d"
+done
