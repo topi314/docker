@@ -9,4 +9,3 @@ services:
             - io.portainer.accesscontrol.teams=kittybot
         env_file: 
             - conf.env
-        networks:
