@@ -12,4 +12,8 @@ docker-compose -f kittybot-dev/docker-compose.yml up -d
 
 docker-compose -f kittybot/docker-compose.yml up -d
 
+docker-compose -f pubgm/docker-compose.yml up -d
+
+docker-compose -f grafana/docker-compose.yml up -d
+
 docker-compose -f nginx/docker-compose.yml up -d
