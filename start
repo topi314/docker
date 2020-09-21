@@ -2,6 +2,6 @@
 
 for d in */; do
     if [ "$d" != "unused/" ]; then
-        $(docker-compose -f ${d}docker-compose.yml up -d)
+        echo "$d"
     fi
 done
