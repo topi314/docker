@@ -1,5 +1,7 @@
 #!/bin/bash
 
 for d in */; do
-    $(docker-compose -f $d/docker-compose.yml up -d)
+    if [ "$d" != "unused" ]; then
+        $(docker-compose -f $d/docker-compose.yml up -d)
+    fi
 done
