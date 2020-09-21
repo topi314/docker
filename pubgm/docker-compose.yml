@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+    pubgm:
+        image: pubgm
+        container_name: pubgm
+        restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
+        env_file: 
+            - conf.env
+        networks:
