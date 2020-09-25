@@ -43,7 +43,7 @@ services:
             retries: 3
             start_period: 1m00s
     lavalink:
-        image: fredboat/lavalink:dev
+        image: fredboat/lavalink:master
         container_name: lavalink_1
         restart: unless-stopped
         labels:
