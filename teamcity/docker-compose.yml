@@ -22,6 +22,7 @@ services:
             - SERVER_URL=server:8111
             - DOCKER_IN_DOCKER=true
             - AGENT_NAME=agent_1
+            - CI=true
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./.data/agent_1/conf/:/data/teamcity_agent/conf/
