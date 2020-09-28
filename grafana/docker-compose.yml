@@ -65,18 +65,8 @@ services:
             - ./local-config.yml:/etc/loki/local-config.yaml
         networks:
             - loki
-            - promtail
         expose:
             - 3100
-    promtail:
-        image: grafana/promtail:latest
-        container_name: promtail
-        restart: unless-stopped
-        command: -config.file=/etc/promtail/docker-config.yaml
-        volumes:
-            - ./docker-config.yml:/etc/promtail/docker-config.yaml
-        networks:
-            - promtail
 
 networks:
     grafana:
@@ -91,8 +81,6 @@ networks:
         name: cadvisor
     loki:
         name: loki
-    promtail:
-        name: promtail
     database:
         external: true
     kittybot-dev:
