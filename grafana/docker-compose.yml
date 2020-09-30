@@ -12,7 +12,7 @@ services:
             - prometheus
             - loki
             - database
-            - kittybpt
+            - kittybot
             - kittybot-dev
         expose:
             - 3000
