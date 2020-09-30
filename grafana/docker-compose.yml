@@ -65,8 +65,8 @@ services:
             - ./local-config.yml:/etc/loki/local-config.yaml
         networks:
             - loki
-        expose:
-            - 3100
+        port:
+            - 127.0.0.1:3100:3100
 
 networks:
     grafana:
