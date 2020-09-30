@@ -12,7 +12,6 @@ services:
             - prometheus
             - loki
             - database
-            - kittybot
             - kittybot-dev
         expose:
             - 3000
@@ -27,6 +26,7 @@ services:
             - cadvisor
             - node-exporter
             - kittybot-dev
+            - kittybot
         expose:
             - 9090
     node-exporter:
