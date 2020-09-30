@@ -26,7 +26,7 @@ services:
             - cadvisor
             - node-exporter
             - kittybot-dev
-            - kittybot
+            - lavalink
         expose:
             - 9090
     node-exporter:
@@ -86,5 +86,5 @@ networks:
         external: true
     kittybot-dev:
         external: true
-    kittybot:
+    lavalink:
         external: true
