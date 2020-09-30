@@ -12,6 +12,7 @@ services:
             - prometheus
             - loki
             - database
+            - kittybpt
             - kittybot-dev
         expose:
             - 3000
@@ -84,4 +85,6 @@ networks:
     database:
         external: true
     kittybot-dev:
+        external: true
+    kittybot:
         external: true
