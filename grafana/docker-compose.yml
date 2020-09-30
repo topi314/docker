@@ -65,7 +65,7 @@ services:
             - ./local-config.yml:/etc/loki/local-config.yaml
         networks:
             - loki
-        port:
+        ports:
             - 127.0.0.1:3100:3100
 
 networks:
