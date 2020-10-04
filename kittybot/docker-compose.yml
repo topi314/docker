@@ -14,6 +14,7 @@ services:
         networks:
             - kittybot
             - database
+            - lavalink
         expose:
             - 6969
         depends_on:
@@ -51,12 +52,14 @@ services:
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
-            - kittybot
+            - lavalink
         expose:
             - 2333
 
 networks:
     kittybot:
         name: kittybot
+    lavalink:
+        name: lavalink
     database:
         external: true
