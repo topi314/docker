@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+    portainer_agent:
+        image: portainer/agent
+        container_name: portainer_agent
+        restart: unless-stopped
+        env_file:
+            - conf.env
+        environment:
+            - EDGE=1
+            - CAP_HOST_MANAGEMENT=1
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /var/lib/docker/volumes:/var/lib/docker/volumes
+            - /:/host
+        networks:
+            - portainer-agent
+
+networks:
+    portainer-agent:
+        name: portainer-agent
