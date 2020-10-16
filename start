@@ -1,7 +1,7 @@
 #!/bin/bash
 
 for d in */; do
-    if [ "$d" != "unused/" ]; then
+    if [ "$d" != "unused/" ] && [ "$d" != "raspberry/" ]; then
         $(docker-compose -f ${d}docker-compose.yml up -d)
     fi
 done
