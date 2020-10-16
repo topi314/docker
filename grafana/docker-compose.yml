@@ -42,7 +42,7 @@ services:
         expose: 
             - 9100
     cadvisor:
-        image: google/cadvisor
+        image: gcr.io/google-containers/cadvisor
         container_name: cadvisor
         restart: unless-stopped
         command:
