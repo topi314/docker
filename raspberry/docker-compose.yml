@@ -64,5 +64,5 @@ networks:
         name: nginx
     cadvisor:
         name: cadvisor
-    noed-exporter:
+    node-exporter:
         name: node-exporter
