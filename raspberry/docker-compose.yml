@@ -15,8 +15,55 @@ services:
             - /var/lib/docker/volumes:/var/lib/docker/volumes
             - /:/host
         networks:
-            - portainer-agent
+    nginx:
+        image: staticfloat/nginx-certbot
+        container_name: nginx
+        restart: unless-stopped
+        env_file:
+            - conf.env
+        volumes:
+            - ./conf.d:/etc/nginx/user.conf.d:ro
+            - ./.data/:/etc/letsencrypt/
+        networks:
+            - nginx
+            - cadvisor
+            - node-exporter
+        ports:
+            - 80:80
+            - 443:443
+    node-exporter:
+        image: prom/node-exporter
+        container_name: node-exporter
+        restart: unless-stopped
+        command: --path.rootfs=/host
+        pid: host
+        volumes:
+            - /:/host:ro,rslave
+        networks: 
+            - node-exporter
+        expose: 
+            - 9100
+    cadvisor:
+        image: gcr.io/google-containers/cadvisor
+        container_name: cadvisor
+        restart: unless-stopped
+        command:
+            - --docker_only=true
+            - --disable_metrics=disk,percpu,sched,process
+        volumes:
+            - /:/rootfs:ro
+            - /var/run:/var/run:ro
+            - /sys:/sys:ro
+            - /var/lib/docker/:/var/lib/docker:ro
+        networks:
+            - cadvisor
+        expose:
+            - 8080
 
 networks:
-    portainer-agent:
-        name: portainer-agent
+    nginx:
+        name: nginx
+    cadvisor:
+        namer: cadvisor
+    noed-exporter:
+        name: node-exporter
