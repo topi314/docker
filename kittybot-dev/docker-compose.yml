@@ -16,7 +16,7 @@ services:
         ports:
             - 5432:5432
     dev-lavalink:
-        image: fredboat/lavalink:dev-
+        image: fredboat/lavalink:master-v3
         container_name: dev_lavalink
         restart: unless-stopped
         command: -Xmx128m 
