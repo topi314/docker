@@ -1,6 +1,9 @@
 # docker
 docker-compose configuration for my vps :)
 
+### for Grafana run
+`sudo chown -R 472:472 .data/grafana/`
+
 ### Container Starting Order:
 
     1. database
