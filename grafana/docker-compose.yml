@@ -5,6 +5,7 @@ services:
         image: grafana/grafana
         container_name: grafana
         restart: unless-stopped
+        user: "$UID:$GID"
         volumes:
             - ./.data/grafana/:/var/lib/grafana/:rw
         networks:
