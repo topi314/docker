@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     dev-database:
-        image: postgres:13
+        image: 5c0cc51367ea
         container_name: dev_database
         restart: unless-stopped
         labels:
