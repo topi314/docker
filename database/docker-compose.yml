@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     database:
-        image: postgres@sha256:5c0cc51367ead33bd357a8de0ac74879357f2ac071625d4d5de20b2885f2a660 
+        image: postgres@sha256:5c0cc51367ead33bd357a8de0ac74879357f2ac071625d4d5de20b2885f2a660
         container_name: database
         restart: unless-stopped
         labels:
