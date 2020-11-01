@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+    dns:
+        image: diniamo/dns:latest
+        container_name: dns
+        restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=dns
+        volumes:
+            - ./config.json:/home/dns/config.json
+        networks:
+            - dns
+
+networks:
+    dns:
+        name: dns
