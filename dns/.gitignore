@@ -1,2 +1,3 @@
-config.json
+config.yml
 .data/
+ffmpeg

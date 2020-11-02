@@ -9,6 +9,7 @@ services:
             - io.portainer.accesscontrol.teams=dns
         volumes:
             - ./config.json:/home/dns/config.json
+            - ./ffmpeg:/home/dns/ffmpeg
         networks:
             - dns
 
