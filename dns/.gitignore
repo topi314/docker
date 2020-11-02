@@ -1,3 +1,4 @@
 config.yml
 .data/
 ffmpeg
+templates/

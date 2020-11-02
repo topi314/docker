@@ -10,6 +10,7 @@ services:
         volumes:
             - ./config.yml:/home/dns/config.yml
             - ./ffmpeg:/home/dns/ffmpeg
+            - ./templates/:/home/dns/templates/
         networks:
             - dns
 
