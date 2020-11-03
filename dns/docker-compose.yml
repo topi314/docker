@@ -10,6 +10,8 @@ services:
         volumes:
             - ./config.yml:/home/dns/config.yml
             - ./ffmpeg:/home/dns/ffmpeg
+            - ./arial.ttf:/home/dns/arial.ttf
+            - ./impact.ttf:/home/dns/impact.ttf
             - ./templates/:/home/dns/templates/
         networks:
             - dns
