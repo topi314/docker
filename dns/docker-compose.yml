@@ -15,6 +15,10 @@ services:
             - ./templates/:/home/dns/templates/
         networks:
             - dns
+        deploy:
+            resources:
+                limits:
+                    cpus: '0.2'
 
 networks:
     dns:
