@@ -15,6 +15,7 @@ services:
             - ./templates/:/home/dns/templates/
         networks:
             - dns
+            - database
         deploy:
             resources:
                 limits:
@@ -23,3 +24,5 @@ services:
 networks:
     dns:
         name: dns
+    database:
+        external: true
