@@ -14,7 +14,7 @@ services:
         expose:
             - 8111
     agent_1:
-        image: topisenpai/teamcity-agent:latest
+        image: topisenpai/teamcity-agent:10
         container_name: teamcity_agent_1
         restart: unless-stopped
         user: root
@@ -37,7 +37,7 @@ services:
         depends_on:
             - server
     agent_2:
-        image: topisenpai/teamcity-agent:latest
+        image: topisenpai/teamcity-agent:10
         container_name: teamcity_agent_2
         restart: unless-stopped
         user: root
