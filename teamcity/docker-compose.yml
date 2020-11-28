@@ -17,7 +17,7 @@ services:
         image: topisenpai/teamcity-agent:latest
         container_name: teamcity_agent_1
         restart: unless-stopped
-        user: 0
+        user: "0"
         environment:
             - SERVER_URL=server:8111
             - DOCKER_IN_DOCKER=true
