@@ -36,6 +36,29 @@ services:
             - teamcity
         depends_on:
             - server
+    agent_2:
+        image: topisenpai/teamcity-agent:latest
+        container_name: teamcity_agent_2
+        restart: unless-stopped
+        user: root
+        privileged: true
+        environment:
+            - SERVER_URL=server:8111
+            - DOCKER_IN_DOCKER=start
+            - AGENT_NAME=agent_2
+            - CI=true
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./.data/agent_2/conf/:/data/teamcity_agent/conf/
+            - ./.data/agent_2/work/:/opt/buildagent/work/
+            - ./.data/agent_2/temp/:/opt/buildagent/temp/
+            - ./.data/agent_2/tools/:/opt/buildagent/tools/
+            - ./.data/agent_2/plugins/:/opt/buildagent/plugins/
+            - ./.data/agent_2/system/:/opt/buildagent/system/
+        networks:
+            - teamcity
+        depends_on:
+            - server
 
 networks:
     teamcity:
