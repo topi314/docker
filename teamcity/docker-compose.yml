@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     server:
-        image: jetbrains/teamcity-server:2020.1.5
+        image: jetbrains/teamcity-server:2020.2.2
         container_name: teamcity_server
         restart: unless-stopped
         volumes:
