@@ -21,7 +21,7 @@ services:
         privileged: true
         environment:
             - SERVER_URL=server:8111
-            - DOCKER_IN_DOCKER=true
+            - DOCKER_IN_DOCKER=start
             - AGENT_NAME=agent_1
             - CI=true
         volumes:
