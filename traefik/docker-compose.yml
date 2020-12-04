@@ -5,10 +5,8 @@ services:
   traefik:
     image: traefik
     restart: unless-stopped
-    environment:
-      - NETCUP_CUSTOMER_NUMBER=
-      - NETCUP_API_KEY=
-      - NETCUP_API_PASSWORD=
+    env_file: 
+      - conf.env
     networks:
       - traefik
     ports:
