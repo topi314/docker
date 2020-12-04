@@ -8,8 +8,8 @@ services:
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
-            traefik.http.routers.dashboard.rule: Host(`api.$PRIMARY_DOMAIN`)
-            traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.routers.kittybot.rule: Host(`api.$PRIMARY_DOMAIN`)
+            traefik.http.routers.kittybot.entrypoints: https
             traefik.http.middlewares.global-compress.compress: true
         env_file: 
             - conf.env
@@ -37,8 +37,8 @@ services:
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
-            traefik.http.routers.dashboard.rule: Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
-            traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
             traefik.http.middlewares.global-compress.compress: true
         networks:
             - kittybot
