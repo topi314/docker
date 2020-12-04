@@ -8,13 +8,14 @@ services:
         labels:
             - io.portainer.accesscontrol.teams=dns
         volumes:
-            - ./config.yml:/home/dns/config.yml
+            - ./config.properties:/home/dns/config.properties
             - ./ffmpeg:/home/dns/ffmpeg
             - ./arial.ttf:/home/dns/arial.ttf
             - ./impact.ttf:/home/dns/impact.ttf
             - ./templates/:/home/dns/templates/
         networks:
             - dns
+            - database
         deploy:
             resources:
                 limits:
@@ -23,3 +24,5 @@ services:
 networks:
     dns:
         name: dns
+    database:
+        external: true

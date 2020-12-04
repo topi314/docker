@@ -26,3 +26,6 @@ or run the start script
 
 ### Updating KittyBot
 run `$ ./docker/kittybot/update`
+
+## TeamCity Agent
+Custom JDK 11 & github-release agent can be found [here](https://github.com/TopiSenpai/teamcity-agent)

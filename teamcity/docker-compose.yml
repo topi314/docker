@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     server:
-        image: jetbrains/teamcity-server:2020.1.2
+        image: jetbrains/teamcity-server:2020.2
         container_name: teamcity_server
         restart: unless-stopped
         volumes:
@@ -14,13 +14,14 @@ services:
         expose:
             - 8111
     agent_1:
-        image: topisenpai/teamcity-agent:latest
+        image: topisenpai/teamcity-agent:12
         container_name: teamcity_agent_1
         restart: unless-stopped
         user: root
+        privileged: true
         environment:
             - SERVER_URL=server:8111
-            - DOCKER_IN_DOCKER=true
+            - DOCKER_IN_DOCKER=start
             - AGENT_NAME=agent_1
             - CI=true
         volumes:
@@ -31,6 +32,29 @@ services:
             - ./.data/agent_1/tools/:/opt/buildagent/tools/
             - ./.data/agent_1/plugins/:/opt/buildagent/plugins/
             - ./.data/agent_1/system/:/opt/buildagent/system/
+        networks:
+            - teamcity
+        depends_on:
+            - server
+    agent_2:
+        image: topisenpai/teamcity-agent:12
+        container_name: teamcity_agent_2
+        restart: unless-stopped
+        user: root
+        privileged: true
+        environment:
+            - SERVER_URL=server:8111
+            - DOCKER_IN_DOCKER=start
+            - AGENT_NAME=agent_2
+            - CI=true
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./.data/agent_2/conf/:/data/teamcity_agent/conf/
+            - ./.data/agent_2/work/:/opt/buildagent/work/
+            - ./.data/agent_2/temp/:/opt/buildagent/temp/
+            - ./.data/agent_2/tools/:/opt/buildagent/tools/
+            - ./.data/agent_2/plugins/:/opt/buildagent/plugins/
+            - ./.data/agent_2/system/:/opt/buildagent/system/
         networks:
             - teamcity
         depends_on:
