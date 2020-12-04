@@ -7,6 +7,10 @@ services:
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
+            - traefik.enable=true
+            - traefik.http.routers.dashboard.rule=Host(`api.$PRIMARY_DOMAIN`)
+            - traefik.http.routers.dashboard.entrypoints=https
+            - traefik.http.middlewares.global-compress.compress=true
         env_file: 
             - conf.env
         volumes:
@@ -15,6 +19,7 @@ services:
             - kittybot
             - database
             - lavalink
+            - traefik
         expose:
             - 6969
         depends_on:
@@ -31,8 +36,13 @@ services:
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
+            - traefik.enable=true
+            - traefik.http.routers.dashboard.rule=Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
+            - traefik.http.routers.dashboard.entrypoints=https
+            - traefik.http.middlewares.global-compress.compress=true
         networks:
             - kittybot
+            - traefik
         expose:
             - 80
         depends_on:
@@ -62,4 +72,6 @@ networks:
     lavalink:
         name: lavalink
     database:
+        external: true
+    traefik:
         external: true
