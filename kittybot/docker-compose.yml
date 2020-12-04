@@ -6,11 +6,11 @@ services:
         container_name: kittybot
         restart: unless-stopped
         labels:
-            - io.portainer.accesscontrol.teams=kittybot
-            - traefik.enable=true
-            - traefik.http.routers.dashboard.rule=Host(`api.$PRIMARY_DOMAIN`)
-            - traefik.http.routers.dashboard.entrypoints=https
-            - traefik.http.middlewares.global-compress.compress=true
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.dashboard.rule: Host(`api.$PRIMARY_DOMAIN`)
+            traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.middlewares.global-compress.compress: true
         env_file: 
             - conf.env
         volumes:
@@ -35,11 +35,11 @@ services:
         container_name: kittybot_website
         restart: unless-stopped
         labels:
-            - io.portainer.accesscontrol.teams=kittybot
-            - traefik.enable=true
-            - traefik.http.routers.dashboard.rule=Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
-            - traefik.http.routers.dashboard.entrypoints=https
-            - traefik.http.middlewares.global-compress.compress=true
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.dashboard.rule: Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
+            traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.middlewares.global-compress.compress: true
         networks:
             - kittybot
             - traefik
