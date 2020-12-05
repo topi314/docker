@@ -20,8 +20,8 @@ entryPoints:
                 certResolver: default
                 domains:
                     - main: 'kittybot.de'
-                        sans:
-                            - '*.kittybot.de'
+                      sans:
+                          - '*.kittybot.de'
             middlewares:
                 - global-compress@docker
         proxyProtocol:
