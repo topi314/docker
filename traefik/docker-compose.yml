@@ -10,8 +10,9 @@ services:
         networks:
             - traefik
         ports:
-            - '8080:80'
-            - '4430:443'
+            - '8000:8000'
+            - '8080:8080'
+            - '4430:4430'
         dns: 8.8.8.8
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml
