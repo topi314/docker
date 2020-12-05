@@ -23,7 +23,7 @@ services:
             traefik.enable: true
             traefik.http.routers.kittybot.rule: Host(`api.$PRIMARY_DOMAIN`)
             traefik.http.routers.kittybot.entrypoints: https
-            traefik.http.services.kittybot.loadbalancer.server.port: 80
+            traefik.http.services.kittybot.loadbalancer.server.port: 6969
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:6969/health_check']
             interval: 1m00s
