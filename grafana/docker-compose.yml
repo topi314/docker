@@ -18,9 +18,9 @@ services:
             - 3000
         labels:
             traefik.enable: true
-            traefik.http.routers.website.rule: Host(`grafana.$PRIMARY_DOMAIN`)
-            traefik.http.routers.website.entrypoints: https
-            traefik.http.services.website.loadbalancer.server.port: 3000
+            traefik.http.routers.grafana.rule: Host(`grafana.$PRIMARY_DOMAIN`)
+            traefik.http.routers.grafana.entrypoints: https
+            traefik.http.services.grafana.loadbalancer.server.port: 3000
     prometheus:
         image: prom/prometheus
         container_name: prometheus

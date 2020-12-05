@@ -31,9 +31,9 @@ services:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN`) || Host(`www.$PRIMARY_DOMAIN`)
-            traefik.http.routers.website.entrypoints: https
-            traefik.http.services.website.loadbalancer.server.port: 80
+            traefik.http.routers.pgadmin.rule: Host(`pgadmin.$PRIMARY_DOMAIN`)
+            traefik.http.routers.pgadmin.entrypoints: https
+            traefik.http.services.pgadmin.loadbalancer.server.port: 80
 
 networks:
     database:
