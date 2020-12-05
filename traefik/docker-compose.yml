@@ -22,6 +22,7 @@ services:
             traefik.enable: true
             traefik.http.routers.dashboard.rule: Host(`traefik.$PRIMARY_DOMAIN`)
             traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.middlewares.dashboard.auth.basic: $TRAEFIK_AUTH
             traefik.http.routers.dashboard.service: api@internal
 
 networks:
