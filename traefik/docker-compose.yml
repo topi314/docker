@@ -10,7 +10,6 @@ services:
         networks:
             - traefik
         ports:
-            - '9090:8000'
             - '8080:8080'
             - '4430:4430'
         volumes:
