@@ -8,7 +8,7 @@ log:
 
 entryPoints:
     http:
-        address: ':8000'
+        address: ':8080'
         http:
             redirections:
                 entryPoint:
@@ -20,9 +20,9 @@ entryPoints:
             tls:
                 certResolver: default
                 domains:
-                    - main: 'chirality.de'
+                    - main: 'kittybot.de'
                       sans:
-                          - '*.chirality.de'
+                          - '*.kittybot.de'
             middlewares:
                 - global-errors@docker
                 - global-compress@docker
@@ -42,7 +42,7 @@ certificatesResolvers:
         acme:
             # testing server
             # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
-            email: thorio.git@gmail.com
+            email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
             dnsChallenge:
                 provider: 'netcup'
