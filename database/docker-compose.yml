@@ -26,11 +26,19 @@ services:
         networks:
             - pgadmin
             - database
+            - traefik
         expose:
             - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN`) || Host(`www.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
+            traefik.http.services.website.loadbalancer.server.port: 80
 
 networks:
     database:
         name: database
     pgadmin:
         name: pgadmin
+    traefik:
+        external: true

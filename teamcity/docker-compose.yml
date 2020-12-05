@@ -11,8 +11,14 @@ services:
         networks:
             - teamcity
             - database
+            - traefik
         expose:
             - 8111
+        labels:
+            traefik.enable: true
+            traefik.http.routers.website.rule: Host(`ci.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
+            traefik.http.services.website.loadbalancer.server.port: 8111
     agent_1:
         image: topisenpai/teamcity-agent:12
         container_name: teamcity_agent_1
@@ -64,4 +70,6 @@ networks:
     teamcity:
         name: teamcity
     database:
+        external: true
+    traefik:
         external: true

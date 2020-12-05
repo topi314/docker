@@ -10,11 +10,19 @@ services:
             - ./.data:/data
         networks:
             - portainer
+            - traefik
         expose:
             - 9000
         ports:
             - 8000:8000
+        labels:
+            traefik.enable: true
+            traefik.http.routers.website.rule: Host(`portainer.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
+            traefik.http.services.website.loadbalancer.server.port: 9000
 
 networks:
     portainer:
         name: portainer
+    traefik:
+        external: true
