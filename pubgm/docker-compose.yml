@@ -7,5 +7,5 @@ services:
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
-        env_file: 
+        env_file:
             - conf.env

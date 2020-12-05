@@ -1,49 +1,47 @@
----
-
 global:
-  checkNewVersion: true
-  sendAnonymousUsage: false
+    checkNewVersion: true
+    sendAnonymousUsage: false
 
 log:
-  level: INFO
+    level: INFO
 
 entryPoints:
-  http:
-    address: ':8080'
     http:
-      redirections:
-        entryPoint:
-          to: https
-          permanent: true
-  https:
-    address: ':4430'
-    http:
-      tls:
-        certResolver: default
-        domains:
-          - main: "kittybot.de"
-            sans:
-              - "*.kittybot.de"
-      middlewares:
-        - global-compress@docker
-    proxyProtocol:
-      insecure: true # container is never exposed to untrusted network due to firewall
+        address: ':8000'
+        http:
+            redirections:
+                entryPoint:
+                    to: https
+                    permanent: true
+    https:
+        address: ':4430'
+        http:
+            tls:
+                certResolver: default
+                domains:
+                    - main: 'kittybot.de'
+                        sans:
+                            - '*.kittybot.de'
+            middlewares:
+                - global-compress@docker
+        proxyProtocol:
+            insecure: true # container is never exposed to untrusted network due to firewall
 
 providers:
-  docker:
-    exposedByDefault: false
-    network: traefik
+    docker:
+        exposedByDefault: false
+        network: traefik
 
 api:
-  dashboard: true
+    dashboard: true
 
 certificatesResolvers:
-  default:
-    acme:
-      # testing server
-      caserver: https://acme-staging-v02.api.letsencrypt.org/directory
-      email: tobi@strasserhof.com
-      storage: /letsencrypt/acme.json
-      dnsChallenge:
-        provider: "netcup"
-        delayBeforeCheck: 900
+    default:
+        acme:
+            # testing server
+            caserver: https://acme-staging-v02.api.letsencrypt.org/directory
+            email: tobi@strasserhof.com
+            storage: /letsencrypt/acme.json
+            dnsChallenge:
+                provider: 'netcup'
+                delayBeforeCheck: 900

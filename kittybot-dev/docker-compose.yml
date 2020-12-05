@@ -19,7 +19,7 @@ services:
         image: fredboat/lavalink:dev
         container_name: dev_lavalink
         restart: unless-stopped
-        command: -Xmx128m 
+        command: -Xmx128m
         labels:
             - io.portainer.accesscontrol.teams=kittybot
         volumes:

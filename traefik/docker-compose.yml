@@ -1,29 +1,28 @@
----
-version: "3.7"
+version: '3.7'
 
 services:
-  traefik:
-    image: traefik
-    restart: unless-stopped
-    env_file: 
-      - conf.env
-    networks:
-      - traefik
-    ports:
-      - "8080:80"
-      - "4430:443"
-    dns: 8.8.8.8
-    volumes:
-      - ./traefik.yml:/etc/traefik/traefik.yml
-      - ./.data/letsencrypt:/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    labels:
-      traefik.enable: true
-      traefik.http.routers.dashboard.rule: Host(`traefik.$PRIMARY_DOMAIN`)
-      traefik.http.routers.dashboard.entrypoints: https
-      traefik.http.routers.dashboard.service: api@internal
-      traefik.http.middlewares.global-compress.compress: true
+    traefik:
+        image: traefik
+        container_name: traefik
+        restart: unless-stopped
+        env_file:
+            - conf.env
+        networks:
+            - traefik
+        ports:
+            - '8080:80'
+            - '4430:443'
+        dns: 8.8.8.8
+        volumes:
+            - ./traefik.yml:/etc/traefik/traefik.yml
+            - ./.data/letsencrypt:/letsencrypt
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        labels:
+            traefik.enable: true
+            traefik.http.routers.dashboard.rule: Host(`traefik.$PRIMARY_DOMAIN`)
+            traefik.http.routers.dashboard.entrypoints: https
+            traefik.http.routers.dashboard.service: api@internal
 
 networks:
-  traefik:
-    name: traefik
+    traefik:
+        name: traefik

@@ -38,9 +38,9 @@ services:
         pid: host
         volumes:
             - /:/host:ro,rslave
-        networks: 
+        networks:
             - node-exporter
-        expose: 
+        expose:
             - 9100
     cadvisor:
         image: gcr.io/google-containers/cadvisor

@@ -5,13 +5,7 @@ services:
         image: topisenpai/kittybot:latest
         container_name: kittybot
         restart: unless-stopped
-        labels:
-            io.portainer.accesscontrol.teams: kittybot
-            traefik.enable: true
-            traefik.http.routers.kittybot.rule: Host(`api.$PRIMARY_DOMAIN`)
-            traefik.http.routers.kittybot.entrypoints: https
-            traefik.http.middlewares.global-compress.compress: true
-        env_file: 
+        env_file:
             - conf.env
         volumes:
             - ./config.json:/home/kittybot/config.json
@@ -24,8 +18,14 @@ services:
             - 6969
         depends_on:
             - lavalink
+        labels:
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.kittybot.rule: Host(`api.$PRIMARY_DOMAIN`)
+            traefik.http.routers.kittybot.entrypoints: https
+            traefik.http.services.kittybot.loadbalancer.server.port: 80
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:6969/health_check"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:6969/health_check']
             interval: 1m00s
             timeout: 5s
             retries: 3
@@ -34,12 +34,6 @@ services:
         image: topisenpai/kittybot-website:latest
         container_name: kittybot_website
         restart: unless-stopped
-        labels:
-            io.portainer.accesscontrol.teams: kittybot
-            traefik.enable: true
-            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN` || `www.$PRIMARY_DOMAIN`)
-            traefik.http.routers.website.entrypoints: https
-            traefik.http.middlewares.global-compress.compress: true
         networks:
             - kittybot
             - traefik
@@ -47,8 +41,14 @@ services:
             - 80
         depends_on:
             - kittybot
+        labels:
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
+            traefik.http.services.website.loadbalancer.server.port: 80
         healthcheck:
-            test: ["CMD", "curl", "-f", "http://localhost:80"]
+            test: ['CMD', 'curl', '-f', 'http://localhost:80']
             interval: 1m00s
             timeout: 5s
             retries: 3
