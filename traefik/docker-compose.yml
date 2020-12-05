@@ -13,7 +13,6 @@ services:
             - '9090:8000'
             - '8080:8080'
             - '4430:4430'
-        dns: 8.8.8.8
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml
             - ./.data/letsencrypt:/letsencrypt
