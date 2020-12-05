@@ -1,6 +1,7 @@
+---
 global:
     checkNewVersion: true
-    sendAnonymousUsage: false
+    sendAnonymousUsage: true
 
 log:
     level: INFO
@@ -19,10 +20,11 @@ entryPoints:
             tls:
                 certResolver: default
                 domains:
-                    - main: 'kittybot.de'
+                    - main: 'chirality.de'
                       sans:
-                          - '*.kittybot.de'
+                          - '*.chirality.de'
             middlewares:
+                - global-errors@docker
                 - global-compress@docker
         proxyProtocol:
             insecure: true # container is never exposed to untrusted network due to firewall
@@ -39,8 +41,8 @@ certificatesResolvers:
     default:
         acme:
             # testing server
-            caserver: https://acme-staging-v02.api.letsencrypt.org/directory
-            email: tobi@strasserhof.com
+            # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
+            email: thorio.git@gmail.com
             storage: /letsencrypt/acme.json
             dnsChallenge:
                 provider: 'netcup'
