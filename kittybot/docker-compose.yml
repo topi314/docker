@@ -46,8 +46,8 @@ services:
             traefik.enable: true
             traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN`) || Host(`www.$PRIMARY_DOMAIN`)
             traefik.http.routers.website.entrypoints: https
-            traefik.http.services.website.loadbalancer.server.port: 80
             traefik.http.routers.website.middlewares: www-website-redirect
+            traefik.http.services.website.loadbalancer.server.port: 80
             traefik.http.middlewares.www-website-redirect.redirectregex.regex: https://www.$PRIMARY_DOMAIN/(.*)
             traefik.http.middlewares.www-website-redirect.redirectregex.replacement: https://$PRIMARY_DOMAIN/$${1}
         healthcheck:
