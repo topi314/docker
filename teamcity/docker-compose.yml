@@ -16,9 +16,9 @@ services:
             - 8111
         labels:
             traefik.enable: true
-            traefik.http.routers.teamcity.rule: Host(`ci.$PRIMARY_DOMAIN`)
-            traefik.http.routers.teamcity.entrypoints: https
-            traefik.http.services.teamcity.loadbalancer.server.port: 8111
+            traefik.http.routers.ci.rule: Host(`ci.$PRIMARY_DOMAIN`)
+            traefik.http.routers.ci.entrypoints: https
+            traefik.http.services.ci.loadbalancer.server.port: 8111
     agent_1:
         image: topisenpai/teamcity-agent:12
         container_name: teamcity_agent_1
