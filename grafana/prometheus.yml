@@ -29,7 +29,7 @@ scrape_configs:
                 machine: kittybot
 
     - job_name: kittybot/traefik
-      scrape_interval: 2s
+      scrape_interval: 5s
       static_configs:
           - targets: ['traefik:8080']
             labels:

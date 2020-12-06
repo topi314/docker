@@ -35,7 +35,7 @@ services:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.errorpages.rule: Host(`errors.$PRIMARY_DOMAIN`)
+            traefik.http.routers.errorpages.rule: HostRegexp(`{host:.+}`)
             traefik.http.routers.errorpages.entrypoints: https
             traefik.http.services.errorpages.loadbalancer.server.port: 80
             traefik.http.middlewares.global-errors.errors.status: 500-599
