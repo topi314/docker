@@ -27,3 +27,10 @@ scrape_configs:
             - targets: ['node-exporter:9100', 'cadvisor:8080']
                 labels:
                     machine: kittybot
+
+    - job_name: kittybot/traefik
+        scrape_interval: 2s
+        static_configs:
+            - targets: ['traefik:8080']
+                labels:
+                    machine: kittybot
