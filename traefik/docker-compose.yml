@@ -10,8 +10,10 @@ services:
         networks:
             - traefik
         ports:
-            - '8080:8080'
-            - '4430:4430'
+            - 8080:80
+            - 4430:443
+        expose:
+            - 8080
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml
             - ./.data/letsencrypt:/letsencrypt

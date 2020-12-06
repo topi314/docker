@@ -17,14 +17,14 @@ metrics:
 
 entryPoints:
     http:
-        address: ':8080'
+        address: ':80'
         http:
             redirections:
                 entryPoint:
                     to: https
                     permanent: true
     https:
-        address: ':4430'
+        address: ':443'
         http:
             tls:
                 certResolver: default
