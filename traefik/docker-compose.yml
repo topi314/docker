@@ -25,6 +25,7 @@ services:
             traefik.http.routers.dashboard.middlewares: auth@docker
             traefik.http.middlewares.auth.basicauth.users: $TRAEFIK_AUTH
             traefik.http.routers.dashboard.service: api@internal
+            traefik.http.middlewares.global-compress.compress: true
     errorpages:
         image: thoriogit/errorpage-service
         restart: unless-stopped
