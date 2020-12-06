@@ -32,8 +32,6 @@ entryPoints:
                     - main: 'kittybot.de'
                       sans:
                           - '*.kittybot.de'
-        proxyProtocol:
-            insecure: true # container is never exposed to untrusted network due to firewall
 
 providers:
     docker:
