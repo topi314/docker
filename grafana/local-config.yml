@@ -22,9 +22,9 @@ schema_config:
           store: boltdb
           object_store: filesystem
           schema: v11
-              index:
-                  prefix: index_
-                  period: 168h
+          index:
+              prefix: index_
+              period: 168h
 
 storage_config:
     boltdb:
