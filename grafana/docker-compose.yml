@@ -33,6 +33,7 @@ services:
             - node-exporter
             - kittybot-dev
             - lavalink
+            - traefik
         expose:
             - 9090
     node-exporter:
