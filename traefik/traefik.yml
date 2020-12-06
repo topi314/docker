@@ -32,6 +32,9 @@ entryPoints:
                     - main: 'kittybot.de'
                       sans:
                           - '*.kittybot.de'
+            middlewares:
+                - global-errors@docker
+                - global-compress@docker
 
 providers:
     docker:

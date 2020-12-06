@@ -25,6 +25,21 @@ services:
             traefik.http.routers.dashboard.middlewares: auth@docker
             traefik.http.middlewares.auth.basicauth.users: $TRAEFIK_AUTH
             traefik.http.routers.dashboard.service: api@internal
+    errorpages:
+        image: thoriogit/errorpage-service
+        restart: unless-stopped
+        networks:
+            - traefik
+        expose:
+            - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.errorpages.rule: HostRegexp(`{host:.+}`)
+            traefik.http.routers.errorpages.entrypoints: https
+            traefik.http.services.errorpages.loadbalancer.server.port: 80
+            traefik.http.middlewares.global-errors.errors.status: 500-599
+            traefik.http.middlewares.global-errors.errors.query: /_error/{status}
+            traefik.http.middlewares.global-errors.errors.service: errorpages@docker
 
 networks:
     traefik:
