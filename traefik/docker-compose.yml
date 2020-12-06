@@ -35,9 +35,9 @@ services:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.errorpages.rule: HostRegexp(`{host:.+}`)
-            traefik.http.routers.errorpages.entrypoints: https
-            traefik.http.services.errorpages.loadbalancer.server.port: 80
+            #traefik.http.routers.errorpages.rule: HostRegexp(`{host:.+}`)
+            #traefik.http.routers.errorpages.entrypoints: https
+            #traefik.http.services.errorpages.loadbalancer.server.port: 80
             traefik.http.middlewares.global-errors.errors.status: 500-599
             traefik.http.middlewares.global-errors.errors.query: /_error/{status}
             traefik.http.middlewares.global-errors.errors.service: errorpages@docker
