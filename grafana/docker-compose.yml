@@ -25,6 +25,8 @@ services:
         image: prom/prometheus
         container_name: prometheus
         restart: unless-stopped
+        command:
+            - '--storage.tsdb.retention.time=1y'
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
         networks:
