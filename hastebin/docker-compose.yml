@@ -18,7 +18,7 @@ services:
             - 7777
         labels:
             traefik.enable: true
-            traefik.http.routers.hastebin.rule: Host(`hastebin.$PRIMARY_DOMAIN`)
+            traefik.http.routers.hastebin.rule: Host(`hastebin.$PRIMARY_DOMAIN`) || Host(`hb.$PRIMARY_DOMAIN`)
             traefik.http.routers.hastebin.entrypoints: https
             traefik.http.services.hastebin.loadbalancer.server.port: 7777
     redis:
