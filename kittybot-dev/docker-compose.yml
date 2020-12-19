@@ -31,7 +31,7 @@ services:
             retries: 3
             start_period: 1m00s
     website-dev:
-        image: topisenpai/kittybot-website:latest-dev
+        image: topisenpai/kittybot-website:latest
         container_name: kittybot_website-dev
         restart: unless-stopped
         networks:
