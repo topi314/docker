@@ -1,9 +1,61 @@
 version: '3.7'
 
 services:
-    dev-database:
+    kittybot-dev:
+        image: topisenpai/kittybot:latest-dev
+        container_name: kittybot-dev
+        restart: unless-stopped
+        env_file:
+            - conf.env
+        volumes:
+            - ./config.json:/home/kittybot/config.json
+        networks:
+            - kittybot-dev
+            - traefik
+            - prometheus
+        expose:
+            - 6969
+            - 8080
+        depends_on:
+            - lavalink-dev
+        labels:
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.api.rule: Host(`api-dev.$PRIMARY_DOMAIN`)
+            traefik.http.routers.api.entrypoints: https
+            traefik.http.services.api.loadbalancer.server.port: 6969
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:6969/health_check']
+            interval: 1m00s
+            timeout: 5s
+            retries: 3
+            start_period: 1m00s
+    website-dev:
+        image: topisenpai/kittybot-website:latest-dev
+        container_name: kittybot_website-dev
+        restart: unless-stopped
+        networks:
+            - kittybot-dev
+            - traefik
+        expose:
+            - 80
+        depends_on:
+            - kittybot
+        labels:
+            io.portainer.accesscontrol.teams: kittybot
+            traefik.enable: true
+            traefik.http.routers.website.rule: Host(`dev.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.entrypoints: https
+            traefik.http.services.website.loadbalancer.server.port: 80
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:80']
+            interval: 1m00s
+            timeout: 5s
+            retries: 3
+            start_period: 1m00s
+    database-dev:
         image: 5c0cc51367ea
-        container_name: dev_database
+        container_name: database-dev
         restart: unless-stopped
         labels:
             - io.portainer.accesscontrol.teams=kittybot
@@ -15,9 +67,9 @@ services:
             - kittybot-dev
         ports:
             - 5432:5432
-    dev-lavalink:
+    lavalink-dev:
         image: fredboat/lavalink:dev
-        container_name: dev_lavalink
+        container_name: lavalink-dev
         restart: unless-stopped
         command: -Xmx128m
         labels:
@@ -32,3 +84,5 @@ services:
 networks:
     kittybot-dev:
         name: kittybot-dev
+    prometheus:
+        external: true
