@@ -86,3 +86,5 @@ networks:
         name: kittybot-dev
     prometheus:
         external: true
+    traefik:
+        external: true
