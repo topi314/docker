@@ -40,7 +40,7 @@ services:
         expose:
             - 80
         depends_on:
-            - kittybot
+            - kittybot-dev
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
