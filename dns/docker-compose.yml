@@ -16,6 +16,7 @@ services:
         networks:
             - dns
             - database
+            - lavalink
         deploy:
             resources:
                 limits:
@@ -25,4 +26,6 @@ networks:
     dns:
         name: dns
     database:
+        external: true
+    lavalink:
         external: true
