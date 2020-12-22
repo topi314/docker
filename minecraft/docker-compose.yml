@@ -7,16 +7,14 @@ services:
         restart: unless-stopped
         environment:
             - EULA=TRUE
-            - TYPE=PAPER
-            - VERSION=1.16.1
-            - MEMORY=3G
+            - TYPE=FORGE
+            - VERSION=1.12.2
+            - MEMORY=4G
         volumes:
             - /etc/timezone:/etc/timezone:ro
             - ./.data:/data
         networks:
             - minecraft
-        expose:
-            - 25575
         ports:
             - 25565:25565
 
