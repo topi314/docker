@@ -10,6 +10,8 @@ services:
             - TYPE=FORGE
             - VERSION=1.12.2
             - MEMORY=4G
+            - ENABLE_RCON=true
+            - RCON_PASSWORD=1234
         volumes:
             - /etc/timezone:/etc/timezone:ro
             - ./.data:/data
