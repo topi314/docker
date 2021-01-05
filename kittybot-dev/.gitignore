@@ -2,3 +2,4 @@
 conf.env
 postgresql.conf
 application.yml
+config.json
