@@ -20,7 +20,7 @@ services:
             traefik.http.routers.ci.entrypoints: https
             traefik.http.services.ci.loadbalancer.server.port: 8111
     agent_1:
-        image: topisenpai/teamcity-agent:12
+        image: topisenpai/teamcity-agent:13
         container_name: teamcity_agent_1
         restart: unless-stopped
         user: root
