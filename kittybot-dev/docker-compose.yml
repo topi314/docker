@@ -17,11 +17,12 @@ services:
             - 6969
             - 8080
         depends_on:
+            - database-dev
             - lavalink-dev
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
-            traefik.http.routers.api-dev.rule: Host(`api-dev.$PRIMARY_DOMAIN`)
+            traefik.http.routers.api-dev.rule: Host(`api.dev.$PRIMARY_DOMAIN`)
             traefik.http.routers.api-dev.entrypoints: https
             traefik.http.services.api-dev.loadbalancer.server.port: 6969
         healthcheck:
