@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     traefik:
-        image: traefik
+        image: traefik:latest
         container_name: traefik
         restart: unless-stopped
         env_file:
