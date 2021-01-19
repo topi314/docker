@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     hastebin:
-        image: rlister/hastebin
+        image: jonasled/haste-server:latest
         container_name: hastebin
         restart: unless-stopped
         environment:
