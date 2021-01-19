@@ -32,8 +32,7 @@ entryPoints:
                     - main: 'kittybot.de'
                       sans:
                           - '*.kittybot.de'
-                    - main: 'hastebin.de'
-                      sans:
+                          - 'hastebin.de'
                           - '*.hastebin.de'
             middlewares:
                 - global-errors@docker
