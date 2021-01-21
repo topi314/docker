@@ -9,9 +9,9 @@ scrape_configs:
             labels:
                 machine: kittybot
                 
-    - job_name: kittybot/kittybot-dev
+    - job_name: kittybot/kittybot
       static_configs:
-          - targets: ['kittybot-dev:8080']
+          - targets: ['kittybot:8080']
             labels:
                 machine: kittybot
 
