@@ -95,7 +95,7 @@ networks:
         name: loki
     database:
         external: true
-    kittybot-dev:
+    kittybot:
         external: true
     lavalink:
         external: true
