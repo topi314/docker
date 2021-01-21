@@ -35,7 +35,7 @@ services:
             - prometheus
             - cadvisor
             - node-exporter
-            - kittybot-dev
+            - kittybot
             - lavalink
             - traefik
         expose:
