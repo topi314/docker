@@ -8,6 +8,7 @@ services:
         volumes:
             - ./.data/server/data/:/data/teamcity_server/datadir/
             - ./.data/server/logs/:/opt/teamcity/logs/
+            - ./.data/server/temp/:/opt/teamcity/temp/
         networks:
             - teamcity
             - database

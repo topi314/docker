@@ -24,3 +24,13 @@ services:
             - ./application.yml:/opt/Lavalink/application.yml
         ports:
             - 2333:2333
+    andesite:
+        image: natanbc/andesite
+        container_name: andesite-dev
+        restart: unless-stopped
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
+        volumes:
+            - ./application.conf:/andesite/application.conf
+        ports:
+            - 5000:5000

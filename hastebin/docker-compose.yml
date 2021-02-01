@@ -8,11 +8,11 @@ services:
         environment:
             - STORAGE_TYPE=redis
             - STORAGE_HOST=redis
+            - STORAGE_PORT=6379
         depends_on:
             - redis
         networks:
             - hastebin
-            - redis
             - traefik
         expose:
             - 7777
@@ -31,13 +31,12 @@ services:
         volumes:
             - ./.data:/data
         networks:
-            - redis
             - hastebin
+        expose:
+            - 6379
         entrypoint: redis-server --appendonly yes
 
 networks:
-    redis:
-        name: redis
     hastebin:
         name: hastebin
     traefik:
