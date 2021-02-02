@@ -5,6 +5,7 @@ services:
         image: jetbrains/teamcity-server:2020.2.2
         container_name: teamcity_server
         restart: unless-stopped
+        user: root
         volumes:
             - ./.data/server/data/:/data/teamcity_server/datadir/
             - ./.data/server/logs/:/opt/teamcity/logs/
