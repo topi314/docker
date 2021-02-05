@@ -1,0 +1,5 @@
+http:
+  middlewares:
+    global-sts:
+      headers:
+        sslRedirect: true
