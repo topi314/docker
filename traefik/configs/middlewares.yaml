@@ -3,5 +3,5 @@ http:
         global-headers:
             headers:
                 customResponseHeaders:
-                     Strict-Transport-Security: max-age=300; includeSubDomains; preload 
+                     Strict-Transport-Security: max-age=31536000; includeSubDomains; preload 
                      X-Content-Type-Options: nosniff
