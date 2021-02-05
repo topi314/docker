@@ -50,6 +50,8 @@ providers:
     docker:
         exposedByDefault: false
         network: traefik
+    file:
+        filename: "/traefik_conf.yaml"
 
 api:
     dashboard: true
