@@ -45,13 +45,14 @@ entryPoints:
             middlewares:
                 - global-errors@docker
                 - global-compress@docker
+                - global-sts@file
 
 providers:
     docker:
         exposedByDefault: false
         network: traefik
     file:
-        filename: "/traefik_conf.yaml"
+        directory: "/configs"
 
 api:
     dashboard: true
