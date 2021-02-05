@@ -1,6 +1,7 @@
 http:
     middlewares:
-        global-sts:
+        global-headers:
             headers:
                 customResponseHeaders:
                      Strict-Transport-Security: max-age=300; includeSubDomains; preload 
+                     X-Content-Type-Options: nosniff
