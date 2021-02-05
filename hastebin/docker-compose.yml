@@ -5,14 +5,9 @@ services:
         image: horstexplorer/hastebin:latest
         container_name: hastebin
         restart: unless-stopped
-        environment:
-            - STORAGE_TYPE=redis
-            - STORAGE_HOST=redis
-            - STORAGE_PORT=6379
-        depends_on:
-            - redis
+        env_file:
+            - ./conf.env
         networks:
-            - hastebin
             - traefik
         expose:
             - 7777
@@ -24,20 +19,7 @@ services:
             traefik.http.services.hastebin.loadbalancer.server.port: 7777
             traefik.http.middlewares.www-hastebin-redirect.redirectregex.regex: https://www.hastebin.de/(.*)
             traefik.http.middlewares.www-hastebin-redirect.redirectregex.replacement: https://hastebin.de/$${1}
-    redis:
-        image: redis:buster
-        container_name: redis
-        restart: unless-stopped
-        volumes:
-            - ./.data:/data
-        networks:
-            - hastebin
-        expose:
-            - 6379
-        entrypoint: redis-server --appendonly yes
 
 networks:
-    hastebin:
-        name: hastebin
     traefik:
         external: true
