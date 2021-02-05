@@ -3,7 +3,4 @@ http:
         global-sts:
             headers:
                 customResponseHeaders:
-                    stsincludesubdomains: false
-                    stspreload: true
-                    stsseconds: 31536000
-                    isdevelopment: false
+                     Strict-Transport-Security: max-age=300; includeSubDomains; preload 
