@@ -45,9 +45,6 @@ entryPoints:
             middlewares:
                 - global-errors@docker
                 - global-compress@docker
-                - headers:
-                    sslRedirect: true
-                      
 
 providers:
     docker:
