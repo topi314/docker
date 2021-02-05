@@ -9,6 +9,7 @@ services:
             - ./conf.env
         networks:
             - traefik
+            - database
         expose:
             - 7777
         labels:
@@ -22,4 +23,6 @@ services:
 
 networks:
     traefik:
+        external: true
+    database:
         external: true
