@@ -1,5 +1,9 @@
 http:
-  middlewares:
-    global-sts:
-      headers:
-        sslRedirect: true
+    middlewares:
+        global-sts:
+            headers:
+                customResponseHeaders:
+                    stsincludesubdomains: false
+                    stspreload: true
+                    stsseconds: 31536000
+                    isdevelopment: false
