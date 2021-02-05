@@ -46,8 +46,7 @@ entryPoints:
                 - global-errors@docker
                 - global-compress@docker
                 - headers:
-                  frameDeny: true
-                  sslRedirect: true
+                    sslRedirect: true
                       
 
 providers:
