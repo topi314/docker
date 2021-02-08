@@ -1,1 +1,0 @@
-docker-compose -f docker/kittybot-dev/docker-compose.yml up -d
