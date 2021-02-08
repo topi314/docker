@@ -9,10 +9,7 @@ services:
             - ./.data/grafana/:/var/lib/grafana/:rw
         networks:
             - grafana
-            - prometheus
-            - loki
-            - database
-            - kittybot-dev
+            - metrics
             - traefik
         expose:
             - 3000
@@ -32,9 +29,7 @@ services:
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
         networks:
-            - prometheus
-            - cadvisor
-            - node-exporter
+            - metrics
             - kittybot
             - lavalink
             - traefik
@@ -49,7 +44,7 @@ services:
         volumes:
             - /:/host:ro,rslave
         networks: 
-            - node-exporter
+            - metrics
         expose: 
             - 9100
     cadvisor:
@@ -65,7 +60,7 @@ services:
             - /sys:/sys:ro
             - /var/lib/docker/:/var/lib/docker:ro
         networks:
-            - cadvisor
+            - metrics
         expose:
             - 8080
     loki:
@@ -76,25 +71,15 @@ services:
         volumes:
             - ./local-config.yml:/etc/loki/local-config.yaml
         networks:
-            - loki
+            - metrics
         ports:
             - 127.0.0.1:3100:3100
 
 networks:
     grafana:
         name: grafana
-    prometheus:
-        name: prometheus
-    node-exporter:
-        name: node-exporter
-    kittybot-dev:
-        name: kittybot-dev
-    cadvisor:
-        name: cadvisor
-    loki:
-        name: loki
-    database:
-        external: true
+    metrics:
+        name: metrics
     kittybot:
         external: true
     lavalink:
