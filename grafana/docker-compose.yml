@@ -67,9 +67,9 @@ services:
         image: grafana/loki:latest
         container_name: loki
         restart: unless-stopped
-        command: -config.file=/etc/loki/local-config.yaml
+        command: -config.file=/etc/loki/loki-config.yaml
         volumes:
-            - ./local-config.yml:/etc/loki/local-config.yaml
+            - ./loki-config.yml:/etc/loki/loki-config.yaml
         networks:
             - metrics
         ports:
