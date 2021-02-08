@@ -28,6 +28,7 @@ services:
             - '--storage.tsdb.retention.time=1y'
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
+            - .data/:/prometheus/data/
         networks:
             - metrics
             - kittybot
