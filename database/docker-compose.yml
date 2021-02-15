@@ -25,6 +25,8 @@ services:
             - conf-dev.env
         volumes:
             - ./.data/postgres-dev/:/var/lib/postgresql/data/
+        networks:
+            - database
         ports:
             - 5432:5432
     pgadmin:
