@@ -24,7 +24,7 @@ services:
         env_file:
             - conf-dev.env
         volumes:
-            - ./.data/postgres/:/var/lib/postgresql/data/
+            - ./.data/postgres-dev/:/var/lib/postgresql/data/
         ports:
             - 5432:5432
     pgadmin:
