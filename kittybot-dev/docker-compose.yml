@@ -1,26 +1,4 @@
 version: '3.7'
 
 services:
-    database-dev:
-        image: 5c0cc51367ea
-        container_name: database-dev
-        restart: unless-stopped
-        labels:
-            - io.portainer.accesscontrol.teams=kittybot
-        env_file:
-            - conf.env
-        volumes:
-            - ./.data/postgres/:/var/lib/postgresql/data/
-        ports:
-            - 5432:5432
-    lavalink-dev:
-        image: fredboat/lavalink:dev
-        container_name: lavalink-dev
-        restart: unless-stopped
-        command: -Xmx128m
-        labels:
-            - io.portainer.accesscontrol.teams=kittybot
-        volumes:
-            - ./application.yml:/opt/Lavalink/application.yml
-        ports:
-            - 2333:2333
+    
