@@ -12,7 +12,6 @@ services:
         volumes:
             - ./config.json:/home/kittybot/config.json
         networks:
-            - kittybot
             - database
             - lavalink
             - traefik
@@ -37,7 +36,6 @@ services:
         container_name: kittybot_website
         restart: unless-stopped
         networks:
-            - kittybot
             - traefik
         expose:
             - 80
@@ -80,12 +78,14 @@ services:
             - io.portainer.accesscontrol.teams=kittybot
         volumes:
             - ./application-dev.yml:/opt/Lavalink/application.yml
+        networks:
+            - lavalink
+        expose:
+            - 2333
         ports:
             - 2333:2333
 
 networks:
-    kittybot:
-        name: kittybot
     lavalink:
         name: lavalink
     database:
