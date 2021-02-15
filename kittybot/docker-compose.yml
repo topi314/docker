@@ -62,6 +62,7 @@ services:
         image: fredboat/lavalink:dev
         container_name: lavalink_1
         restart: unless-stopped
+        command: -Xmx128m
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
@@ -70,6 +71,17 @@ services:
             - 2333
         labels:
             io.portainer.accesscontrol.teams: kittybot
+    lavalink-dev:
+        image: fredboat/lavalink:dev
+        container_name: lavalink_dev
+        restart: unless-stopped
+        command: -Xmx64m
+        labels:
+            - io.portainer.accesscontrol.teams=kittybot
+        volumes:
+            - ./application-dev.yml:/opt/Lavalink/application.yml
+        ports:
+            - 2333:2333
 
 networks:
     kittybot:
