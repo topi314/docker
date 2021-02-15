@@ -1,3 +1,4 @@
 .data/
 conf.env
+conf-dev.env
 postgresql.conf
