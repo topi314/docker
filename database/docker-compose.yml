@@ -49,8 +49,6 @@ services:
 
 networks:
     database:
-        name: database
     pgadmin:
-        name: pgadmin
     traefik:
         external: true
