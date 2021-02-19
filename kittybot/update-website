@@ -1,1 +1,1 @@
-docker pull topisenpai/kittybot-website:latest && docker-compose -f docker/kittybot/docker-compose.yml up -d website
+docker pull kittybot/kittybot-website:latest && docker-compose -f docker/kittybot/docker-compose.yml up -d website
