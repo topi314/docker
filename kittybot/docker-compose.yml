@@ -22,7 +22,8 @@ services:
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
-            traefik.http.routers.api.rule: Host(`api.$PRIMARY_DOMAIN`)
+            traefik.http.routers.api.rule: Host(`api.$PRIMARY_DOMAIN`) || Host(`$PRIMARY_DOMAIN/api`)
+            traefik.http.middlewares.test-stripprefix.stripprefix.prefixes: /api
             traefik.http.routers.api.entrypoints: https
             traefik.http.services.api.loadbalancer.server.port: 6969
         healthcheck:
