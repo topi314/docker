@@ -6,6 +6,8 @@ services:
         container_name: teamcity_server
         restart: unless-stopped
         user: root
+        environment:
+            - TEAMCITY_SERVER_MEM_OPTS=-Xmx512m
         volumes:
             - ./.data/server/data/:/data/teamcity_server/datadir/
             - ./.data/server/logs/:/opt/teamcity/logs/
@@ -33,6 +35,7 @@ services:
             - DOCKER_IN_DOCKER=start
             - AGENT_NAME=agent_1
             - CI=true
+            - TEAMCITY_SERVER_MEM_OPTS=-Xmx256m
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./.data/agent_1/conf/:/data/teamcity_agent/conf/

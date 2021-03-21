@@ -61,30 +61,21 @@ services:
         image: fredboat/lavalink:dev
         container_name: lavalink_1
         restart: unless-stopped
-        command: -Xmx128m
+        environment: 
+            - _JAVA_OPTIONS=-Xmx64m -XX:+UseG1GC
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
         networks:
             - lavalink
+            - traefik
         expose:
             - 2333
         labels:
             io.portainer.accesscontrol.teams: kittybot
-    lavalink-dev:
-        image: fredboat/lavalink:dev
-        container_name: lavalink_dev
-        restart: unless-stopped
-        command: -Xmx64m
-        labels:
-            - io.portainer.accesscontrol.teams=kittybot
-        volumes:
-            - ./application-dev.yml:/opt/Lavalink/application.yml
-        networks:
-            - lavalink
-        expose:
-            - 2333
-        ports:
-            - 2333:2333
+            traefik.enable: true
+            traefik.http.routers.lavalink.rule: Host(`lavalink.$PRIMARY_DOMAIN`)
+            traefik.http.routers.lavalink.entrypoints: https
+            traefik.http.services.lavalink.loadbalancer.server.port: 2333
 
 networks:
     lavalink:

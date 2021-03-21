@@ -5,13 +5,8 @@ services:
         image: itzg/minecraft-server:latest
         container_name: minecraft_server
         restart: unless-stopped
-        environment:
-            - EULA=TRUE
-            - TYPE=FORGE
-            - VERSION=1.12.2
-            - MEMORY=4G
-            - ENABLE_RCON=true
-            - RCON_PASSWORD=1234
+        env_file:
+            - config.env
         volumes:
             - /etc/timezone:/etc/timezone:ro
             - ./.data:/data
