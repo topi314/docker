@@ -21,3 +21,5 @@ services:
 networks:
     kitsune-bot:
         name:  kitsune-bot
+    traefik:
+        external: true
