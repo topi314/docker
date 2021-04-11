@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     disgo-butler:
-        image: docker.pkg.github.com/Disgo/disgo-butler:latest
+        image: docker.pkg.github.com/disgoorg/disgo-butler:latest
         container_name: disgo-butler
         restart: unless-stopped
         env_file:
