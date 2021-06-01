@@ -9,6 +9,7 @@ services:
             - conf.env
         networks:
             - reddit-bot
+            - database
             - traefik
         expose:
             - 80
@@ -20,6 +21,8 @@ services:
 
 networks:
     reddit-bot:
-        name:  reddit-bot
+        name: reddit-bot
+    database:
+        external: true
     traefik:
         external: true
