@@ -56,7 +56,7 @@ http:
 providers:
     docker:
         exposedByDefault: false
-        swarmMode: true
+        swarmMode: false
         network: traefik
     file:
         directory: '/configs'
