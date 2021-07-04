@@ -68,4 +68,3 @@ certificatesResolvers:
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
             tlsChallenge:
-                entryPoint: https
