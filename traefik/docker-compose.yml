@@ -29,6 +29,7 @@ services:
             traefik.http.middlewares.global-compress.compress: true
     errorpages:
         image: thoriogit/errorpage-service
+        container_name: errorpage-service
         restart: unless-stopped
         networks:
             - traefik
@@ -43,6 +44,19 @@ services:
             traefik.http.middlewares.global-errors.errors.status: 500-599
             traefik.http.middlewares.global-errors.errors.query: /_error/{status}
             traefik.http.middlewares.global-errors.errors.service: errorpages@docker
+    cane:
+        image: nginx
+        name: cane-website
+        restart: unless-stopped
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./html/:/usr/share/nginx/html/:ro
+        expose:
+            - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.cane-website
+            traefik.http.services.cane-website.loadbalancer.server.port: 80
 
 networks:
     traefik:
