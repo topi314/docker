@@ -58,12 +58,14 @@ certificatesResolvers:
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
             dnsChallenge:
-                provider: 'netcup'
+                provider: netcup
                 delayBeforeCheck: 900
-    https:
+    namecheap:
         acme:
             # testing server
             caserver: https://acme-staging-v02.api.letsencrypt.org/directory
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
-            tlsChallenge: true
+            dnsChallenge:
+                provider: namecheap
+                delayBeforeCheck: 900
