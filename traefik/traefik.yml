@@ -67,4 +67,4 @@ certificatesResolvers:
             caserver: https://acme-staging-v02.api.letsencrypt.org/directory
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
-            tlsChallenge:
+            tlsChallenge: {}
