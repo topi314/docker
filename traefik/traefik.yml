@@ -43,6 +43,9 @@ http:
     routers:
         cane-website:
             rule: 'Host(`cane.gay`) || Host(`www.cane.gay`)'
+            service: cane-website@docker
+            entrypoints:
+                - https
             tls:
                 certResolver: http
                 domains:
@@ -53,6 +56,7 @@ http:
 providers:
     docker:
         exposedByDefault: false
+        swarmMode: true
         network: traefik
     file:
         directory: '/configs'
@@ -77,4 +81,4 @@ certificatesResolvers:
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
             httpChallenge:
-                entryPoint: https
+                entryPoint: http
