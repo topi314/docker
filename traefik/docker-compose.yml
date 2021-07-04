@@ -48,6 +48,8 @@ services:
         image: nginx
         container_name: cane-website
         restart: unless-stopped
+        networks:
+            - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
             - ./html/:/usr/share/nginx/html/:ro
