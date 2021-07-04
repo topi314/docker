@@ -34,7 +34,6 @@ entryPoints:
                           - '*.kittybot.de'
                           - 'hastebin.de'
                           - '*.hastebin.de'
-
             middlewares:
                 - global-errors@docker
                 - global-compress@docker
@@ -67,4 +66,4 @@ certificatesResolvers:
             caserver: https://acme-staging-v02.api.letsencrypt.org/directory
             email: tobi@strasserhof.com
             storage: /letsencrypt/acme.json
-            tlsChallenge: {}
+            tlsChallenge: true
