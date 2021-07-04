@@ -60,9 +60,9 @@ services:
             traefik.http.routers.cane-website.rule: Host(`cane.gay`) || Host(`www.cane.gay`)
             traefik.http.routers.cane-website.entrypoints: https
             traefik.http.routers.cane-website.middlewares: www-cane-website-redirect
-            traefik.http.routers.cane-website.tls.certresolver: namecheap
+            traefik.http.routers.cane-website.tls.certresolver: tls
             traefik.http.routers.cane-website.tls.domains[0].main: cane.gay
-            traefik.http.routers.cane-website.tls.domains[0].sans: *.cane.gay
+            traefik.http.routers.cane-website.tls.domains[0].sans[0]: www.cane.gay
             traefik.http.services.cane-website.loadbalancer.server.port: 80
             traefik.http.middlewares.www-cane-website-redirect.redirectregex.regex: https://www.cane/(.*)
             traefik.http.middlewares.www-cane-website-redirect.redirectregex.replacement: https://cane.gay/$${1}
