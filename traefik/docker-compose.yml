@@ -52,7 +52,7 @@ services:
             - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./html/:/usr/share/nginx/html/:ro
+            - ./cane/html/:/usr/share/nginx/html/:ro
         expose:
             - 80
         labels:
@@ -64,8 +64,32 @@ services:
             traefik.http.routers.cane-website.tls.domains[0].main: cane.gay
             traefik.http.routers.cane-website.tls.domains[0].sans: www.cane.gay
             traefik.http.services.cane-website.loadbalancer.server.port: 80
-            traefik.http.middlewares.www-cane-website-redirect.redirectregex.regex: https://www.cane/(.*)
+            traefik.http.middlewares.www-cane-website-redirect.redirectregex.regex: https://www.cane.gay/(.*)
             traefik.http.middlewares.www-cane-website-redirect.redirectregex.replacement: https://cane.gay/$${1}
+
+
+    horst:
+        image: nginx
+        container_name: horst-website
+        restart: unless-stopped
+        networks:
+            - traefik
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./horst/html/:/usr/share/nginx/html/:ro
+        expose:
+            - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.horst-website.rule: Host(`horst.gay`) || Host(`www.horst.gay`)
+            traefik.http.routers.horst-website.entrypoints: https
+            traefik.http.routers.horst-website.middlewares: www-horst-website-redirect
+            traefik.http.routers.horst-website.tls.certresolver: tls
+            traefik.http.routers.horst-website.tls.domains[0].main: horst.gay
+            traefik.http.routers.horst-website.tls.domains[0].sans: www.horst.gay
+            traefik.http.services.horst-website.loadbalancer.server.port: 80
+            traefik.http.middlewares.www-horst-website-redirect.redirectregex.regex: https://www.horst.gay/(.*)
+            traefik.http.middlewares.www-horst-website-redirect.redirectregex.replacement: https://horst.gay/$${1}
 
 networks:
     traefik:
