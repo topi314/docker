@@ -52,7 +52,7 @@ services:
             - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./cane/html/:/usr/share/nginx/html/:ro
+            - ./html/cane/:/usr/share/nginx/html/:ro
         expose:
             - 80
         labels:
@@ -76,7 +76,7 @@ services:
             - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./horst/html/:/usr/share/nginx/html/:ro
+            - ./html/horst/:/usr/share/nginx/html/:ro
         expose:
             - 80
         labels:
