@@ -53,7 +53,7 @@ services:
         command: server /data
         env_file: conf.env
         volumes:
-            - ./data/minio:/data
+            - ./.data/minio:/data
         networks:
             - revolt
         expose:
