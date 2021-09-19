@@ -27,13 +27,15 @@ services:
             traefik.enable: true
             traefik.http.routers.revolt-api.rule: Host(`api.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-api.entrypoints: https
-            traefik.http.services.revolt-api.loadbalancer.server.port: 8000
             traefik.http.routers.revolt-api.middlewares: cors-headers@file
+            traefik.http.routers.revolt-api.service: revolt-api
+            traefik.http.services.revolt-api.loadbalancer.server.port: 8000
 
             traefik.http.routers.revolt-ws.rule: Host(`ws.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-ws.entrypoints: https
-            traefik.http.services.revolt-ws.loadbalancer.server.port: 9000
             traefik.http.routers.revolt-ws.middlewares: cors-headers@file
+            traefik.http.routers.revolt-ws.service: revolt-ws
+            traefik.http.services.revolt-ws.loadbalancer.server.port: 9000
 
     # REVOLT Web App
     web:
