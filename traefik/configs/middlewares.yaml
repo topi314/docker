@@ -7,5 +7,11 @@ http:
                     X-Content-Type-Options: nosniff
         cors-headers:
             headers:
-                customResponseHeaders:
-                    Access-Control-Allow-Origin: https://revolt.kittybot.de
+                accessControlAllowMethods:
+                    - GET
+                    - OPTIONS
+                    - PUT
+                accessControlAllowOriginList:
+                    - https://revolt.kittybot.de
+                accessControlMaxAge: 100
+                addVaryHeader: true
