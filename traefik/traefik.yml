@@ -32,13 +32,12 @@ entryPoints:
                     - main: 'kittybot.de'
                       sans:
                           - '*.kittybot.de'
-                          - 'revolt.kittybot.de'
                           - '*.revolt.kittybot.de'
                     - main: 'hastebin.de'
                       sans:
                           - '*.hastebin.de'
             middlewares:
-                - global-errors@docker
+                #- global-errors@docker
                 - global-compress@docker
                 - global-headers@file
 
