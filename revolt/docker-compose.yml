@@ -25,14 +25,15 @@ services:
             - traefik
         labels:
             traefik.enable: true
-            traefik.http.routers.revolt-api.rule: Host(`revolt.$PRIMARY_DOMAIN/api`)
-            traefik.http.middlewares.revolt-api-rewrite.stripprefix.prefixes: /api
+            traefik.http.routers.revolt-api.rule: Host(`api.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-api.entrypoints: https
             traefik.http.services.revolt-api.loadbalancer.server.port: 8000
+            traefik.http.routers.revolt-api.middlewares: cors-headers@file
 
             traefik.http.routers.revolt-ws.rule: Host(`ws.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-ws.entrypoints: https
             traefik.http.services.revolt-ws.loadbalancer.server.port: 9000
+            traefik.http.routers.revolt-ws.middlewares: cors-headers@file
 
     # REVOLT Web App
     web:
@@ -97,6 +98,7 @@ services:
             traefik.http.routers.revolt-autumn.rule: Host(`autumn.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-autumn.entrypoints: https
             traefik.http.services.revolt-autumn.loadbalancer.server.port: 3000
+            traefik.http.routers.revolt-autumn.middlewares: cors-headers@file
 
     # REVOLT metadata and image proxy (January)
     january:
@@ -112,6 +114,7 @@ services:
             traefik.http.routers.revolt-january.rule: Host(`january.revolt.$PRIMARY_DOMAIN`)
             traefik.http.routers.revolt-january.entrypoints: https
             traefik.http.services.revolt-january.loadbalancer.server.port: 3000
+            traefik.http.routers.revolt-january.middlewares: cors-headers@file
 
 networks:
     revolt:
