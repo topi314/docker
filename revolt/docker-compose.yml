@@ -40,6 +40,8 @@ services:
         env_file: conf.env
         expose:
             - 5000
+        networks:
+            - traefik
         labels:
             traefik.enable: true
             traefik.http.routers.revolt-web.rule: Host(`revolt.$PRIMARY_DOMAIN`)
@@ -86,6 +88,7 @@ services:
             - AUTUMN_MONGO_URI=mongodb://database
         networks:
             - revolt
+            - traefik
         expose:
             - 3000
         labels:
@@ -100,6 +103,7 @@ services:
         restart: always
         networks:
             - revolt
+            - traefik
         ports:
             - 3000
         labels:
