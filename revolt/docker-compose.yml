@@ -25,7 +25,8 @@ services:
             - traefik
         labels:
             traefik.enable: true
-            traefik.http.routers.revolt-api.rule: Host(`api.revolt.$PRIMARY_DOMAIN`)
+            traefik.http.routers.revolt-api.rule: Host(`revolt.$PRIMARY_DOMAIN/api`)
+            traefik.http.middlewares.revolt-api-rewrite.stripprefix.prefixes: /api
             traefik.http.routers.revolt-api.entrypoints: https
             traefik.http.services.revolt-api.loadbalancer.server.port: 8000
 
