@@ -11,6 +11,7 @@ services:
             - grafana
             - metrics
             - traefik
+            - loki
         expose:
             - 3000
         labels:
@@ -28,12 +29,12 @@ services:
             - '--storage.tsdb.retention.time=1y'
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
-            - .data/prometheus/:/prometheus/data/
+            - ./.data/prometheus/:/prometheus/data/
         networks:
             - metrics
-            - kittybot
             - lavalink
             - traefik
+            - loki
         expose:
             - 9090
     node-exporter:
@@ -44,9 +45,9 @@ services:
         pid: host
         volumes:
             - /:/host:ro,rslave
-        networks: 
+        networks:
             - metrics
-        expose: 
+        expose:
             - 9100
     cadvisor:
         image: gcr.io/google-containers/cadvisor
@@ -65,24 +66,29 @@ services:
         expose:
             - 8080
     loki:
-        image: grafana/loki:latest
+        image: grafana/loki:2.4.2
         container_name: loki
         restart: unless-stopped
-        command: -config.file=/etc/loki/loki-config.yaml
-        volumes:
-            - ./loki-config.yml:/etc/loki/loki-config.yaml
+        command: -config.file=/etc/loki/local-config.yaml
         networks:
-            - metrics
-        ports:
-            - 127.0.0.1:3100:3100
-
+            - loki
+    promtail:
+        image: grafana/promtail:2.4.2
+        container_name: promtail
+        restart: unless-stopped
+        command: -config.file=/etc/promtail/docker-config.yml
+        volumes:
+            - /var/lib/docker/containers:/var/lib/docker/containers
+            - ./promtail-config.yml:/etc/promtail/docker-config.yml
+        networks:
+            - loki
 networks:
     grafana:
         name: grafana
     metrics:
         name: metrics
-    kittybot:
-        external: true
+    loki:
+        name: loki
     lavalink:
         external: true
     traefik:

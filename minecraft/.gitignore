@@ -1,2 +1,3 @@
 .data
 config.env
+.data_backup

@@ -2,3 +2,5 @@ application.yml
 application-dev.yml
 config.json
 conf.env
+goconfig.json
+plugins/

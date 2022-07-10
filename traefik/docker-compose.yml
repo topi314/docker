@@ -44,30 +44,28 @@ services:
             traefik.http.middlewares.global-errors.errors.status: 500-599
             traefik.http.middlewares.global-errors.errors.query: /_error/{status}
             traefik.http.middlewares.global-errors.errors.service: errorpages@docker
-    cane:
+    bardcraft:
         image: nginx
-        container_name: cane-website
+        container_name: bardcraft-website
         restart: unless-stopped
         networks:
             - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./html/cane/:/usr/share/nginx/html/:ro
+            - ./html/bardcraft/:/usr/share/nginx/html/:ro
         expose:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.cane-website.rule: Host(`cane.gay`) || Host(`www.cane.gay`)
-            traefik.http.routers.cane-website.entrypoints: https
-            traefik.http.routers.cane-website.middlewares: www-cane-website-redirect
-            traefik.http.routers.cane-website.tls.certresolver: tls
-            traefik.http.routers.cane-website.tls.domains[0].main: cane.gay
-            traefik.http.routers.cane-website.tls.domains[0].sans: www.cane.gay
-            traefik.http.services.cane-website.loadbalancer.server.port: 80
-            traefik.http.middlewares.www-cane-website-redirect.redirectregex.regex: https://www.cane.gay/(.*)
-            traefik.http.middlewares.www-cane-website-redirect.redirectregex.replacement: https://cane.gay/$${1}
-
-
+            traefik.http.routers.bardcraft-website.rule: Host(`bardcraft.de`) || Host(`www.bardcraft.de`)
+            traefik.http.routers.bardcraft-website.entrypoints: https
+            traefik.http.routers.bardcraft-website.middlewares: www-bardcraft-website-redirect
+            traefik.http.routers.bardcraft-website.tls.certresolver: tls
+            traefik.http.routers.bardcraft-website.tls.domains[0].main: bardcraft.de
+            traefik.http.routers.bardcraft-website.tls.domains[0].sans: www.bardcraft.de
+            traefik.http.services.bardcraft-website.loadbalancer.server.port: 80
+            traefik.http.middlewares.www-bardcraft-website-redirect.redirectregex.regex: https://www.bardcraft.de/(.*)
+            traefik.http.middlewares.www-bardcraft-website-redirect.redirectregex.replacement: https://bardcraft.de/$${1}
     horst:
         image: nginx
         container_name: horst-website

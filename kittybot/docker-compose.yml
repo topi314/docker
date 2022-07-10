@@ -32,6 +32,18 @@ services:
             timeout: 5s
             retries: 3
             start_period: 1m00s
+
+    kittybotgo:
+        image: docker.pkg.github.com/kittybot-org/kittybotgo/bot:latest
+        container_name: kittybotgo
+        restart: unless-stopped
+        command: --sync-commands=true --sync-db=false --exit-after-sync=false
+        volumes:
+            - ./goconfig.json:/app/config.json
+        networks:
+            - database
+            - lavalink
+
     website:
         image: kittybot/kittybot-website:latest
         container_name: kittybot_website
@@ -57,14 +69,16 @@ services:
             timeout: 5s
             retries: 3
             start_period: 1m00s
+
     lavalink:
-        image: ghcr.io/topisenpai/lavalink:latest
+        image: fredboat/lavalink:dev
         container_name: lavalink_1
         restart: unless-stopped
         environment: 
             - _JAVA_OPTIONS=-Xmx64m -XX:+UseG1GC
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
+            - ./plugins/:/opt/Lavalink/plugins/
         networks:
             - lavalink
             - traefik

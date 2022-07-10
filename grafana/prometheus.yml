@@ -15,28 +15,26 @@ scrape_configs:
             labels:
                 machine: kittybot
 
-    - job_name: kittybot/dev-lavalink
-      static_configs:
-          - targets: ['dev_lavalink:2333']
-            labels:
-                machine: kittybot
-
-    - job_name: kittybot/live-lavalink
+    - job_name: kittybot/lavalink
       static_configs:
           - targets: ['lavalink:2333']
             labels:
                 machine: kittybot
 
     - job_name: kittybot/node-exporter
-      scrape_interval: 5s
       static_configs:
           - targets: ['node-exporter:9100', 'cadvisor:8080']
             labels:
                 machine: kittybot
 
     - job_name: kittybot/traefik
-      scrape_interval: 5s
       static_configs:
           - targets: ['traefik:8080']
+            labels:
+                machine: kittybot
+
+    - job_name: kittybot/promtail
+      static_configs:
+          - targets: ['promtail:9080']
             labels:
                 machine: kittybot

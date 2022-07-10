@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
     reddit-bot:
-        image: docker.pkg.github.com/topisenpai/reddit-discord-bot:latest
+        image: ghcr.io/topisenpai/reddit-discord-bot/reddit-discord-bot:latest
         container_name: reddit-bot
         restart: unless-stopped
         env_file:
