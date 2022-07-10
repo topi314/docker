@@ -1,7 +1,9 @@
 {
     "debug" : true,
-    "log-driver": "loki",
+    "log-driver": "json-file",
     "log-opts": {
-        "loki-url": "http://127.0.0.1:3100/loki/api/v1/push"
+        "max-size": "10m",
+        "max-file": "5",
+        "tag": "{{.Name}}"
     }
 }
