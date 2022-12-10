@@ -14,7 +14,7 @@ services:
             - 7777
         labels:
             traefik.enable: true
-            traefik.http.routers.hastebin.rule: Host(`hastebin.de`) || Host(`www.hastebin.de`) || Host(`hastebin.$PRIMARY_DOMAIN`) || Host(`hb.$PRIMARY_DOMAIN`) || Host(`paste.xgophers.com`)
+            traefik.http.routers.hastebin.rule: Host(`hastebin.de`) || Host(`www.hastebin.de`) || Host(`hastebin.$PRIMARY_DOMAIN`) || Host(`hb.$PRIMARY_DOMAIN`)
             traefik.http.routers.hastebin.entrypoints: https
             traefik.http.routers.hastebin.middlewares: www-hastebin-redirect
             traefik.http.services.hastebin.loadbalancer.server.port: 7777

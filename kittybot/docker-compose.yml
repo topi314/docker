@@ -20,7 +20,7 @@ services:
         depends_on:
             - lavalink
         labels:
-            io.portainer.accesscontrol.teams: kittybot
+            com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
             traefik.http.routers.api.rule: Host(`api.$PRIMARY_DOMAIN`) || Host(`$PRIMARY_DOMAIN/api`)
             traefik.http.middlewares.api-rewrite.stripprefix.prefixes: /api
@@ -34,7 +34,7 @@ services:
             start_period: 1m00s
 
     kittybotgo:
-        image: docker.pkg.github.com/kittybot-org/kittybotgo/bot:latest
+        image: ghcr.io/kittybot-org/kittybotgo/bot:latest
         container_name: kittybotgo
         restart: unless-stopped
         command: --sync-commands=true --sync-db=false --exit-after-sync=false
@@ -43,6 +43,8 @@ services:
         networks:
             - database
             - lavalink
+        labels:
+            com.centurylinklabs.watchtower.enable: true
 
     website:
         image: kittybot/kittybot-website:latest
@@ -71,11 +73,11 @@ services:
             start_period: 1m00s
 
     lavalink:
-        image: fredboat/lavalink:dev
+        image: fredboat/lavalink:3.6.2
         container_name: lavalink_1
         restart: unless-stopped
         environment: 
-            - _JAVA_OPTIONS=-Xmx64m -XX:+UseG1GC
+            - _JAVA_OPTIONS=-Xmx2G -XX:+UseG1GC
         volumes:
             - ./application.yml:/opt/Lavalink/application.yml
             - ./plugins/:/opt/Lavalink/plugins/
@@ -85,7 +87,7 @@ services:
         expose:
             - 2333
         labels:
-            io.portainer.accesscontrol.teams: kittybot
+            com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
             traefik.http.routers.lavalink.rule: Host(`lavalink.$PRIMARY_DOMAIN`)
             traefik.http.routers.lavalink.entrypoints: https

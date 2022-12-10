@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+    watchtower:
+        image: containrrr/watchtower
+        container_name: watchtower
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        command: --debug --http-api-update
+        env_file:
+            - conf.env
+        networks:
+            - traefik
+        labels:
+            traefik.enable: true
+            traefik.http.routers.watchtower.rule: Host(`watchtower.$PRIMARY_DOMAIN`)
+            traefik.http.routers.watchtower.entrypoints: https
+            traefik.http.services.watchtower.loadbalancer.server.port: 8080
+
+networks:
+    traefik:
+        external: true
