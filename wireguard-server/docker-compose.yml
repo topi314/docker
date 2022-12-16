@@ -24,8 +24,13 @@ services:
             - /lib/modules:/lib/modules
             - ./up.sh:/up.sh
         ports:
-            - 0.0.0.0:51820:51820/udp
-            - 0.0.0.0:80:80
-            - 0.0.0.0:443:443
-            - 0.0.0.0:25565:25565
-            - 0.0.0.0:3025:3025
+            - 0.0.0.0:51820:51820/udp # wireguard
+            - 0.0.0.0:80:80           # traefik http
+            - 0.0.0.0:443:443         # traefik https
+            - 0.0.0.0:3025:3025       # teleport
+            - 0.0.0.0:25565:25565     # minecraft
+            - 0.0.0.0:25:25           # SMTP  (explicit TLS => STARTTLS)
+            - 0.0.0.0:143:143         # IMAP4 (explicit TLS => STARTTLS)
+            - 0.0.0.0:465:465         # ESMTP (implicit TLS)
+            - 0.0.0.0:587:587         # ESMTP (explicit TLS => STARTTLS)
+            - 0.0.0.0:993:993         # IMAP4 (implicit TLS)
