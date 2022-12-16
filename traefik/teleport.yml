@@ -1,0 +1,37 @@
+#
+# A Sample Teleport configuration file.
+#
+# Things to update:
+#  1. license.pem: You only need a license from https://dashboard.goteleport.com
+#     if you are an Enterprise customer.
+#===
+version: v2
+teleport:
+    nodename: teleport.topi.wtf
+    data_dir: /var/lib/teleport
+    log:
+        output: stderr
+        severity: INFO
+        format:
+            output: text
+    ca_pin: ""
+    diag_addr: ""
+auth_service:
+    enabled: "yes"
+    public_addr: teleport.topi.wtf:443
+    cluster_name: teleport.topi.wtf
+    proxy_listener_mode: multiplex
+    client_idle_timeout: never
+    disconnect_expired_cert: off
+ssh_service:
+    enabled: "yes"
+    labels:
+        network: home
+    commands:
+        - name: hostname
+          command: [hostname]
+          period: 1m0s
+proxy_service:
+    enabled: "yes"
+    public_addr: teleport.topi.wtf:443
+

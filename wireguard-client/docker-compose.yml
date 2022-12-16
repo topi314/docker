@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+    wireguard:
+        image: lscr.io/linuxserver/wireguard:latest
+        container_name: wireguard-client
+        restart: unless-stopped
+        sysctls:
+            - net.ipv4.conf.all.src_valid_mark=1
+        cap_add:
+            - NET_ADMIN
+            - SYS_MODULE
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Berlin
+            - LOG_CONFS=true
+        volumes:
+            - ./wg0.conf:/config/wg0.conf
+            - /lib/modules:/lib/modules
+        networks:
+            wireguard:
+                ipv4_address: 192.168.180.2
+networks:
+    wireguard:
+        name: wireguard
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.180.0/24

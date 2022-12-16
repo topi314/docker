@@ -1,0 +1,15 @@
+[Interface]
+Address = 192.168.179.2
+PrivateKey = 
+ListenPort = 51820
+DNS = 192.168.179.1
+PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth+ -j MASQUERADE
+PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth+ -j MASQUERADE
+
+
+[Peer]
+PublicKey = 
+PresharedKey = 
+Endpoint = wireguard.topi.wtf:51820
+AllowedIPs = 192.168.179.1
+PersistentKeepalive = 30

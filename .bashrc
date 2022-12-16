@@ -1,0 +1,10 @@
+#custom aliases
+alias dup="docker compose up"
+alias dupd="docker compose up -d"
+alias dupdf="docker compose up -d --force-recreate"
+alias dupdo="docker compose up -d --remove-orphans"
+alias ddown="docker compose down"
+alias dpull="docker compose pull"
+alias dps="docker ps -a"
+alias dl="docker logs"
+alias dlf="docker logs -f"

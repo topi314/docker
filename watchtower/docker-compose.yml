@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
     watchtower:
@@ -13,7 +13,7 @@ services:
             - traefik
         labels:
             traefik.enable: true
-            traefik.http.routers.watchtower.rule: Host(`watchtower.$PRIMARY_DOMAIN`)
+            traefik.http.routers.watchtower.rule: Host(`watchtower.topi.wtf`)
             traefik.http.routers.watchtower.entrypoints: https
             traefik.http.services.watchtower.loadbalancer.server.port: 8080
 

@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.8"
 
 services:
     minecraft:
@@ -6,14 +6,14 @@ services:
         container_name: minecraft_server
         restart: unless-stopped
         env_file:
-            - config.env
+            - conf.env
         volumes:
             - /etc/timezone:/etc/timezone:ro
-            - ./.data:/data
+            - ./data:/data
         networks:
             - minecraft
         ports:
-            - 25565:25565
+            - 0.0.0.0:25565:25565
 
 networks:
     minecraft:
