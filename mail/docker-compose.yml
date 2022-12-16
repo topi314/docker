@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    mailserver:
+        image: docker.io/mailserver/docker-mailserver:latest
+        container_name: mailserver
+        restart: unldess-stopped
+        stop_grace_period: 1m
+        cap_add:
+            - NET_ADMIN
+        # If the FQDN for your mail-server is only two labels (eg: example.com),
+        # you can assign this entirely to `hostname` and remove `domainname`.
+        hostname: mail
+        domainname: topi.wtf
+        env_file:
+            - conf.env
+        ports:
+            - 0.0.0.0:25:25    # SMTP  (explicit TLS => STARTTLS)
+            - 0.0.0.0:143:143  # IMAP4 (explicit TLS => STARTTLS)
+            - 0.0.0.0:465:465  # ESMTP (implicit TLS)
+            - 0.0.0.0:587:587  # ESMTP (explicit TLS => STARTTLS)
+            - 0.0.0.0:993:993  # IMAP4 (implicit TLS)
+        volumes:
+            - /mnt/tank/mail/:/var/mail/
+            - ./data/mail-state/:/var/mail-state/
+            - ./data/mail-logs/:/var/log/mail/
+            - ./data/config/:/tmp/docker-mailserver/
+            - /etc/localtime:/etc/localtime:ro
+        healthcheck:
+            test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
+            timeout: 3s
+            retries: 0
