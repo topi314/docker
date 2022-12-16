@@ -23,4 +23,3 @@ iptables -t nat -I PREROUTING -p tcp --dport 587 -j DNAT --to-destination 192.16
 iptables -t nat -I POSTROUTING -p tcp --dport 587 -d 192.168.180.6 -j MASQUERADE
 iptables -t nat -I PREROUTING -p tcp --dport 993 -j DNAT --to-destination 192.168.180.6
 iptables -t nat -I POSTROUTING -p tcp --dport 993 -d 192.168.180.6 -j MASQUERADE
-
