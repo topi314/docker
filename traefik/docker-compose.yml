@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.8"
 
 services:
     traefik:
@@ -6,89 +6,116 @@ services:
         container_name: traefik
         restart: unless-stopped
         env_file:
-            - conf.env
+            - ./conf.env
         networks:
-            - traefik
+            traefik:
+            metrics:
+            wireguard:
+                ipv4_address: 192.168.180.3
         ports:
-            - 80:80
-            - 443:443
+            - 0.0.0.0:80:80
+            - 0.0.0.0:443:443
         expose:
             - 8080
         volumes:
-            - ./traefik.yml:/etc/traefik/traefik.yml
-            - ./.data/letsencrypt/:/letsencrypt/
+            - ./traefik.yml:/etc/traefik/traefik.yml:ro
+            - ./data/letsencrypt/:/letsencrypt/
             - ./configs/:/configs/:ro
             - /var/run/docker.sock:/var/run/docker.sock:ro
         labels:
             traefik.enable: true
-            traefik.http.routers.dashboard.rule: Host(`traefik.$PRIMARY_DOMAIN`)
+            traefik.http.routers.dashboard.rule: Host(`traefik.topi.wtf`)
             traefik.http.routers.dashboard.entrypoints: https
-            traefik.http.routers.dashboard.middlewares: auth@docker
-            traefik.http.middlewares.auth.basicauth.users: $TRAEFIK_AUTH
             traefik.http.routers.dashboard.service: api@internal
-            traefik.http.middlewares.global-compress.compress: true
-    errorpages:
-        image: thoriogit/errorpage-service
-        container_name: errorpage-service
+            traefik.http.routers.dashboard.middlewares: authelia@docker
+            traefik.http.services.dashboard.loadbalancer.server.port: 8080
+    authelia:
+        image: authelia/authelia
+        container_name: authelia
         restart: unless-stopped
         networks:
             - traefik
+        volumes:
+            - ./data/authelia/:/config/
+        environment:
+            - TZ=Europe/Berlin
         expose:
-            - 80
+            - 9091
         labels:
             traefik.enable: true
-            traefik.http.routers.errorpages.rule: HostRegexp(`{host:.+}`)
-            traefik.http.routers.errorpages.entrypoints: https
-            traefik.http.routers.errorpages.priority: 1
-            traefik.http.services.errorpages.loadbalancer.server.port: 80
-            traefik.http.middlewares.global-errors.errors.status: 500-599
-            traefik.http.middlewares.global-errors.errors.query: /_error/{status}
-            traefik.http.middlewares.global-errors.errors.service: errorpages@docker
-    bardcraft:
+            traefik.http.routers.authelia.rule: Host(`auth.topi.wtf`)
+            traefik.http.routers.authelia.entrypoints: https
+            traefik.http.services.authelia.loadbalancer.server.port: 9091
+            traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://auth.topi.wtf
+            traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: true
+            traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: Remote-User,Remote-Groups,Remote-Name,Remote-Email
+    homepage:
+        image: ghcr.io/benphelps/homepage
+        container_name: homepage
+        restart: unless-stopped
+        volumes:
+            - ./data/homepage/:/app/config/
+            - ./data/homepage/images/:/app/public/images:ro
+            - ./data/homepage/icons/:/app/public/icons:ro
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /:/host:ro,rslave
+        expose:
+            - 3000
+        networks:
+            - traefik
+        labels:
+            traefik.enable: true
+            traefik.http.routers.homepage.rule: Host(`home.topi.wtf`)
+            traefik.http.routers.homepage.entrypoints: https
+            traefik.http.routers.homepage.middlewares: authelia@docker
+            traefik.http.services.homepage.loadbalancer.server.port: 3000
+    teleport:
+        image: public.ecr.aws/gravitational/teleport:10.2.1
+        container_name: teleport
+        command:
+            - --insecure
+        restart: unless-stopped
+        volumes:
+            - ./teleport.yml:/etc/teleport/teleport.yaml
+            - ./data/teleport/:/var/lib/teleport/
+        networks:
+            traefik:
+            wireguard:
+                ipv4_address: 192.168.180.4
+        ports:
+            - 0.0.0.0:3023:3023
+            - 0.0.0.0:3025:3025
+            - 0.0.0.0:3080:3080
+        expose:
+            - 3080
+        labels:
+            traefik.enable: true
+            traefik.http.routers.teleport.rule: Host(`teleport.topi.wtf`)
+            traefik.http.routers.teleport.entrypoints: https
+            traefik.http.services.teleport.loadbalancer.server.port: 3080
+            traefik.http.services.teleport.loadbalancer.server.scheme: https
+            traefik.http.services.teleport.loadbalancer.serverstransport: teleport@file
+    share:
         image: nginx
-        container_name: bardcraft-website
+        container_name: share
         restart: unless-stopped
         networks:
             - traefik
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./html/bardcraft/:/usr/share/nginx/html/:ro
+            - /mnt/tank/share/public:/usr/share/nginx/html/:ro
         expose:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.bardcraft-website.rule: Host(`bardcraft.de`) || Host(`www.bardcraft.de`)
-            traefik.http.routers.bardcraft-website.entrypoints: https
-            traefik.http.routers.bardcraft-website.middlewares: www-bardcraft-website-redirect
-            traefik.http.routers.bardcraft-website.tls.certresolver: tls
-            traefik.http.routers.bardcraft-website.tls.domains[0].main: bardcraft.de
-            traefik.http.routers.bardcraft-website.tls.domains[0].sans: www.bardcraft.de
-            traefik.http.services.bardcraft-website.loadbalancer.server.port: 80
-            traefik.http.middlewares.www-bardcraft-website-redirect.redirectregex.regex: https://www.bardcraft.de/(.*)
-            traefik.http.middlewares.www-bardcraft-website-redirect.redirectregex.replacement: https://bardcraft.de/$${1}
-    horst:
-        image: nginx
-        container_name: horst-website
-        restart: unless-stopped
-        networks:
-            - traefik
-        volumes:
-            - ./nginx.conf:/etc/nginx/nginx.conf:ro
-            - ./html/horst/:/usr/share/nginx/html/:ro
-        expose:
-            - 80
-        labels:
-            traefik.enable: true
-            traefik.http.routers.horst-website.rule: Host(`horst.gay`) || Host(`www.horst.gay`)
-            traefik.http.routers.horst-website.entrypoints: https
-            traefik.http.routers.horst-website.middlewares: www-horst-website-redirect
-            traefik.http.routers.horst-website.tls.certresolver: tls
-            traefik.http.routers.horst-website.tls.domains[0].main: horst.gay
-            traefik.http.routers.horst-website.tls.domains[0].sans: www.horst.gay
-            traefik.http.services.horst-website.loadbalancer.server.port: 80
-            traefik.http.middlewares.www-horst-website-redirect.redirectregex.regex: https://www.horst.gay/(.*)
-            traefik.http.middlewares.www-horst-website-redirect.redirectregex.replacement: https://horst.gay/$${1}
+            traefik.http.routers.media-website.rule: Host(`share.topi.wtf`)
+            traefik.http.routers.media-website.entrypoints: https
+            traefik.http.services.media-website.loadbalancer.server.port: 80
 
 networks:
     traefik:
         name: traefik
+    metrics:
+        external: true
+    wireguard:
+        external: true

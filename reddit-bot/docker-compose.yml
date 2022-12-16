@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.8"
 
 services:
     reddit-bot:
@@ -15,7 +15,7 @@ services:
             - 80
         labels:
             traefik.enable: true
-            traefik.http.routers.reddit-bott.rule: Host(`reddit-bot.$PRIMARY_DOMAIN`)
+            traefik.http.routers.reddit-bott.rule: Host(`reddit.topi.wtf`)
             traefik.http.routers.reddit-bot.entrypoints: https
             traefik.http.services.reddit-bot.loadbalancer.server.port: 80
 

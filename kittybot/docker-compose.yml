@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.8"
 
 services:
     kittybot:
@@ -17,13 +17,10 @@ services:
             - traefik
         expose:
             - 6969
-        depends_on:
-            - lavalink
         labels:
             com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
-            traefik.http.routers.api.rule: Host(`api.$PRIMARY_DOMAIN`) || Host(`$PRIMARY_DOMAIN/api`)
-            traefik.http.middlewares.api-rewrite.stripprefix.prefixes: /api
+            traefik.http.routers.api.rule: Host(`api.kittybot.de`)
             traefik.http.routers.api.entrypoints: https
             traefik.http.services.api.loadbalancer.server.port: 6969
         healthcheck:
@@ -54,17 +51,15 @@ services:
             - traefik
         expose:
             - 80
-        depends_on:
-            - kittybot
         labels:
             io.portainer.accesscontrol.teams: kittybot
             traefik.enable: true
-            traefik.http.routers.website.rule: Host(`$PRIMARY_DOMAIN`) || Host(`www.$PRIMARY_DOMAIN`)
+            traefik.http.routers.website.rule: Host(`kittybot.de`) || Host(`www.kittybot.de`)
             traefik.http.routers.website.entrypoints: https
             traefik.http.routers.website.middlewares: www-website-redirect
             traefik.http.services.website.loadbalancer.server.port: 80
-            traefik.http.middlewares.www-website-redirect.redirectregex.regex: https://www.$PRIMARY_DOMAIN/(.*)
-            traefik.http.middlewares.www-website-redirect.redirectregex.replacement: https://$PRIMARY_DOMAIN/$${1}
+            traefik.http.middlewares.www-website-redirect.redirectregex.regex: https://www.kittybot.de/(.*)
+            traefik.http.middlewares.www-website-redirect.redirectregex.replacement: https://kittybot.de/$${1}
         healthcheck:
             test: ['CMD', 'curl', '-f', 'http://localhost:80']
             interval: 1m00s
@@ -72,30 +67,9 @@ services:
             retries: 3
             start_period: 1m00s
 
-    lavalink:
-        image: fredboat/lavalink:3.6.2
-        container_name: lavalink_1
-        restart: unless-stopped
-        environment: 
-            - _JAVA_OPTIONS=-Xmx2G -XX:+UseG1GC
-        volumes:
-            - ./application.yml:/opt/Lavalink/application.yml
-            - ./plugins/:/opt/Lavalink/plugins/
-        networks:
-            - lavalink
-            - traefik
-        expose:
-            - 2333
-        labels:
-            com.centurylinklabs.watchtower.enable: true
-            traefik.enable: true
-            traefik.http.routers.lavalink.rule: Host(`lavalink.$PRIMARY_DOMAIN`)
-            traefik.http.routers.lavalink.entrypoints: https
-            traefik.http.services.lavalink.loadbalancer.server.port: 2333
-
 networks:
     lavalink:
-        name: lavalink
+        external: true
     database:
         external: true
     traefik:

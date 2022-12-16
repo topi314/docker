@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+    lavalink:
+        image: fredboat/lavalink:3.6.2
+        container_name: lavalink_1
+        restart: unless-stopped
+        environment: 
+            - _JAVA_OPTIONS=-Xmx2G
+        volumes:
+            - ./application.yml:/opt/Lavalink/application.yml
+            - ./plugins/:/opt/Lavalink/plugins/
+        networks:
+            - lavalink
+            - traefik
+        expose:
+            - 2333
+        labels:
+            traefik.enable: true
+            traefik.http.routers.lavalink.rule: Host(`lavalink.topi.wtf`)
+            traefik.http.routers.lavalink.entrypoints: https
+            traefik.http.services.lavalink.loadbalancer.server.port: 2333
+
+    lavalink2:
+        image: fredboat/lavalink:feature-rest-api
+        container_name: lavalink_2
+        restart: unless-stopped
+        environment: 
+            - _JAVA_OPTIONS=-Xmx2G
+        volumes:
+            - ./application2.yml:/opt/Lavalink/application.yml
+            - ./plugins2/:/opt/Lavalink/plugins/
+        networks:
+            - lavalink
+            - traefik
+        expose:
+            - 2333
+        labels:
+            traefik.enable: true
+            traefik.http.routers.lavalink2.rule: Host(`lavalink2.topi.wtf`)
+            traefik.http.routers.lavalink2.entrypoints: https
+            traefik.http.services.lavalink2.loadbalancer.server.port: 2333
+
+networks:
+    lavalink:
+        name: lavalink
+    traefik:
+        external: true

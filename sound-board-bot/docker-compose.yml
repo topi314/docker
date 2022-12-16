@@ -1,9 +1,0 @@
-version: '3.7'
-
-services:
-    soundboard-bot:
-        image: docker.pkg.github.com/topisenpai/soundboard-bot:latest
-        container_name: soundboard-bot
-        restart: unless-stopped
-        env_file:
-            - conf.env
