@@ -11,10 +11,13 @@ services:
             - /etc/timezone:/etc/timezone:ro
             - ./data:/data
         networks:
-            - minecraft
+            wireguard:
+               ipv4_address: 192.168.180.5
+        expose:
+            - 25565
         ports:
             - 0.0.0.0:25565:25565
 
 networks:
-    minecraft:
-        name: minecraft
+    wireguard:
+        external: true
