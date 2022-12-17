@@ -12,6 +12,7 @@ services:
         expose:
             - 80
         labels:
+            com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
             traefik.http.routers.kitsune-bot.rule: Host(`kitsune-bot.topi.wtf`)
             traefik.http.routers.kitsune-bot.entrypoints: https
