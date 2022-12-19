@@ -41,6 +41,26 @@ services:
             traefik.http.routers.lavalink2.entrypoints: https
             traefik.http.services.lavalink2.loadbalancer.server.port: 2333
 
+    lavalink3:
+        image: ghcr.io/topisenpai/lavalink:v4-plugin-track-modifications
+        container_name: lavalink_3
+        restart: unless-stopped
+        environment:
+            - _JAVA_OPTIONS=-Xmx2G
+        volumes:
+            - ./application3.yml:/opt/Lavalink/application.yml
+            - ./plugins3/:/opt/Lavalink/plugins/
+        networks:
+            - lavalink
+            - traefik
+        expose:
+            - 2333
+        labels:
+            traefik.enable: true
+            traefik.http.routers.lavalink2.rule: Host(`lavalink3.topi.wtf`)
+            traefik.http.routers.lavalink2.entrypoints: https
+            traefik.http.services.lavalink2.loadbalancer.server.port: 2333
+
 networks:
     lavalink:
         name: lavalink
