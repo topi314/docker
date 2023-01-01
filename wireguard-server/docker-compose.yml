@@ -34,3 +34,4 @@ services:
             - 0.0.0.0:465:465         # ESMTP (implicit TLS)
             - 0.0.0.0:587:587         # ESMTP (explicit TLS => STARTTLS)
             - 0.0.0.0:993:993         # IMAP4 (implicit TLS)
+            - 0.0.0.0:5432:5432       # database-dev
