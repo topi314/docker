@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     disgo-butler:
-        image: ghcr.io/disgoorg/disgo-butler:latest
+        image: ghcr.io/disgoorg/disgo-butler:master
         container_name: disgo-butler
         restart: unless-stopped
         command: --sync-commands=false --sync-db=false
