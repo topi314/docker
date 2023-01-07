@@ -6,7 +6,7 @@ services:
         container_name: watchtower
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-        command: --debug --http-api-update
+        command: --debug --http-api-update --http-api-metrics
         env_file:
             - conf.env
         networks:
