@@ -17,11 +17,11 @@ services:
         networks:
             - traefik
         volumes:
-            - /home/topi/docker/plex/data/plex/:/config/Library/Application Support/Plex Media Server/
-            - /mnt/tank/plex/media/anime/:/media/anime/:ro
-            - /mnt/tank/plex/media/tv/:/media/tv/:ro
-            - /mnt/tank/plex/media/movies/:/media/movies/:ro
-            - /mnt/tank/plex/media/hentai/:/media/hentai/:ro
+            - ./data/plex/:/config/Library/Application Support/Plex Media Server/
+            - /mnt/tank/media/anime/:/media/anime/:ro
+            - /mnt/tank/media/tv/:/media/tv/:ro
+            - /mnt/tank/media/movies/:/media/movies/:ro
+            - /mnt/tank/media/hentai/:/media/hentai/:ro
         labels:
             traefik.enable: true
             traefik.http.routers.plex.rule: Host(`plex.topi.wtf`)
@@ -41,7 +41,7 @@ services:
         networks:
             - traefik
         volumes:
-            - /home/topi/docker/plex/data/tautulli/:/config/
+            - ./data/tautulli/:/config/
         labels:
             traefik.enable: true
             traefik.http.routers.tautulli.rule: Host(`tautulli.topi.wtf`)
@@ -62,12 +62,12 @@ services:
         expose:
             - 8989
         volumes:
-            - /home/topi/docker/plex/data/sonarr/:/config/
-            - /mnt/tank/plex/media/anime/:/media/anime/
-            - /mnt/tank/plex/media/tv/:/media/tv/
-            - /mnt/tank/plex/media/hentai/:/media/hentai/
-            - /mnt/tank/plex/media/.import/:/media/.import/
-            - /mnt/downloads/torrents/:/downloads/:ro
+            - ./data/sonarr/:/config/
+            - /mnt/tank/media/anime/:/media/anime/
+            - /mnt/tank/media/tv/:/media/tv/
+            - /mnt/tank/media/hentai/:/media/hentai/
+            - /mnt/tank/media/.import/:/media/.import/
+            - /mnt/downloads/:/downloads/:ro
         labels:
             traefik.enable: true
             traefik.http.routers.sonarr.rule: Host(`sonarr.topi.wtf`)
@@ -89,10 +89,10 @@ services:
         expose:
             - 7878
         volumes:
-            - /home/topi/docker/plex/data/radarr/:/config/
-            - /mnt/tank/plex/media/movies/:/media/movies/
-            - /mnt/tank/plex/media/.import/:/media/.import/
-            - /mnt/downloads/torrents/:/downloads/deluge/:ro
+            - ./data/radarr/:/config/
+            - /mnt/tank/media/movies/:/media/movies/
+            - /mnt/tank/media/.import/:/media/.import/
+            - /mnt/downloads/:/downloads/:ro
         labels:
             traefik.enable: true
             traefik.http.routers.radarr.rule: Host(`radarr.topi.wtf`)
@@ -116,9 +116,9 @@ services:
         expose:
             - 8112
         volumes:
-            - /home/topi/docker/plex/data/deluge/:/config/
-            - /home/topi/docker/plex/data/blackhole/:/blackhole/
-            - /mnt/downloads/torrents/:/downloads/
+            - ./data/deluge/:/config/
+            - ./data/blackhole/:/blackhole/
+            - /mnt/downloads/:/downloads/
         labels:
             traefik.enable: true
             traefik.http.routers.deluge.rule: Host(`deluge.topi.wtf`)
@@ -141,8 +141,8 @@ services:
         expose:
             - 9117
         volumes:
-            - /home/topi/docker/plex/data/jackett/:/config/
-            - /home/topi/docker/plex/data/blackhole/:/blackhole/
+            - ./data/jackett/:/config/
+            - ./data/blackhole/:/blackhole/
         labels:
             traefik.enable: true
             traefik.http.routers.jackett.rule: Host(`jackett.topi.wtf`)
