@@ -6,7 +6,7 @@ services:
         container_name: grafana
         restart: unless-stopped
         volumes:
-            - /home/topi/docker/grafana/data/grafana/:/var/lib/grafana/
+            - ./data/grafana/:/var/lib/grafana/
         user: "1000"
         networks:
             - traefik
@@ -30,8 +30,8 @@ services:
             - --web.enable-admin-api
         user: "0"
         volumes:
-            - /home/topi/docker/grafana/prometheus.yml:/etc/prometheus/prometheus.yml
-            - /home/topi/docker/grafana/data/prometheus/:/data/
+            - ./prometheus.yml:/etc/prometheus/prometheus.yml
+            - ./data/prometheus/:/data/
         networks:
             - metrics
             - traefik
@@ -94,7 +94,7 @@ services:
         restart: unless-stopped
         command: -config.file=/etc/loki/docker-config.yaml
         volumes:
-            - /home/topi/docker/grafana/loki.yml:/etc/loki/docker-config.yaml
+            - ./loki.yml:/etc/loki/docker-config.yaml
         networks:
             - logs
         expose:
@@ -106,7 +106,7 @@ services:
         command: -config.file=/etc/promtail/docker-config.yml
         volumes:
             - /var/lib/docker/containers:/var/lib/docker/containers
-            - /home/topi/docker/grafana/promtail.yml:/etc/promtail/docker-config.yml
+            - ./promtail.yml:/etc/promtail/docker-config.yml
         networks:
             - logs
             - metrics

@@ -33,7 +33,7 @@ services:
         container_name: tautulli
         restart: unless-stopped
         env_file:
-            - /home/topi/docker/plex/tautulli.env
+            - ./tautulli.env
         environment:
             - TZ=Europe/Berlin
         expose:
