@@ -57,7 +57,7 @@ services:
             - ./data/homepage/:/app/config/
             - ./data/homepage/images/:/app/public/images:ro
             - ./data/homepage/icons/:/app/public/icons:ro
-            - /var/run/docker.sock:/var/run/docker.sock
+            - /var/run/docker.sock:/var/run/docker.sock:ro
             - /:/host:ro,rslave
         expose:
             - 3000

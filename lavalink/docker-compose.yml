@@ -57,9 +57,9 @@ services:
             - 2333
         labels:
             traefik.enable: true
-            traefik.http.routers.lavalink2.rule: Host(`lavalink3.topi.wtf`)
-            traefik.http.routers.lavalink2.entrypoints: https
-            traefik.http.services.lavalink2.loadbalancer.server.port: 2333
+            traefik.http.routers.lavalink3.rule: Host(`lavalink3.topi.wtf`)
+            traefik.http.routers.lavalink3.entrypoints: https
+            traefik.http.services.lavalink3.loadbalancer.server.port: 2333
 
 networks:
     lavalink:
