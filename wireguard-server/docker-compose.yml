@@ -29,9 +29,4 @@ services:
             - 0.0.0.0:443:443         # traefik https
             - 0.0.0.0:3025:3025       # teleport
             - 0.0.0.0:25565:25565     # minecraft
-            - 0.0.0.0:25:25           # SMTP  (explicit TLS => STARTTLS)
-            - 0.0.0.0:143:143         # IMAP4 (explicit TLS => STARTTLS)
-            - 0.0.0.0:465:465         # ESMTP (implicit TLS)
-            - 0.0.0.0:587:587         # ESMTP (explicit TLS => STARTTLS)
-            - 0.0.0.0:993:993         # IMAP4 (implicit TLS)
             - 0.0.0.0:5432:5432       # database-dev

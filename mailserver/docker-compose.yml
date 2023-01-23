@@ -18,10 +18,7 @@ services:
             - ./data/mail-logs/:/var/log/mail/
             - ./data/config/:/tmp/docker-mailserver/
             - /etc/localtime:/etc/localtime:ro
-            - ../traefik/data/letsencrypt/acme.json:/etc/letsencrypt/acme.json:ro
-        networks:
-            wireguard:
-                ipv4_address: 192.168.180.6
+            - ./data/letsencrypt/acme.json:/etc/letsencrypt/acme.json:ro
         ports:
             - 0.0.0.0:25:25    # SMTP  (explicit TLS => STARTTLS)
             - 0.0.0.0:143:143  # IMAP4 (explicit TLS => STARTTLS)
@@ -32,7 +29,3 @@ services:
             test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
             timeout: 3s
             retries: 0
-
-networks:
-    wireguard:
-        external: true
