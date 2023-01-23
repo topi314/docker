@@ -17,5 +17,5 @@ iptables -t nat -I PREROUTING -p tcp --dport 5432 -j DNAT --to-destination 192.1
 iptables -t nat -I POSTROUTING -p tcp --dport 5432 -d 192.168.180.7 -j MASQUERADE
 
 # 192.168.180.8 = gitea 
-iptables -t nat -I PREROUTING -p tcp --dport 5432 -j DNAT --to-destination 192.168.180.8
-iptables -t nat -I POSTROUTING -p tcp --dport 5432 -d 192.168.180.8 -j MASQUERADE
+iptables -t nat -I PREROUTING -p tcp --dport 22 -j DNAT --to-destination 192.168.180.8
+iptables -t nat -I POSTROUTING -p tcp --dport 22 -d 192.168.180.8 -j MASQUERADE
