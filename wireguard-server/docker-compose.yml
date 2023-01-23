@@ -30,3 +30,4 @@ services:
             - 0.0.0.0:3025:3025       # teleport
             - 0.0.0.0:25565:25565     # minecraft
             - 0.0.0.0:5432:5432       # database-dev
+            - 0.0.0.0:22:22           # gitea ssh
