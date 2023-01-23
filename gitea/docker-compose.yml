@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+    gitea:
+        image: gitea/gitea:latest
+        container_name: gitea
+        restart: unless-stopped
+        environment:
+            - USER_UID=1000
+            - USER_GID=1000
+        networks:
+            database:
+            traefik:
+            wireguard:
+                ipv4_address: 192.168.180.8
+        env_file:
+            - conf.env
+        volumes:
+            - ./data/:/data/
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
+        expose:
+            - 3000
+            - 22
+        labels:
+            traefik.enable: true
+            traefik.http.routers.gitea.rule: Host(`git.topi.wtf`)
+            traefik.http.routers.gitea.entrypoints: https
+            traefik.http.services.gitea.loadbalancer.server.port: 3000
+networks:
+    database:
+        external: true
+    traefik:
+        external: true
+    wireguard:
+        external: true
