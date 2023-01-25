@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     lavalink:
-        image: fredboat/lavalink:3.7.1
+        image: fredboat/lavalink:latest
         container_name: lavalink_1
         restart: unless-stopped
         environment: 
@@ -22,7 +22,7 @@ services:
             traefik.http.services.lavalink.loadbalancer.server.port: 2333
 
     lavalink2:
-        image: ghcr.io/topisenpai/lavalink:v4-plugin-track-modifications
+        image: fredboat/lavalink:feature-plugin-track-modifications
         container_name: lavalink_2
         restart: unless-stopped
         environment: 
