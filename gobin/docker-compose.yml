@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+    gobin:
+        image: ghcr.io/topisenpai/gobin:latest
+        container_name: gobin
+        restart: unless-stopped
+        volumes:
+            - ./config.json:/var/lib/gobin/config.json
+        networks:
+            - database
+            - traefik
+        expose:
+            - 80
+        labels:
+            com.centurylinklabs.watchtower.enable: true
+            traefik.enable: true
+            traefik.http.routers.gobin.rule: Host(`xgob.in`) || Host(`www.xgob.in`) || Host(`gobin.topi.wtf`)
+            traefik.http.routers.gobin.entrypoints: https
+            traefik.http.services.gobin.loadbalancer.server.port: 80
+
+networks:
+    database:
+        external: true
+    traefik:
+        external: true

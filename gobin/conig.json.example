@@ -1,0 +1,13 @@
+{
+  "listen_addr": "0.0.0.0:80",
+  "expire_after": "0",
+  "cleanup_interval": "1m",
+  "database": {
+    "host": "database",
+    "port": 5432,
+    "username": "gobin",
+    "password": "gobin",
+    "database": "gobin",
+    "ssl_mode": "disable"
+  }
+}
