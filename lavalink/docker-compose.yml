@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     lavalink:
-        image: fredboat/lavalink:latest
+        image: ghcr.io/freyacodes/lavalink:3
         container_name: lavalink_1
         restart: unless-stopped
         environment: 
