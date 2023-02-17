@@ -22,7 +22,7 @@ services:
             traefik.http.services.lavalink.loadbalancer.server.port: 2333
 
     lavalink2:
-        image: fredboat/lavalink:feature-plugin-track-modifications
+        image: ghcr.io/freyacodes/lavalink:feature-plugin-track-modifications
         container_name: lavalink_2
         restart: unless-stopped
         environment: 

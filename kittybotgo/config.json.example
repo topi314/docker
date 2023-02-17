@@ -1,0 +1,25 @@
+{
+  "log_level": "info",
+  "token": "",
+  "intents": 2097287,
+  "port": 7878,
+  "activity": {
+    "type": 0,
+    "name": "on shard {{shard}} with proxy"
+  },
+  "status": "idle",
+  "externally_accessible_url": "ws://example.com:80",
+  "backpressure": 100,
+  "cache": {
+    "channels": true,
+    "presences": false,
+    "emojis": false,
+    "current_member": true,
+    "members": true,
+    "roles": true,
+    "stage_instances": false,
+    "stickers": false,
+    "users": true,
+    "voice_states": true
+  }
+}
