@@ -30,3 +30,13 @@ $ sh NVIDIA-Linux-x86_64-515.65.01.run
 ```
 
 then follow: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker
+
+### increase lvm
+
+```bash
+$ sudo lvs
+```
+
+```bash
+sudo lvextend -L <size>G /dev/mapper/<lvm>
+```
