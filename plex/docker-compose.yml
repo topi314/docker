@@ -19,9 +19,10 @@ services:
         volumes:
             - ./data/plex/:/config/Library/Application Support/Plex Media Server/
             - /mnt/tank/media/anime/:/media/anime/:ro
+            - /mnt/tank/media/nsfw/:/media/nsfw/:ro
+            - /mnt/tank/media/hentai/:/media/hentai/:ro
             - /mnt/tank/media/tv/:/media/tv/:ro
             - /mnt/tank/media/movies/:/media/movies/:ro
-            - /mnt/tank/media/hentai/:/media/hentai/:ro
         labels:
             traefik.enable: true
             traefik.http.routers.plex.rule: Host(`plex.topi.wtf`)
@@ -64,8 +65,8 @@ services:
         volumes:
             - ./data/sonarr/:/config/
             - /mnt/tank/media/anime/:/media/anime/
-            - /mnt/tank/media/tv/:/media/tv/
             - /mnt/tank/media/hentai/:/media/hentai/
+            - /mnt/tank/media/tv/:/media/tv/
             - /mnt/tank/media/.import/:/media/.import/
             - /mnt/downloads/:/downloads/:ro
         labels:
