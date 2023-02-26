@@ -40,3 +40,7 @@ $ sudo lvs
 ```bash
 sudo lvextend -L <size>G /dev/mapper/<lvm>
 ```
+
+```bash
+sudo resize2fs /dev/mapper/<lvm>
+```
