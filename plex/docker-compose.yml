@@ -65,7 +65,7 @@ services:
         volumes:
             - ./data/sonarr/:/config/
             - /mnt/tank/media/anime/:/media/anime/
-            - /mnt/tank/media/hentai/:/media/hentai/
+            - /mnt/tank/media/nsfw/:/media/nsfw/
             - /mnt/tank/media/tv/:/media/tv/
             - /mnt/tank/media/.import/:/media/.import/
             - /mnt/downloads/:/downloads/:ro
