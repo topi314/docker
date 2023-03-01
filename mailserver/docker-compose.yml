@@ -8,8 +8,9 @@ services:
         stop_grace_period: 1m
         cap_add:
             - NET_ADMIN
-        hostname: mail
-        domainname: topi.wtf
+#        hostname: mail
+#        domainname: topi.wtf
+        network_mode: "container:wireguard-client"
         env_file:
             - conf.env
         volumes:
@@ -19,12 +20,12 @@ services:
             - ./data/config/:/tmp/docker-mailserver/
             - /etc/localtime:/etc/localtime:ro
             - ./data/letsencrypt/acme.json:/etc/letsencrypt/acme.json:ro
-        ports:
-            - 0.0.0.0:25:25    # SMTP  (explicit TLS => STARTTLS)
-            - 0.0.0.0:143:143  # IMAP4 (explicit TLS => STARTTLS)
-            - 0.0.0.0:465:465  # ESMTP (implicit TLS)
-            - 0.0.0.0:587:587  # ESMTP (explicit TLS => STARTTLS)
-            - 0.0.0.0:993:993  # IMAP4 (implicit TLS)
+#        ports:
+#            - 0.0.0.0:25:25    # SMTP  (explicit TLS => STARTTLS)
+#            - 0.0.0.0:143:143  # IMAP4 (explicit TLS => STARTTLS)
+#            - 0.0.0.0:465:465  # ESMTP (implicit TLS)
+#            - 0.0.0.0:587:587  # ESMTP (explicit TLS => STARTTLS)
+#            - 0.0.0.0:993:993  # IMAP4 (implicit TLS)
         healthcheck:
             test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
             timeout: 3s

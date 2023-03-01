@@ -21,6 +21,9 @@ services:
         networks:
             wireguard:
                 ipv4_address: 192.168.180.2
+            traefik:
+            metrics:
+
 networks:
     wireguard:
         name: wireguard
@@ -28,3 +31,7 @@ networks:
             driver: default
             config:
                 - subnet: 192.168.180.0/24
+    traefik:
+        external: true
+    metrics:
+        external: true

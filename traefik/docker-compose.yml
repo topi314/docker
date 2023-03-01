@@ -7,16 +7,17 @@ services:
         restart: unless-stopped
         env_file:
             - ./conf.env
+        network_mode: "container:wireguard-client"
         networks:
             traefik:
             metrics:
-            wireguard:
-                ipv4_address: 192.168.180.3
-        ports:
-            - 0.0.0.0:80:80
-            - 0.0.0.0:443:443
-        expose:
-            - 8080
+        #    wireguard:
+        #        ipv4_address: 192.168.180.3
+        #ports:
+        #    - 0.0.0.0:80:80
+        #    - 0.0.0.0:443:443
+        #expose:
+        #    - 8080
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml:ro
             - ./data/letsencrypt/:/letsencrypt/
