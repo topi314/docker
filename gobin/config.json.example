@@ -1,21 +1,29 @@
 {
   "dev_mode": false,
-  "listen_addr": ":80",
+  "debug": false,
+  "listen_addr": "0.0.0.0:80",
   "expire_after": "0",
   "cleanup_interval": "1m",
   "database": {
     // type can be "sqlite" or "postgres"
     "type": "postgres",
 
-    // "path" is only used for SQLite
+    // only used for SQLite
     "path": "gobin.db",
 
-    // "host", "port", "username", "password", "database", "ssl_mode" are only used for PostgreSQL
+    // only used for PostgreSQL
     "host": "database",
     "port": 5432,
     "username": "gobin",
-    "password": "gobin",
+    "password": "837v430987vn57647v54",
     "database": "gobin",
     "ssl_mode": "disable"
+  },
+  // max size of documents in characters
+  "max_document_size": 10000,
+  // omit or 0 or "" for no rate limiting
+  "rate_limit": {
+    "requests": 10,
+    "duration": "1m"
   }
 }
