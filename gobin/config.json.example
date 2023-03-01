@@ -15,7 +15,7 @@
     "host": "database",
     "port": 5432,
     "username": "gobin",
-    "password": "837v430987vn57647v54",
+    "password": "gobin",
     "database": "gobin",
     "ssl_mode": "disable"
   },
