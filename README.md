@@ -54,3 +54,7 @@ sudo resize2fs /dev/mapper/<lvm>
 \\192.168.178.74\bunker
 \\192.168.178.74\downloads
 ```
+
+### Wireguard Allowed IPs Exclude Calculator
+
+https://www.procustodibus.com/blog/2021/03/wireguard-allowedips-calculator/
