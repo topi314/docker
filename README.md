@@ -51,4 +51,6 @@ sudo resize2fs /dev/mapper/<lvm>
 \\192.168.178.74\topi
 \\192.168.178.74\media
 \\192.168.178.74\share
+\\192.168.178.74\bunker
+\\192.168.178.74\downloads
 ```
