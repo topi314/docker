@@ -37,6 +37,8 @@ services:
         command: --sync-commands=true --sync-db=false --exit-after-sync=false
         volumes:
             - ./goconfig.json:/app/config.json
+        ports:
+            - 6060:6060
         networks:
             - database
             - lavalink

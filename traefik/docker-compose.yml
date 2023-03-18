@@ -7,17 +7,15 @@ services:
         restart: unless-stopped
         env_file:
             - ./conf.env
-        network_mode: "container:wireguard-client"
         networks:
-            traefik:
-            metrics:
-        #    wireguard:
-        #        ipv4_address: 192.168.180.3
-        #ports:
-        #    - 0.0.0.0:80:80
-        #    - 0.0.0.0:443:443
-        #expose:
-        #    - 8080
+            - traefik
+            - metrics
+            - wireguard
+        ports:
+            - 0.0.0.0:80:80
+            - 0.0.0.0:443:443
+        expose:
+            - 8080
         volumes:
             - ./traefik.yml:/etc/traefik/traefik.yml:ro
             - ./data/letsencrypt/:/letsencrypt/
@@ -80,9 +78,8 @@ services:
             - ./teleport.yml:/etc/teleport/teleport.yaml
             - ./data/teleport/:/var/lib/teleport/
         networks:
-            traefik:
-            wireguard:
-                ipv4_address: 192.168.180.4
+            - traefik
+            - wireguard
         ports:
             - 0.0.0.0:3023:3023
             - 0.0.0.0:3025:3025
@@ -105,6 +102,8 @@ services:
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
             - /mnt/tank/share/public:/usr/share/nginx/html/:ro
+        ports:
+            - 7070:80
         expose:
             - 80
         labels:

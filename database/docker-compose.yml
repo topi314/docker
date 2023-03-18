@@ -22,9 +22,8 @@ services:
         volumes:
             - ./data/postgres-dev/:/var/lib/postgresql/data/
         networks:
-            database:
-            wireguard:
-                ipv4_address: 192.168.180.7            
+            - database
+            - wireguard
         ports:
             - 0.0.0.0:5432:5432
     pgadmin:

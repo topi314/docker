@@ -9,10 +9,9 @@ services:
             - USER_UID=1000
             - USER_GID=1000
         networks:
-            database:
-            traefik:
-            wireguard:
-                ipv4_address: 192.168.180.8
+            - database
+            - traefik
+            - wireguard
         env_file:
             - conf.env
         volumes:

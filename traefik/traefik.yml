@@ -20,6 +20,8 @@ metrics:
 entryPoints:
     http:
         address: ':80'
+        proxyProtocol:
+            insecure: true # not directly exposed
         http:
             redirections:
                 entryPoint:
@@ -27,6 +29,8 @@ entryPoints:
                     permanent: true
     https:
         address: ':443'
+        proxyProtocol:
+            insecure: true # not directly exposed
         http:
             tls:
                 certResolver: cloudflare

@@ -3,13 +3,12 @@ version: "3.8"
 services:
     wireguard:
         image: lscr.io/linuxserver/wireguard:latest
-        container_name: wireguard-client
+        container_name: wireguard
         restart: unless-stopped
         sysctls:
             - net.ipv4.conf.all.src_valid_mark=1
         cap_add:
             - NET_ADMIN
-            - SYS_MODULE
         environment:
             - PUID=1000
             - PGID=1000
@@ -19,19 +18,18 @@ services:
             - ./wg0.conf:/config/wg0.conf
             - /lib/modules:/lib/modules
         networks:
-            wireguard:
-                ipv4_address: 192.168.180.2
-            traefik:
-            metrics:
+            - wireguard
+
+    haproxy:
+        image: haproxy:alpine
+        container_name: haproxy
+        restart: unless-stopped
+        network_mode: service:wireguard
+        depends_on:
+            - wireguard
+        volumes:
+            - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 
 networks:
     wireguard:
         name: wireguard
-        ipam:
-            driver: default
-            config:
-                - subnet: 192.168.180.0/24
-    traefik:
-        external: true
-    metrics:
-        external: true

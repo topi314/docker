@@ -11,8 +11,7 @@ services:
             - /etc/timezone:/etc/timezone:ro
             - ./data:/data
         networks:
-            wireguard:
-               ipv4_address: 192.168.180.5
+            - wireguard
         expose:
             - 25565
         ports:

@@ -28,10 +28,10 @@ services:
             - --storage.tsdb.path=/data/
             - --storage.tsdb.retention.time=5y
             - --web.enable-admin-api
-        user: "0"
+        user: "1000"
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
-            - ./data/prometheus/:/data/
+            - /mnt/tank/dev/prometheus/:/data/
         networks:
             - metrics
             - traefik
