@@ -1,4 +1,4 @@
-/mnt/tank                *(rw,sync,crossmnt,no_subtree_check)
+/mnt/tank                *(rw,sync,no_subtree_check)
 /mnt/tank/media          *(rw,sync,no_subtree_check)
 /mnt/tank/media/.import  *(rw,sync,no_subtree_check)
 /mnt/tank/media/anime    *(rw,sync,no_subtree_check)
@@ -10,5 +10,5 @@
 /mnt/tank/mail           *(rw,sync,no_subtree_check)
 /mnt/tank/dev            *(rw,sync,no_subtree_check)
 /mnt/tank/dev/prometheus *(rw,sync,no_subtree_check)
-/mnt/bunker              *(rw,sync,crossmnt,no_subtree_check)
-/mnt/downloads           *(rw,sync,crossmnt,no_subtree_check)
+/mnt/bunker              *(rw,sync,no_subtree_check)
+/mnt/downloads           *(rw,sync,no_subtree_check)
