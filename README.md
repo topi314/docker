@@ -44,3 +44,11 @@ sudo lvextend -L <size>G /dev/mapper/<lvm>
 ```bash
 sudo resize2fs /dev/mapper/<lvm>
 ```
+
+### Samba shares
+
+```
+\\192.168.178.74\topi
+\\192.168.178.74\media
+\\192.168.178.74\share
+```
