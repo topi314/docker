@@ -3,7 +3,7 @@ version: "3.8"
 services:
     wireguard:
         image: lscr.io/linuxserver/wireguard:latest
-        container_name: wireguard-server
+        container_name: wireguard
         restart: unless-stopped
         sysctls:
             - net.ipv4.conf.all.src_valid_mark=1
@@ -16,24 +16,49 @@ services:
             - TZ=Europe/Berlin
             - SERVERURL=wireguard.topi.wtf
             - SERVERPORT=51820
-            - PEERS=nas
+            - PEERS=1
             - PEERDNS=auto
             - LOG_CONFS=true
         volumes:
-            - ./data:/config
+            - ./data/wireguard:/config
             - /lib/modules:/lib/modules
-            - ./up.sh:/up.sh
         ports:
             - 0.0.0.0:51820:51820/udp # wireguard
-            - 0.0.0.0:80:80           # traefik http
+            - 0.0.0.0:80:80           # http
             - 0.0.0.0:443:443         # traefik https
-            - 0.0.0.0:25:25           # SMTP  (explicit TLS => STARTTLS)
-            - 0.0.0.0:143:143         # IMAP4 (explicit TLS => STARTTLS)
-            - 0.0.0.0:465:465         # ESMTP (implicit TLS)
-            - 0.0.0.0:587:587         # ESMTP (explicit TLS => STARTTLS)
-            - 0.0.0.0:993:993         # IMAP4 (implicit TLS)
+#            - 0.0.0.0:25:25           # SMTP  (explicit TLS => STARTTLS)
+#            - 0.0.0.0:143:143         # IMAP4 (explicit TLS => STARTTLS)
+#            - 0.0.0.0:465:465         # ESMTP (implicit TLS)
+#            - 0.0.0.0:587:587         # ESMTP (explicit TLS => STARTTLS)
+#            - 0.0.0.0:993:993         # IMAP4 (implicit TLS)
             - 0.0.0.0:3025:3025       # teleport
             - 0.0.0.0:25565:25565     # minecraft
             - 0.0.0.0:5432:5432       # database-dev
             - 0.0.0.0:22:22           # gitea ssh
             - 0.0.0.0:90:90           # raspberry pi motioneye os
+
+    wg-ui:
+        image: ngoduykhanh/wireguard-ui:latest
+        container_name: wg-ui
+        cap_add:
+            - NET_ADMIN
+        network_mode: service:wireguard
+        depends_on:
+            - wireguard
+        environment:
+            - SESSION_SECRET
+            - WGUI_USERNAME=topi
+            - WGUI_PASSWORD=topi
+        volumes:
+            - ./data/ui:/app/db
+            - ./data/wireguard:/etc/wireguard
+
+    haproxy:
+        image: haproxy:alpine
+        container_name: haproxy
+        restart: unless-stopped
+        network_mode: service:wireguard
+        depends_on:
+            - wireguard
+        volumes:
+            - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
