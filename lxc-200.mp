@@ -1,0 +1,14 @@
+mp0: /mnt/tank,mp=/mnt/tank
+mp1: /mnt/tank/media,mp=/mnt/tank/media
+mp2: /mnt/tank/media/.import,mp=/mnt/tank/media/.import
+mp3: /mnt/tank/media/anime,mp=/mnt/tank/media/anime
+mp4: /mnt/tank/media/nsfw,mp=/mnt/tank/media/nsfw
+mp5: /mnt/tank/media/hentai,mp=/mnt/tank/media/hentai
+mp6: /mnt/tank/media/movies,mp=/mnt/tank/media/movies
+mp7: /mnt/tank/media/tv,mp=/mnt/tank/media/tv
+mp8: /mnt/tank/share,mp=/mnt/tank/share
+mp9: /mnt/tank/mail,mp=/mnt/tank/mail
+mp10: /mnt/tank/dev,mp=/mnt/tank/dev
+mp11: /mnt/tank/dev/prometheus,mp=/mnt/tank/dev/prometheus
+mp12: /mnt/bunker/,mp=/mnt/bunker/
+mp13: /mnt/downloads/,mp=/mnt/downloads/
