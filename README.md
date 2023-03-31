@@ -22,7 +22,7 @@ $ sudo chown -R 322:322 plugins
 gpu passthrough setup stuff:
 
 ```bash
-$ wget https://us.download.nvidia.com/XFree86/Linux-x86_64/515.65.01/NVIDIA-Linux-x86_64-515.65.01.run
+$ wget https://us.download.nvidia.com/XFree86/Linux-x86_64/525.105.17/NVIDIA-Linux-x86_64-525.105.17.run
 
 $ apt install linux-headers-`uname -r` build-essential
 
