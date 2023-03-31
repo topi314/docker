@@ -9,6 +9,8 @@ services:
             - traefik
         expose:
             - 8080
+        volumes:
+            - ./config.json:/etc/topi.wtf/config.json
         labels:
             com.centurylinklabs.watchtower.enable: true
             traefik.enable: true

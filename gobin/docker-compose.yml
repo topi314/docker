@@ -6,7 +6,7 @@ services:
         container_name: gobin
         restart: unless-stopped
         volumes:
-            - ./config.json:/var/lib/gobin/config.json
+            - ./config.json:/var/lib/gobin/gobin.json
         networks:
             - database
             - traefik
