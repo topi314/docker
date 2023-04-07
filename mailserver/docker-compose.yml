@@ -10,8 +10,6 @@ services:
             - NET_ADMIN
         hostname: mail
         domainname: topi.wtf
-        networks:
-            - wireguard
         env_file:
             - conf.env
         volumes:
@@ -31,7 +29,3 @@ services:
             test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
             timeout: 3s
             retries: 0
-
-networks:
-    wireguard:
-        external: true
