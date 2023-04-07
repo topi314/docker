@@ -21,6 +21,9 @@ services:
         expose:
             - 3000
             - 22
+        ports:
+            - 0.0.0.0:3000:3000
+            - 0.0.0.0:2222:22
         labels:
             traefik.enable: true
             traefik.http.routers.gitea.rule: Host(`git.topi.wtf`)

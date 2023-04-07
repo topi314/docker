@@ -47,6 +47,9 @@ entryPoints:
                     - main: 'xgob.in'
                       sans:
                           - '*.xgob.in'
+                    - main: 'xgobl.in'
+                      sans:
+                          - '*.xgobl.in'
 
 providers:
     docker:

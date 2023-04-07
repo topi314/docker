@@ -15,7 +15,7 @@ services:
         labels:
             com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
-            traefik.http.routers.gobin.rule: Host(`xgob.in`) || Host(`www.xgob.in`) || Host(`gobin.topi.wtf`)
+            traefik.http.routers.gobin.rule: Host(`xgob.in`) || Host(`www.xgob.in`) || Host(`xgobl.in`) || Host(`www.xgobl.in`) || Host(`gobin.topi.wtf`)
             traefik.http.routers.gobin.entrypoints: https
             traefik.http.services.gobin.loadbalancer.server.port: 80
 

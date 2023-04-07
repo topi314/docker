@@ -7,7 +7,7 @@
 #===
 version: v2
 teleport:
-    nodename: teleport.topi.wtf
+    nodename: teleport
     data_dir: /var/lib/teleport
     log:
         output: stderr
@@ -18,20 +18,24 @@ teleport:
     diag_addr: ""
 auth_service:
     enabled: "yes"
-    public_addr: teleport.topi.wtf:443
-    cluster_name: teleport.topi.wtf
-    proxy_listener_mode: multiplex
+    listen_addr: 0.0.0.0:3025
+    public_addr: topi.wtf:3025
+    cluster_name: topi.wtf
+    proxy_listener_mode: separate
     client_idle_timeout: never
-    disconnect_expired_cert: off
+    disconnect_expired_cert: no
+    web_idle_timeout: 20m
+    client_idle_timeout_message: "ah fuck"
 ssh_service:
     enabled: "yes"
-    labels:
-        network: home
+    listen_addr: 0.0.0.0:3022
+    public_addr: topi.wtf:3022
     commands:
         - name: hostname
           command: [hostname]
           period: 1m0s
 proxy_service:
     enabled: "yes"
-    public_addr: teleport.topi.wtf:443
+    listen_addr: 0.0.0.0:3023
+    public_addr: topi.wtf:3023
 

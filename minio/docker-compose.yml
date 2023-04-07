@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+    minio:
+        image: quay.io/minio/minio:latest
+        container_name: minio
+        restart: unless-stopped
+        command: server /data --console-address ":9090"
+        user: "1000:1000"
+        env_file:
+            - conf.env
+        volumes:
+            - /mnt/tank/dev/minio/:/data/
+        networks:
+            - traefik
+        expose:
+            - 9000
+            - 9090
+        ports:
+            - 0.0.0.0:9000:9000
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+            interval: 30s
+            timeout: 20s
+            retries: 3
+        labels:
+            traefik.enable: true
+            traefik.http.routers.s3.service: s3
+            traefik.http.routers.s3.rule: Host(`s3.topi.wtf`)
+            traefik.http.routers.s3.entrypoints: https
+            traefik.http.services.s3.loadbalancer.server.port: 9000
+
+            traefik.http.routers.minio.service: minio
+            traefik.http.routers.minio.rule: Host(`minio.topi.wtf`)
+            traefik.http.routers.minio.entrypoints: https
+            traefik.http.services.minio.loadbalancer.server.port: 9090
+
+networks:
+    traefik:
+        external: true
