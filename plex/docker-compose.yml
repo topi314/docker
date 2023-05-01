@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     plex:
-        image: linuxserver/plex
+        image: ghcr.io/linuxserver/plex
         container_name: plex
         restart: unless-stopped
         runtime: nvidia
@@ -50,7 +50,7 @@ services:
             traefik.http.routers.tautulli.entrypoints: https
 
     sonarr:
-        image: linuxserver/sonarr
+        image: ghcr.io/linuxserver/sonarr
         container_name: sonarr
         restart: unless-stopped
         environment:
@@ -77,7 +77,7 @@ services:
             traefik.http.services.sonarr.loadbalancer.server.port: 8989
 
     radarr:
-        image: linuxserver/radarr
+        image: ghcr.io/linuxserver/radarr
         container_name: radarr
         restart: unless-stopped
         environment:
