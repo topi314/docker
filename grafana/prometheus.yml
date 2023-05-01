@@ -44,3 +44,9 @@ scrape_configs:
           - targets: ['lavalink:2333', 'lavalink2:2333']
             labels:
                 project: kittybot
+
+    - job_name: gobin
+      static_configs:
+          - targets: ['192.168.178.72:9100']
+            labels:
+                project: gobin

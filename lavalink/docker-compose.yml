@@ -30,6 +30,7 @@ services:
         volumes:
             - ./application2.yml:/opt/Lavalink/application.yml
             - ./plugins2/:/opt/Lavalink/plugins/
+            - ./data/:/data/
         networks:
             - lavalink
             - traefik

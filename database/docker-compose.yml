@@ -23,7 +23,6 @@ services:
             - ./data/postgres-dev/:/var/lib/postgresql/data/
         networks:
             - database
-            - wireguard
         ports:
             - 0.0.0.0:5432:5432
     pgadmin:

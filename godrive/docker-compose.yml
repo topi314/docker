@@ -7,6 +7,7 @@ services:
         restart: unless-stopped
         volumes:
             - ./config.json:/var/lib/godrive/godrive.json
+            - ./storage/:/storage/
         networks:
             - database
             - traefik
