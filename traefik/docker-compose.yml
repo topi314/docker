@@ -31,6 +31,7 @@ services:
         image: authelia/authelia
         container_name: authelia
         restart: unless-stopped
+        user: 1000:1000
         networks:
             - traefik
         volumes:
