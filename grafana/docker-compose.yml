@@ -28,21 +28,33 @@ services:
             - --storage.tsdb.path=/data/
             - --storage.tsdb.retention.time=5y
             - --web.enable-admin-api
+            - --enable-feature=remote-write-receiver
         user: "1000:1000"
         volumes:
             - ./prometheus.yml:/etc/prometheus/prometheus.yml
             - /mnt/tank/dev/prometheus/:/data/
         networks:
             - metrics
-            - traefik
+            - minio
         expose:
             - 9090
-        labels:
-            traefik.enable: true
-            traefik.http.routers.prometheus.rule: Host(`prometheus.topi.wtf`)
-            traefik.http.routers.prometheus.entrypoints: https
-            traefik.http.routers.prometheus.middlewares: authelia@docker
-            traefik.http.services.prometheus.loadbalancer.server.port: 9090
+        ports:
+            - 9090:9090
+    mimir:
+        image: grafana/mimir:latest
+        container_name: mimir
+        restart: unless-stopped
+        command: --config.file=/etc/mimir.yml
+        user: "1000:1000"
+        volumes:
+            - ./mimir.yml:/etc/mimir.yml
+        networks:
+            - metrics
+            - minio
+        expose:
+            - 8080 # mimir
+        ports:
+            - 8082:8080
     tempo:
         image: grafana/tempo:latest
         container_name: tempo
@@ -51,17 +63,31 @@ services:
         user: "1000:1000"
         volumes:
             - ./tempo.yml:/etc/tempo.yml
-            - /mnt/tank/dev/tempo/:/tmp/tempo/
+            - /mnt/tank/dev/tempo/:/var/tempo/
         networks:
-            - metrics
-            - traefik
+            - traces
+            - minio
         expose:
             - 3200 # tempo
             - 4318 # otlp http
         ports:
             - 3200:3200
             - 4318:4318
-
+    loki:
+        image: grafana/loki:latest
+        container_name: loki
+        restart: unless-stopped
+        command: --config.file=/etc/loki.yaml
+        volumes:
+            - ./loki.yml:/etc/loki.yaml
+            - /mnt/tank/dev/loki/:/var/loki/
+        networks:
+            - logs
+            - minio
+        expose:
+            - 3100
+        ports:
+            - 3100:3100
     node-exporter:
         image: prom/node-exporter:latest
         container_name: node-exporter
@@ -75,12 +101,8 @@ services:
             - traefik
         expose:
             - 9100
-        labels:
-            traefik.enable: true
-            traefik.http.routers.node-exporter.rule: Host(`node-exporter.topi.wtf`)
-            traefik.http.routers.node-exporter.entrypoints: https
-            traefik.http.routers.node-exporter.middlewares: authelia@docker
-            traefik.http.services.node-exporter.loadbalancer.server.port: 9100
+        ports:
+            - 9100:9100
     cadvisor:
         image: gcr.io/cadvisor/cadvisor:latest
         container_name: cadvisor
@@ -107,25 +129,14 @@ services:
             traefik.http.routers.cadvisor.entrypoints: https
             traefik.http.routers.cadvisor.middlewares: authelia@docker
             traefik.http.services.cadvisor.loadbalancer.server.port: 8080
-    loki:
-        image: grafana/loki:latest
-        container_name: loki
-        restart: unless-stopped
-        command: -config.file=/etc/loki/docker-config.yaml
-        volumes:
-            - ./loki.yml:/etc/loki/docker-config.yaml
-        networks:
-            - logs
-        expose:
-            - 3100
     promtail:
         image: grafana/promtail:latest
         container_name: promtail
         restart: unless-stopped
-        command: -config.file=/etc/promtail/docker-config.yml
+        command: -config.file=/etc/promtail.yml
         volumes:
             - /var/lib/docker/containers:/var/lib/docker/containers
-            - ./promtail.yml:/etc/promtail/docker-config.yml
+            - ./promtail.yml:/etc/promtail.yml
         networks:
             - logs
             - metrics
@@ -136,5 +147,9 @@ networks:
         name: metrics
     logs:
         name: logs
+    traces:
+        name: traces
     traefik:
+        external: true
+    minio:
         external: true

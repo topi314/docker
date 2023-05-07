@@ -26,8 +26,6 @@ auth_service:
     disconnect_expired_cert: no
     web_idle_timeout: 20m
     client_idle_timeout_message: "ah fuck"
-    authentication:
-        type: oidc
 ssh_service:
     enabled: "yes"
     listen_addr: 0.0.0.0:3022
