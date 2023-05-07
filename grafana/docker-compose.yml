@@ -12,6 +12,7 @@ services:
             - traefik
             - metrics
             - logs
+            - traces
         expose:
             - 3000
         labels:
@@ -40,21 +41,6 @@ services:
             - 9090
         ports:
             - 9090:9090
-    mimir:
-        image: grafana/mimir:latest
-        container_name: mimir
-        restart: unless-stopped
-        command: --config.file=/etc/mimir.yml
-        user: "1000:1000"
-        volumes:
-            - ./mimir.yml:/etc/mimir.yml
-        networks:
-            - metrics
-            - minio
-        expose:
-            - 8080 # mimir
-        ports:
-            - 8082:8080
     tempo:
         image: grafana/tempo:latest
         container_name: tempo
