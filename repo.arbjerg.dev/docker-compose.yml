@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    repo.arbjerg.dev:
+        image: ghcr.io/freyacodes/repo.arbjerg.dev:latest
+        container_name: repo.arbjerg.dev
+        restart: unless-stopped
+        user: "1000:1000"
+        volumes:
+            - ./config.yml:/opt/repo.arbjerg.dev/config.yml
+            - /mnt/tank/dev/repo.arbjerg.dev/:/opt/repo.arbjerg.dev/store/
+        networks:
+            - traefik
+        expose:
+            - 8080
+        labels:
+            traefik.enable: true
+            traefik.http.routers.repo.rule: Host(`repo.arbjerg.dev`)
+            traefik.http.routers.repo.entrypoints: https
+            traefik.http.routers.repo.tls.certresolver: tls
+            traefik.http.services.repo.loadbalancer.server.port: 8080
+
+networks:
+    traefik:
+        external: true

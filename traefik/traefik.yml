@@ -77,3 +77,8 @@ certificatesResolvers:
                 resolvers:
                     - opal.ns.cloudflare.com
                     - trace.ns.cloudflare.com
+    tls:
+        acme:
+            email: mail@topi.wtf
+            storage: /letsencrypt/acme.json
+            tlsChallenge: {}
