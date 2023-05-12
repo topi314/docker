@@ -2,24 +2,40 @@ version: '3.8'
 
 services:
     repo.arbjerg.dev:
-        image: ghcr.io/freyacodes/repo.arbjerg.dev:latest
+        image: ghcr.io/lavalink-devs/repo.arbjerg.dev:main
         container_name: repo.arbjerg.dev
         restart: unless-stopped
         user: "1000:1000"
         volumes:
-            - ./config.yml:/opt/repo.arbjerg.dev/config.yml
-            - /mnt/tank/dev/repo.arbjerg.dev/:/opt/repo.arbjerg.dev/store/
+            - ./config.yml:/opt/repo/config.yml
+            - /mnt/tank/dev/repo.arbjerg.dev/:/opt/repo/store/
         networks:
             - traefik
         expose:
             - 8080
         labels:
             traefik.enable: true
-            traefik.http.routers.repo.rule: Host(`repo.arbjerg.dev`)
+            traefik.http.routers.repo.rule: Host(`repo.arbjerg.dev`) && Path(`/webhook`)
             traefik.http.routers.repo.entrypoints: https
             traefik.http.routers.repo.tls.certresolver: tls
             traefik.http.services.repo.loadbalancer.server.port: 8080
 
+    repo.arbjerg.dev.nginx:
+        image: nginx
+        container_name: repo.arbjerg.dev.nginx
+        restart: unless-stopped
+        networks:
+            - traefik
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - /mnt/tank/dev/repo.arbjerg.dev/:/usr/share/nginx/html/:ro
+        expose:
+            - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.repo-nginx.rule: Host(`repo.arbjerg.dev`)
+            traefik.http.routers.repo-nginx.entrypoints: https
+            traefik.http.services.repo-nginx.loadbalancer.server.port: 80
 networks:
     traefik:
         external: true
