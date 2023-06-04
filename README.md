@@ -2,6 +2,10 @@
 
 Docker compose files for my homeserver
 
+### network drivers
+```bash
+$ sudo apt install r8168-dkms
+```
 
 ### docker post install
 https://docs.docker.com/engine/install/linux-postinstall/
