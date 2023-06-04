@@ -7,6 +7,11 @@ Docker compose files for my homeserver
 $ sudo apt install r8168-dkms
 ```
 
+### passwordless sudo
+```bash
+$ echo -e "\ntopi ALL=(ALL) NOPASSWD: ALL\n" | sudo tee -a /etc/sudoers
+```
+
 ### docker post install
 https://docs.docker.com/engine/install/linux-postinstall/
 
