@@ -2,10 +2,18 @@
 
 Docker compose files for my homeserver
 
-### network drivers
+### realtek lan controller drivers
+download from https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
 ```bash
-$ sudo apt install r8168-dkms
+$ apt install build-essential
+$ apt install pve-headers-$(uname –r)
+$ tar -xvf r8168-8.051.02.tar.bz2
+$ cd r8168-8.051.02
+$ chmod +x autorun.sh
+$ ./autorun.sh
 ```
+
+reboot & should fucking work god
 
 ### passwordless sudo
 ```bash
