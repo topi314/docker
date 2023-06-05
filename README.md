@@ -27,6 +27,10 @@ $ sudo chown -R 472:472 data/grafana/
 $ sudo chown -R 322:322 plugins
 ```
 
+### gpu passthrough
+
+https://www.reddit.com/r/homelab/comments/b5xpua
+
 ### nvidia driver stuff
 
 ```bash
