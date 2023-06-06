@@ -69,7 +69,7 @@ services:
             traefik.http.routers.homepage.middlewares: authelia@docker
             traefik.http.services.homepage.loadbalancer.server.port: 3000
     teleport:
-        image: public.ecr.aws/gravitational/teleport:12
+        image: public.ecr.aws/gravitational/teleport:13
         container_name: teleport
         restart: unless-stopped
         command:

@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     lavalink:
-        image: ghcr.io/freyacodes/lavalink:3
+        image: ghcr.io/lavalink-devs/lavalink:3
         container_name: lavalink_1
         restart: unless-stopped
         environment: 
@@ -22,7 +22,7 @@ services:
             traefik.http.services.lavalink.loadbalancer.server.port: 2333
 
     lavalink2:
-        image: ghcr.io/drschlaubi/lavalink:e11b525
+        image: ghcr.io/lavalink-devs/lavalink:v4
         container_name: lavalink_2
         restart: unless-stopped
         environment: 

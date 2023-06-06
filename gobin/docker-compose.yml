@@ -11,8 +11,11 @@ services:
             - database
             - traefik
             - minio
+            - metrics
+            - traces
         expose:
             - 80
+            - 9100
         labels:
             com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
@@ -26,4 +29,8 @@ networks:
     traefik:
         external: true
     minio:
+        external: true
+    metrics:
+        external: true
+    traces:
         external: true

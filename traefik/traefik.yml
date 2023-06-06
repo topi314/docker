@@ -50,6 +50,9 @@ entryPoints:
                     - main: 'xgobl.in'
                       sans:
                           - '*.xgobl.in'
+                    - main: 'godrive.zip'
+                      sans:
+                          - '*.godrive.zip'
 
 providers:
     docker:

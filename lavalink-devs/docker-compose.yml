@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+    repo:
+        image: ghcr.io/lavalink-devs/repo.arbjerg.dev:main
+        container_name: lavalink-repo
+        restart: unless-stopped
+        user: "1000:1000"
+        volumes:
+            - ./config.yml:/opt/repo/config.yml
+            - /mnt/tank/dev/repo.arbjerg.dev/:/opt/repo/artifacts/
+        networks:
+            - traefik
+        expose:
+            - 8080
+        labels:
+            traefik.enable: true
+            traefik.http.routers.repo-arbjerg-dev.rule: Host(`repo.arbjerg.dev`) && Path(`/webhook`)
+            traefik.http.routers.repo-arbjerg-dev.entrypoints: https
+            traefik.http.routers.repo-arbjerg-dev.tls.certresolver: tls
+            traefik.http.services.repo-arbjerg-dev.loadbalancer.server.port: 8080
+
+    nginx:
+        image: nginx
+        container_name: lavalink-repo-nginx
+        restart: unless-stopped
+        networks:
+            - traefik
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./html/:/usr/share/nginx/html/
+            - /mnt/tank/dev/repo.arbjerg.dev/:/usr/share/nginx/html/artifacts/:ro
+        expose:
+            - 80
+        labels:
+            traefik.enable: true
+            traefik.http.routers.repo-nginx.rule: Host(`repo.arbjerg.dev`)
+            traefik.http.routers.repo-nginx.entrypoints: https
+            traefik.http.services.repo-nginx.loadbalancer.server.port: 80
+
+#    reposilite:
+#        image: dzikoysk/reposilite:latest
+#        container_name: lavalink-reposilite
+#        restart: unless-stopped
+#        environment:
+#            - REPOSILITE_OPTS=--token admin:secret
+#             - JAVA_OPTS=-Dreposilite.s3.pathStyleAccessEnabled=true
+#        volumes:
+#            - ./data/:/app/data/
+#        networks:
+#            - traefik
+#            - minio
+#        expose:
+#            - 8080
+#        labels:
+#            traefik.enable: true
+#            traefik.http.routers.reposilite-arbjerg-dev.rule: Host(`m2.arbjerg.dev`)
+#            traefik.http.routers.reposilite-arbjerg-dev.entrypoints: https
+#            traefik.http.services.reposilite-arbjerg-dev.loadbalancer.server.port: 8080
+
+networks:
+    traefik:
+        external: true
+    minio:
+        external: true

@@ -1,0 +1,14 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 5s
+
+server:
+  listen_addr: :2112
+
+configs:
+  - name: NAS
+    address: 192.168.178.80:80
+    insecure: true
+  - name: PC
+    address: 192.168.178.79:80
+    insecure: true

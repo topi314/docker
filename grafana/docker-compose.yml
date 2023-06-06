@@ -5,6 +5,8 @@ services:
         image: grafana/grafana:latest
         container_name: grafana
         restart: unless-stopped
+        env_file:
+            - ./grafana.env
         volumes:
             - ./data/grafana/:/var/lib/grafana/
         user: "1000:1000"
@@ -20,6 +22,18 @@ services:
             traefik.http.routers.grafana.rule: Host(`grafana.topi.wtf`)
             traefik.http.routers.grafana.entrypoints: https
             traefik.http.services.grafana.loadbalancer.server.port: 3000
+#    agent:
+#        image: grafana/agent:latest
+#        container_name: grafana_agent
+#        restart: unless-stopped
+#        user: "1000:1000"
+#        volumes:
+#            - ./agent.yml:/etc/agent/agent.yaml
+#            - /mnt/tank/dev/agent/:/etc/agent/data/
+#        networks:
+#            - metrics
+#            - traces
+#            - logs
     prometheus:
         image: prom/prometheus:latest
         container_name: prometheus
@@ -90,18 +104,22 @@ services:
         ports:
             - 9100:9100
     cadvisor:
-        image: gcr.io/cadvisor/cadvisor:latest
+        image: gcr.io/cadvisor/cadvisor:v0.47.1
         container_name: cadvisor
         restart: unless-stopped
+        privileged: true
+        pid: host
         command:
             - --docker_only=true
-            - --disable_metrics=disk,percpu,sched,process,referenced_memory
+            - --disable_metrics=disk,percpu,sched
         volumes:
             - /:/rootfs:ro
             - /var/run:/var/run:ro
             - /sys:/sys:ro
+            - /sys
             - /var/lib/docker/:/var/lib/docker:ro
             - /var/run/docker.sock:/var/run/docker.sock:rw
+            - /cgroup:/cgroup:ro
         devices:
             - /dev/kmsg:/dev/kmsg
         networks:
@@ -128,6 +146,18 @@ services:
             - metrics
         expose:
             - 9080
+    shelly-exporter:
+        image: ghcr.io/topisenpai/shelly-exporter:latest
+        container_name: shelly-exporter
+        restart: unless-stopped
+        user: "1000:1000"
+        volumes:
+            - ./shelly.yml:/var/lib/shelly-collector/config.yml
+        networks:
+            - metrics
+        expose:
+            - 2112
+
 networks:
     metrics:
         name: metrics

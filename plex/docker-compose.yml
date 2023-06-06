@@ -5,13 +5,13 @@ services:
         image: ghcr.io/linuxserver/plex
         container_name: plex
         restart: unless-stopped
-        runtime: nvidia
+ #       runtime: nvidia
         environment:
             - VERSION=docker
             - TZ=Europe/Berlin
             - PUID=1000
             - PGID=1000
-            - NVIDIA_VISIBLE_DEVICES=all
+#            - NVIDIA_VISIBLE_DEVICES=all
         ports:
             - 0.0.0.0:32400:32400
         networks:

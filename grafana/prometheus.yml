@@ -6,47 +6,35 @@ scrape_configs:
     - job_name: prometheus
       static_configs:
           - targets: ['localhost:9090']
-            labels:
-                project: pve
 
     - job_name: host
       static_configs:
           - targets: ['node-exporter:9100']
-            labels:
-                project: pve
 
     - job_name: traefik
       static_configs:
           - targets: ['traefik:8080']
-            labels:
-                project: pve
 
     - job_name: promtail
       static_configs:
           - targets: ['promtail:9080']
-            labels:
-                project: pve
 
     - job_name: cadvisor
       static_configs:
           - targets: ['cadvisor:8080']
-            labels:
-                project: pve
 
     - job_name: kittybot
       static_configs:
           - targets: ['kittybot:8080']
-            labels:
-                project: kittybot
 
     - job_name: lavalink
       static_configs:
           - targets: ['lavalink:2333', 'lavalink2:2333']
-            labels:
-                project: kittybot
 
     - job_name: gobin
       static_configs:
-          - targets: ['192.168.178.72:9100']
-            labels:
-                project: gobin
+          - targets: ['gobin:9100']
+
+    - job_name: shelly
+      static_configs:
+          - targets: ['shelly-exporter:2112']
