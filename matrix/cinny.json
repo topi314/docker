@@ -1,8 +1,7 @@
 {
     "defaultHomeserver": 0,
     "homeserverList": [
-        "topi.wtf",
-        "chirality.de"
+        "topi.wtf"
     ],
     "allowCustomHomeservers": false
 }
