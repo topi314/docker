@@ -48,6 +48,23 @@ services:
             traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://auth.topi.wtf
             traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: true
             traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: Remote-User,Remote-Groups,Remote-Name,Remote-Email
+    goboard:
+        image: ghcr.io/topi314/goboard:master
+        container_name: goboard
+        restart: unless-stopped
+        user: 1000:1000
+        networks:
+            - traefik
+        volumes:
+            - ./goboard.yml:/var/lib/goboard/goboard.yml:ro
+            - ./icons/:/var/lib/goboard/icons/:ro
+        expose:
+            - 8080
+        labels:
+            traefik.enable: true
+            traefik.http.routers.goboard.rule: Host(`home.topi.wtf`)
+            traefik.http.routers.goboard.entrypoints: https
+            traefik.http.services.goboard.loadbalancer.server.port: 8080
     homepage:
         image: ghcr.io/benphelps/homepage
         container_name: homepage
@@ -64,7 +81,7 @@ services:
             - traefik
         labels:
             traefik.enable: true
-            traefik.http.routers.homepage.rule: Host(`home.topi.wtf`)
+            traefik.http.routers.homepage.rule: Host(`dash.topi.wtf`)
             traefik.http.routers.homepage.entrypoints: https
             traefik.http.routers.homepage.middlewares: authelia@docker
             traefik.http.services.homepage.loadbalancer.server.port: 3000
