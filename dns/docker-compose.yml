@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+    coredns:
+        image: coredns/coredns:latest
+        container_name: coredns
+        hostname: ns.topi.wtf
+        restart: unless-stopped
+        command: -conf /etc/coredns/Corefile
+        volumes:
+            - ./Corefile:/etc/coredns/Corefile
+            - ./hosts.conf:/etc/coredns/hosts.conf
+            - ./zones/:/etc/coredns/zones/
+        ports:
+            - 53:53
+            - 53:53/udp
+        networks:
+            dns:
+                ipv4_address: 192.168.112.2
+
+    pihole:
+        image: pihole/pihole:latest
+        container_name: pihole
+        restart: unless-stopped
+        env_file:
+            - conf.env
+        networks:
+            dns:
+                ipv4_address: 192.168.112.3
+        expose:
+            - 53
+        ports:
+            - 8080:80
+        volumes:
+            - ./data/pihole/:/etc/pihole/
+            - ./data/etc-dnsmasq.d/:/etc/dnsmasq.d/
+
+networks:
+    dns:
+        name: dns
+        ipam:
+            config:
+                - subnet: 192.168.112.0/24

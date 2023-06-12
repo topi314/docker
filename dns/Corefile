@@ -1,0 +1,17 @@
+.:53 {
+ errors
+ auto
+ reload 10s
+ log
+
+ hosts /etc/coredns/hosts.conf . {
+  fallthrough
+ }
+
+ file /etc/coredns/zones/topi.wtf topi.wtf
+ file /etc/coredns/zones/godrive.zip godrive.zip
+ file /etc/coredns/zones/xgob.in xgob.in
+
+ forward . 192.168.112.3
+ cache
+}

@@ -1,0 +1,19 @@
+$TTL 5m
+
+$ORIGIN topi.wtf.
+
+@             IN     SOA    ns.topi.wtf. mail.topi.wtf (
+                            0000000001     ; serial
+                            12h            ; refresh
+                            15m            ; retry
+                            3w             ; expire
+                            5m )           ; minimum TTL
+
+              IN     NS     ns.topi.wtf.
+
+ns            IN     A      92.168.178.74
+
+@             IN     A      192.168.178.74
+*             IN     CNAME  @
+wg            IN     A      89.58.62.218
+wg2        f  IN     A      217.160.120.101
