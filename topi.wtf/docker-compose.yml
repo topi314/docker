@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     topi-website:
-        image: ghcr.io/topisenpai/topi.wtf:master
+        image: ghcr.io/topi314/topi.wtf:master
         container_name: topi.wtf
         restart: unless-stopped
         networks:
@@ -10,7 +10,7 @@ services:
         expose:
             - 8080
         volumes:
-            - ./config.json:/etc/topi.wtf/config.json
+            - ./config.yml:/etc/topi.wtf/config.yml
         labels:
             com.centurylinklabs.watchtower.enable: true
             traefik.enable: true
@@ -18,8 +18,8 @@ services:
             traefik.http.routers.topi-website.entrypoints: https
             traefik.http.routers.topi-website.middlewares: www-topi-website-redirect
             traefik.http.services.topi-website.loadbalancer.server.port: 8080
-            traefik.http.middlewares.www-topi-website-redirect.redirectregex.regex: https://www.topi.wtf/(.*)
-            traefik.http.middlewares.www-topi-website-redirect.redirectregex.replacement: https://topi.wtf/$${1}
+            traefik.http.middlewares.www-topi-website-redirect.redirectregex.regex: https://topi.wtf/(.*)
+            traefik.http.middlewares.www-topi-website-redirect.redirectregex.replacement: https://www.topi.wtf/$${1}
 
 networks:
     traefik:

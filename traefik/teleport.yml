@@ -19,17 +19,17 @@ teleport:
 auth_service:
     enabled: "yes"
     listen_addr: 0.0.0.0:3025
-    public_addr: teleport.topi.wtf
+    public_addr: teleport.topi.wtf:3025
     cluster_name: topi.wtf
     proxy_listener_mode: separate
     client_idle_timeout: never
     disconnect_expired_cert: no
     web_idle_timeout: 20m
-    client_idle_timeout_message: "ah fuck"
+    client_idle_timeout_message: "bye bye"
 ssh_service:
     enabled: "yes"
     listen_addr: 0.0.0.0:3022
-    public_addr: teleport.topi.wtf
+    public_addr: teleport.topi.wtf:3022
     commands:
         - name: hostname
           command: [hostname]
@@ -37,5 +37,5 @@ ssh_service:
 proxy_service:
     enabled: "yes"
     listen_addr: 0.0.0.0:3023
-    public_addr: teleport.topi.wtf
+    public_addr: teleport.topi.wtf:3023
 
