@@ -1,9 +1,0 @@
-version: "3.8"
-
-services:
-    music:
-        image: ghcr.io/2007marco/musican:main
-        container_name: musican
-        restart: unless-stopped
-        env_file:
-            - conf.env
