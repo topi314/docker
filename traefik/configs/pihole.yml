@@ -1,0 +1,12 @@
+http:
+  routers:
+    pihole:
+      rule: "Host(`pihole.topi.wtf`)"
+      service: pihole
+      middlewares:
+          - authelia@docker
+  services:
+    pihole:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.178.83:8080"
