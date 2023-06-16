@@ -26,7 +26,7 @@ https://github.com/topi314/docker/tree/wg
 $ iptables -F
 $ iptables -t nat -F
 $ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8006
-apt install iptables-persistent -y
+$ apt install iptables-persistent -y
 ```
 
 ### remove proxmox no subscription message
