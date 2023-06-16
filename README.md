@@ -20,6 +20,15 @@ https://github.com/topi314/docker/tree/wg
 
 ## Other Docs
 
+### pve/pmg on port 443
+
+```bash
+$ iptables -F
+$ iptables -t nat -F
+$ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8006
+apt install iptables-persistent -y
+```
+
 ### remove proxmox no subscription message
 
 #### pve
