@@ -3,7 +3,7 @@ $TTL 5m
 $ORIGIN topi.wtf.
 
 @             IN     SOA    ns.topi.wtf. mail.topi.wtf (
-                            0000000001     ; serial
+                            0000000003     ; serial
                             12h            ; refresh
                             15m            ; retry
                             3w             ; expire
@@ -11,9 +11,13 @@ $ORIGIN topi.wtf.
 
               IN     NS     ns.topi.wtf.
 
-ns            IN     A      92.168.178.74
+ns            IN     A      92.168.178.83
 
 @             IN     A      192.168.178.74
 *             IN     CNAME  @
+mail          IN     A      89.58.62.218
 wg            IN     A      89.58.62.218
-wg2        f  IN     A      217.160.120.101
+wg2           IN     A      217.160.120.101
+pve           IN     A      192.168.178.73
+pve2          IN     A      192.168.178.81
+pmg           IN     A      192.168.178.76
