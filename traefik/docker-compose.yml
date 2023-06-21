@@ -55,16 +55,16 @@ services:
             traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://auth.topi.wtf
             traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: true
             traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: Remote-User,Remote-Groups,Remote-Name,Remote-Email
-    goboard:
-        image: ghcr.io/topi314/goboard:master
-        container_name: goboard
+    goapps:
+        image: ghcr.io/topi314/goapps:master
+        container_name: goapps
         restart: unless-stopped
         user: 1000:1000
         networks:
             - traefik
         volumes:
-            - ./goboard.yml:/var/lib/goboard/goboard.yml:ro
-            - ./icons/:/var/lib/goboard/icons/:ro
+            - ./goapps.yml:/var/lib/goapps/goapps.yml:ro
+            - ./icons/:/var/lib/goapps/icons/:ro
         expose:
             - 8080
         labels:
