@@ -38,6 +38,7 @@ entryPoints:
                     - main: topi.wtf
                       sans:
                           - '*.topi.wtf'
+                          - '*.teleport.topi.wtf'
                     - main: 'kittybot.de'
                       sans:
                           - '*.kittybot.de'
@@ -74,7 +75,7 @@ certificatesResolvers:
             # caserver: https://acme-staging-v02.api.letsencrypt.org/directory
             email: mail@topi.wtf
             storage: /letsencrypt/acme.json
-            dnsChallenge: 
+            dnsChallenge:
                 provider: cloudflare
                 delayBeforeCheck: 120
                 resolvers:

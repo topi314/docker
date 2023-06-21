@@ -36,27 +36,29 @@ services:
             traefik.enable: true
             traefik.http.routers.repo-nginx.rule: Host(`repo.arbjerg.dev`)
             traefik.http.routers.repo-nginx.entrypoints: https
+            traefik.http.routers.repo-nginx.tls.certresolver: tls
             traefik.http.services.repo-nginx.loadbalancer.server.port: 80
 
-#    reposilite:
-#        image: dzikoysk/reposilite:latest
-#        container_name: lavalink-reposilite
-#        restart: unless-stopped
-#        environment:
+    reposilite:
+        image: dzikoysk/reposilite:latest
+        container_name: lavalink-reposilite
+        restart: unless-stopped
+        environment:
 #            - REPOSILITE_OPTS=--token admin:secret
-#             - JAVA_OPTS=-Dreposilite.s3.pathStyleAccessEnabled=true
-#        volumes:
-#            - ./data/:/app/data/
-#        networks:
-#            - traefik
-#            - minio
-#        expose:
-#            - 8080
-#        labels:
-#            traefik.enable: true
-#            traefik.http.routers.reposilite-arbjerg-dev.rule: Host(`m2.arbjerg.dev`)
-#            traefik.http.routers.reposilite-arbjerg-dev.entrypoints: https
-#            traefik.http.services.reposilite-arbjerg-dev.loadbalancer.server.port: 8080
+            - JAVA_OPTS=-Dreposilite.s3.pathStyleAccessEnabled=true
+        volumes:
+            - ./data/:/app/data/
+        networks:
+            - traefik
+            - minio
+        expose:
+            - 8080
+        labels:
+            traefik.enable: true
+            traefik.http.routers.reposilite-arbjerg-dev.rule: Host(`maven.arbjerg.dev`)
+            traefik.http.routers.reposilite-arbjerg-dev.entrypoints: https
+            traefik.http.routers.reposilite-arbjerg-dev.tls.certresolver: tls
+            traefik.http.services.reposilite-arbjerg-dev.loadbalancer.server.port: 8080
 
 networks:
     traefik:

@@ -19,9 +19,9 @@ teleport:
 auth_service:
     enabled: "yes"
     listen_addr: 0.0.0.0:3025
-    public_addr: teleport.topi.wtf:3025
+    public_addr: teleport.topi.wtf:443
     cluster_name: topi.wtf
-    proxy_listener_mode: separate
+    proxy_listener_mode: multiplex
     client_idle_timeout: never
     disconnect_expired_cert: no
     web_idle_timeout: 20m
@@ -34,8 +34,15 @@ ssh_service:
         - name: hostname
           command: [hostname]
           period: 1m0s
+        - name: teleport-version
+          command: ["/bin/sh", "-c", "/usr/local/bin/teleport version --raw"]
+          period: 1m0s
 proxy_service:
     enabled: "yes"
-    listen_addr: 0.0.0.0:3023
-    public_addr: teleport.topi.wtf:3023
-
+    web_listen_addr: 0.0.0.0:3080
+    public_addr: teleport.topi.wtf:443
+    ssh_public_addr: teleport.topi.wtf:443
+    tunnel_public_addr: teleport.topi.wtf:443
+    https_keypairs:
+        - key_file: /letsencrypt/key.pem
+          cert_file: /letsencrypt/cert.pem

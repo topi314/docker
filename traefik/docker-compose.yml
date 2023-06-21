@@ -11,8 +11,8 @@ services:
             - traefik
             - metrics
         ports:
-            - 0.0.0.0:80:80
-            - 0.0.0.0:443:443
+            - 80:80
+            - 443:443
         expose:
             - 8080
         volumes:
@@ -27,6 +27,13 @@ services:
             traefik.http.routers.dashboard.service: api@internal
             traefik.http.routers.dashboard.middlewares: authelia@docker
             traefik.http.services.dashboard.loadbalancer.server.port: 8080
+    acme:
+        image: koshatul/traefik-acme
+        container_name: acme
+        restart: "no"
+        command: -r cloudflare -a /letsencrypt/acme.json -c /letsencrypt/cert.pem -k /letsencrypt/key.pem topi.wtf
+        volumes:
+            - ./data/letsencrypt/:/letsencrypt/
     authelia:
         image: authelia/authelia
         container_name: authelia
@@ -62,7 +69,7 @@ services:
             - 8080
         labels:
             traefik.enable: true
-            traefik.http.routers.goboard.rule: Host(`home.topi.wtf`)
+            traefik.http.routers.goboard.rule: Host(`apps.topi.wtf`)
             traefik.http.routers.goboard.entrypoints: https
             traefik.http.services.goboard.loadbalancer.server.port: 8080
     homepage:
@@ -81,7 +88,7 @@ services:
             - traefik
         labels:
             traefik.enable: true
-            traefik.http.routers.homepage.rule: Host(`dash.topi.wtf`)
+            traefik.http.routers.homepage.rule: Host(`home.topi.wtf`)
             traefik.http.routers.homepage.entrypoints: https
             traefik.http.routers.homepage.middlewares: authelia@docker
             traefik.http.services.homepage.loadbalancer.server.port: 3000
@@ -94,6 +101,7 @@ services:
         volumes:
             - ./teleport.yml:/etc/teleport/teleport.yaml
             - ./data/teleport/:/var/lib/teleport/
+            - ./data/letsencrypt/:/letsencrypt/
         networks:
             - traefik
         ports:
@@ -101,11 +109,12 @@ services:
             - 3023:3023
             - 3024:3024
             - 3025:3025
+            - 3080:3080
         expose:
             - 3080
         labels:
             traefik.enable: true
-            traefik.http.routers.teleport.rule: Host(`teleport.topi.wtf`)
+            traefik.http.routers.teleport.rule: Host(`teleport.topi.wtf`) || HostRegexp(`{subdomain:[a-z0-9]+}.teleport.topi.wtf`) || Host(`pve.topi.wtf`) || Host(`pve2.topi.wtf`) || Host(`pmg.topi.wtf`)
             traefik.http.routers.teleport.entrypoints: https
             traefik.http.services.teleport.loadbalancer.server.port: 3080
             traefik.http.services.teleport.loadbalancer.server.scheme: https
