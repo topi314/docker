@@ -103,7 +103,7 @@ then follow: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/i
 \\192.168.178.75\media
 \\192.168.178.75\share
 \\192.168.178.75\bunker
-\\192.168.178.76\downloads
+\\192.168.178.75\downloads
 ```
 
 ### Wireguard Allowed IPs Exclude Calculator
