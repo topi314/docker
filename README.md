@@ -99,11 +99,11 @@ then follow: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/i
 ### Samba shares
 
 ```
-\\192.168.178.74\topi
-\\192.168.178.74\media
-\\192.168.178.74\share
-\\192.168.178.74\bunker
-\\192.168.178.74\downloads
+\\192.168.178.75\topi
+\\192.168.178.75\media
+\\192.168.178.76\share
+\\192.168.178.77\bunker
+\\192.168.178.77\downloads
 ```
 
 ### Wireguard Allowed IPs Exclude Calculator
