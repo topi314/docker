@@ -86,12 +86,14 @@ https://www.reddit.com/r/homelab/comments/b5xpua
 
 ### nvidia driver stuff
 
+https://www.nvidia.com/Download/index.aspx
+
 ```bash
-$ wget https://us.download.nvidia.com/XFree86/Linux-x86_64/525.105.17/NVIDIA-Linux-x86_64-525.105.17.run
+$ wget https://us.download.nvidia.com/XFree86/Linux-x86_64/535.54.03/NVIDIA-Linux-x86_64-535.54.03.run
 
 $ apt install linux-headers-`uname -r` build-essential
 
-$ sh NVIDIA-Linux-x86_64-515.65.01.run
+$ sh NVIDIA-Linux-x86_64-535.54.03.run
 ```
 
 then follow: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker
