@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     kitsune-bot:
-        image: ghcr.io/topisenpai/kitsune-bot:latest
+        image: ghcr.io/topi314/kitsune-bot:latest
         container_name: kitsune-bot
         restart: unless-stopped
         env_file:

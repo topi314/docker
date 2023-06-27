@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     img:
-        image: ghcr.io/topisenpai/godrive:master
+        image: ghcr.io/topi314/godrive:master
         container_name: img
         restart: unless-stopped
         volumes:

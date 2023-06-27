@@ -38,7 +38,7 @@ services:
         image: prom/prometheus:latest
         container_name: prometheus
         restart: unless-stopped
-        command: 
+        command:
             - --config.file=/etc/prometheus/prometheus.yml
             - --storage.tsdb.path=/data/
             - --storage.tsdb.retention.time=5y
@@ -147,7 +147,7 @@ services:
         expose:
             - 9080
     shelly-exporter:
-        image: ghcr.io/topisenpai/shelly-exporter:latest
+        image: ghcr.io/topi314/shelly-exporter:latest
         container_name: shelly-exporter
         restart: unless-stopped
         user: "1000:1000"
