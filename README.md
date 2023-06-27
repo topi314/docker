@@ -56,6 +56,19 @@ $ chmod +x autorun.sh
 $ ./autorun.sh
 ```
 
+`r8168` isn't yet compatible with debian 12 it seems like,
+
+to fix the `error: too many arguments to function netif_napi_add` just replace the lines in `r8168-8.051.02/src/r8168.h`
+
+```diff
+-#define RTL_NAPI_CONFIG(ndev, priv, function, weight)   netif_napi_add(ndev, &priv->napi, function, weight)
++#if LINUX_VERSION_CODE < KERNEL_VERSION(6,1,0)
++#define RTL_NAPI_CONFIG(ndev, priv, function, weight)   netif_napi_add(ndev, &priv->napi, function, weight)
++#else
++#define RTL_NAPI_CONFIG(ndev, priv, function, weight)   netif_napi_add_weight(ndev, &priv->napi, function, weight)
++#endif
+```
+
 reboot & should fucking work god
 
 ### passwordless sudo
