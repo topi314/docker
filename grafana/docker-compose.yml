@@ -103,36 +103,36 @@ services:
             - 9100
         ports:
             - 9100:9100
-    cadvisor:
-        image: gcr.io/cadvisor/cadvisor:v0.47.1
-        container_name: cadvisor
-        restart: unless-stopped
-        privileged: true
-        pid: host
-        command:
-            - --docker_only=true
-            - --disable_metrics=disk,percpu,sched
-        volumes:
-            - /:/rootfs:ro
-            - /var/run:/var/run:ro
-            - /sys:/sys:ro
-            - /sys
-            - /var/lib/docker/:/var/lib/docker:ro
-            - /var/run/docker.sock:/var/run/docker.sock:rw
-            - /cgroup:/cgroup:ro
-        devices:
-            - /dev/kmsg:/dev/kmsg
-        networks:
-            - metrics
-            - traefik
-        expose:
-            - 8080
-        labels:
-            traefik.enable: true
-            traefik.http.routers.cadvisor.rule: Host(`cadvisor.topi.wtf`)
-            traefik.http.routers.cadvisor.entrypoints: https
-            traefik.http.routers.cadvisor.middlewares: authelia@docker
-            traefik.http.services.cadvisor.loadbalancer.server.port: 8080
+#    cadvisor:
+#        image: gcr.io/cadvisor/cadvisor:v0.47.1
+#        container_name: cadvisor
+#        restart: unless-stopped
+#        privileged: true
+#        pid: host
+#        command:
+#            - --docker_only=true
+#            - --disable_metrics=disk,percpu,sched
+#        volumes:
+#            - /:/rootfs:ro
+#            - /var/run:/var/run:ro
+#            - /sys:/sys:ro
+#            - /sys
+#            - /var/lib/docker/:/var/lib/docker:ro
+#            - /var/run/docker.sock:/var/run/docker.sock:rw
+#            - /cgroup:/cgroup:ro
+#        devices:
+#            - /dev/kmsg:/dev/kmsg
+#        networks:
+#            - metrics
+#            - traefik
+#        expose:
+#            - 8080
+#        labels:
+#            traefik.enable: true
+#            traefik.http.routers.cadvisor.rule: Host(`cadvisor.topi.wtf`)
+#            traefik.http.routers.cadvisor.entrypoints: https
+#            traefik.http.routers.cadvisor.middlewares: authelia@docker
+#            traefik.http.services.cadvisor.loadbalancer.server.port: 8080
     promtail:
         image: grafana/promtail:latest
         container_name: promtail
@@ -147,7 +147,7 @@ services:
         expose:
             - 9080
     shelly-exporter:
-        image: ghcr.io/topi314/shelly-exporter:latest
+        image: ghcr.io/topi314/shelly-exporter:master
         container_name: shelly-exporter
         restart: unless-stopped
         user: "1000:1000"

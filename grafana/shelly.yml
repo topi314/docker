@@ -1,3 +1,8 @@
+log:
+  level: info
+  format: text
+  add_source: false
+
 global:
   scrape_interval: 15s
   scrape_timeout: 10s
@@ -10,5 +15,8 @@ configs:
     address: 192.168.178.80:80
     insecure: true
   - name: PC
+    address: 192.168.178.58:80
+    insecure: true
+  - name: IDK
     address: 192.168.178.79:80
     insecure: true
