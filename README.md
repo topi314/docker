@@ -77,6 +77,14 @@ reboot & should fucking work god
 $ echo -e "\ntopi ALL=(ALL) NOPASSWD: ALL\n" | sudo tee -a /etc/sudoers
 ```
 
+### ZFS
+
+Delete all snapshots
+```bash
+$ zfs destroy -rvn <DATASET>@%
+```
+remove `-n` to run it
+
 ### docker post install
 
 https://docs.docker.com/engine/install/linux-postinstall/
