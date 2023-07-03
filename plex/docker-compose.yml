@@ -13,8 +13,8 @@ services:
             - PGID=1000
             - NVIDIA_VISIBLE_DEVICES=all
         ports:
-            - 0.0.0.0:32400:32400
-            - 0.0.0.0:33400:33400
+            - 32400:32400
+            - 33400:33400
         networks:
             - traefik
         volumes:
@@ -29,6 +29,33 @@ services:
             traefik.http.routers.plex.rule: Host(`plex.topi.wtf`)
             traefik.http.services.plex.loadbalancer.server.port: 32400
             traefik.http.routers.plex.entrypoints: https
+
+    jellyfin:
+        image: ghcr.io/linuxserver/jellyfin
+        container_name: jellyfin
+        restart: unless-stopped
+        runtime: nvidia
+        environment:
+            - TZ=Europe/Berlin
+            - PUID=1000
+            - PGID=1000
+            - JELLYFIN_PublishedServerUrl=https://jellyfin.topi.wtf
+        ports:
+            - 8096:8096
+        networks:
+            - traefik
+        volumes:
+            - ./data/jellyfin/:/config/
+            - /mnt/tank/media/anime/:/media/anime/:ro
+            - /mnt/tank/media/nsfw/:/media/nsfw/:ro
+            - /mnt/tank/media/hentai/:/media/hentai/:ro
+            - /mnt/tank/media/tv/:/media/tv/:ro
+            - /mnt/tank/media/movies/:/media/movies/:ro
+        labels:
+            traefik.enable: true
+            traefik.http.routers.jellyfin.rule: Host(`jellyfin.topi.wtf`)
+            traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+            traefik.http.routers.jellyfin.entrypoints: https
 
     tautulli:
         image: ghcr.io/rickdb/tautulli-plexanisync:master
