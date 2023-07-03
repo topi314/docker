@@ -10,6 +10,7 @@ services:
             WEBSOCKET_ENABLED: true
             DOMAIN: https://vault.topi.wtf
             SIGNUPS_ALLOWED: false
+            INVITATIONS_ALLOWED: true
         env_file:
             - conf.env
         volumes:
@@ -37,3 +38,4 @@ networks:
         external: true
     traefik:
         external: true
+
