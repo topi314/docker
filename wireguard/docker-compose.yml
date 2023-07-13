@@ -21,8 +21,6 @@ services:
         volumes:
             - ./data/wireguard:/config
             - /lib/modules:/lib/modules
-        networks:
-            - traefik
         ports:
             - 51820:51820/udp # wireguard
             - 80:80           # http
@@ -34,6 +32,7 @@ services:
             - 5432:5432       # database-dev
             - 22:22           # gitea ssh
             - 222:222         # server ssh
+
     haproxy:
         image: haproxy
         container_name: haproxy
@@ -43,14 +42,14 @@ services:
             - wireguard
         volumes:
             - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+
     wg-ui:
         image: ngoduykhanh/wireguard-ui:latest
         container_name: wg-ui
         user: "1000:1000"
         cap_add:
             - NET_ADMIN
-        networks:
-            - traefik
+        network_mode: service:wireguard
         environment:
             - SESSION_SECRET
             - WGUI_USERNAME=topi
@@ -58,11 +57,3 @@ services:
         volumes:
             - ./data/ui:/app/db
             - ./data/wireguard:/etc/wireguard
-        labels:
-            traefik.enable: true
-            traefik.http.routers.wg-ui.rule: Host(`wg.topi.wtf`)
-            traefik.http.routers.wg-ui.entrypoints: https
-            traefik.http.services.wg-ui.loadbalancer.server.port: 80
-networks:
-    traefik:
-        external: true
