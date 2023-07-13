@@ -14,9 +14,8 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/Berlin
-            - SERVERURL=wireguard.topi.wtf
+            - SERVERURL=wg.topi.wtf
             - SERVERPORT=51820
-            - PEERS=1
             - PEERDNS=auto
             - LOG_CONFS=true
         volumes:
