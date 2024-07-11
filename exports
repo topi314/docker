@@ -15,5 +15,6 @@
 /mnt/tank/media/hentai         *(rw,sync,no_subtree_check)
 /mnt/tank/media/movies         *(rw,sync,no_subtree_check)
 /mnt/tank/media/tv             *(rw,sync,no_subtree_check)
+/mnt/tank/media/immic          *(rw,sync,no_subtree_check)
 /mnt/tank/share                *(rw,sync,no_subtree_check)
 /mnt/tank/topi                 *(rw,sync,no_subtree_check)
