@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
     wireguard:
         image: lscr.io/linuxserver/wireguard:latest
@@ -14,12 +12,14 @@ services:
             - PUID=1000
             - PGID=1000
             - TZ=Europe/Berlin
-            - SERVERURL=wg.topi.wtf
+            - INTERNAL_SUBNET=192.168.179.1
+            - PEERS=nas,pmg,topi
+            - SERVERURL=wg2.topi.wtf
             - SERVERPORT=51820
             - PEERDNS=auto
             - LOG_CONFS=true
         volumes:
-            - ./data/wireguard:/config
+            - ./data/:/config/
             - /lib/modules:/lib/modules
         ports:
             - 51820:51820/udp # wireguard
@@ -32,7 +32,13 @@ services:
             - 5432:5432       # database-dev
             - 22:22           # gitea ssh
             - 222:222         # server ssh
-
+            - 7777:7777       # terraria
+            - 25:25           # smtp
+            - 587:587         # imap ssl/starttls
+            - 110:110         # pop3
+            - 143:143         # imap tls
+            - 8555:8555/tcp   # frigate webrtc tcp
+            - 8555:8555/udp   # frigate webrtc udp
     haproxy:
         image: haproxy
         container_name: haproxy
@@ -42,18 +48,3 @@ services:
             - wireguard
         volumes:
             - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
-
-    wg-ui:
-        image: ngoduykhanh/wireguard-ui:latest
-        container_name: wg-ui
-        user: "1000:1000"
-        cap_add:
-            - NET_ADMIN
-        network_mode: service:wireguard
-        environment:
-            - SESSION_SECRET
-            - WGUI_USERNAME=topi
-            - WGUI_PASSWORD=topi
-        volumes:
-            - ./data/ui:/app/db
-            - ./data/wireguard:/etc/wireguard
