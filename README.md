@@ -20,14 +20,29 @@ https://github.com/topi314/docker/tree/wg
 
 ## Other Docs
 
-### pve/pmg on port 443
+### pve/pmg/pbs on port 443
 
 ```bash
 $ iptables -F
 $ iptables -t nat -F
+```
+#### pve/pmg
+
+```bash
 $ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8006
+```
+
+#### pbs
+
+```bash
+$ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8007
+```
+
+
+```bash
 $ apt install iptables-persistent -y
 ```
+
 
 ### remove proxmox no subscription message
 
@@ -42,6 +57,13 @@ $ sed -Ezi.bak "s/(Ext.Msg.show\(\{\s+title: gettext\('No valid sub)/void\(\{ \/
 ```sh
 $ sed -Ezi.bak "s/(Ext.Msg.show\(\{\s+title: gettext\('No valid sub)/void\(\{ \/\/\1/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js && systemctl restart pmgproxy.service
 ```
+
+#### pbs
+
+```sh
+$ sed -Ezi.bak "s/(Ext.Msg.show\(\{\s+title: gettext\('No valid sub)/void\(\{ \/\/\1/g" /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js && systemctl restart proxmox-backup-proxy.service
+```
+
 
 ### realtek lan controller drivers
 
