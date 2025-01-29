@@ -4,17 +4,17 @@ Docker Compose and other config files for my homelab
 
 ## Hosts
 
-### pve
+### docker
 
-https://github.com/topi314/docker/tree/pve
-
-### pve2
-
-https://github.com/topi314/docker/tree/pve2
+https://github.com/topi314/docker/tree/docker
 
 ### wg
 
 https://github.com/topi314/docker/tree/wg
+
+### pi-zero
+
+https://github.com/topi314/docker/tree/pi-zero
 
 ---
 
@@ -38,6 +38,7 @@ $ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8006
 $ iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8007
 ```
 
+---
 
 ```bash
 $ apt install iptables-persistent -y
