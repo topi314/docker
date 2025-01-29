@@ -1,0 +1,18 @@
+$TTL 5m
+
+$ORIGIN godrive.zip.
+
+@             IN     SOA    ns.godrive.zip. mail.topi.wtf (
+                            0000000001     ; serial
+                            12h            ; refresh
+                            15m            ; retry
+                            3w             ; expire
+                            5m )           ; minimum TTL
+
+              IN     NS     ns.godrive.zip.
+
+ns            IN     A      192.168.178.31
+
+@             IN     A      192.168.178.74
+@             IN     AAAA   fe80::7ca1:22ff:fefb:659f
+*             IN     CNAME  @
