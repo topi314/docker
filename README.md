@@ -152,6 +152,10 @@ then follow: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/i
 \\192.168.178.75\downloads
 ```
 
+### Resize VM Disk
+
+https://pve.proxmox.com/wiki/Resize_disks#1._Resizing_guest_disk
+
 ### Wireguard Allowed IPs Exclude Calculator
 
 https://www.procustodibus.com/blog/2021/03/wireguard-allowedips-calculator/
